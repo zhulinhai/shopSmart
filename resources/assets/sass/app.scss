@@ -1,0 +1,23 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap";
+
+.logo {
+  margin-top: 5px;
+}
+.navbar {
+  background-color: #204F8D;
+  margin-bottom: 0;
+  a {
+    color: white;
+  }
+}
+.container {
+  margin-top: 40px;
+}

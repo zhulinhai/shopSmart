@@ -15,13 +15,11 @@
             array('num'=>'456888','name'=>'总评论')
         );
         ?>
-
-    @foreach($items as $item)
-        <div class="col-sm-3 col-md-2">
-            <h3 class="list-group-item-heading">{{ $item['num'] }}</h3>
-            <p class="list-group-item-text">{{ $item['name'] }}</p>
-        </div>
-    @endforeach
-
+        @foreach($items as $item)
+            <div class="col-sm-3 col-md-2">
+                <h3 class="list-group-item-heading">{{ $item['num'] }}</h3>
+                <p class="list-group-item-text">{{ $item['name'] }}</p>
+            </div>
+        @endforeach
     </div>
 @endsection

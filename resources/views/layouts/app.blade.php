@@ -11,6 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,33 +30,31 @@
                     </button>
 
                     <!-- Branding Image -->
-                    {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{--{{ config('app.name', 'Laravel') }}--}}
                         <img class="logo" src="{{ asset('img/logo.png') }}" />
-                    {{--</a>--}}
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        {{--&nbsp;<img class="logo" src="{{ asset('img/logo.png') }}" />--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a  style="color: #fff" href="{{ route('login') }}">登录</a></li>
-                            <li><a  style="color: #fff" href="{{ route('register') }}">注册</a></li>
+                            <li><a  style="color: #fff" href="{{ route('login') }}"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+                            <li><a  style="color: #fff" href="{{ route('register') }}"><span class="glyphicon glyphicon-log-in"></span> 注册</a></li>
                         @else
                             <li class="dropdown">
                                 {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
                                     {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                                 {{--</a>--}}
 
-                                <a style="color: #fff" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <img class="logo" style="float: left;margin-right: 5px;margin-top: -5px" src="{{ asset('img/sysManage.png') }}" />账号退出
-                                </a>
+                                <a style="color: #fff" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="glyphicon glyphicon-cog"></i> 账号退出</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -66,9 +66,17 @@
                     </ul>
                 </div>
             </div>
+            <div class="notice"><img src="{{ asset('img/currentUser.png') }}"> {{ '李小明' }} 欢迎您进入智慧商圈后台管理系统 <img src="{{ asset('img/clock.png') }}"> {{ date(DATE_ATOM) }}</div>
         </nav>
-
-        @yield('content')
+        <div class="container-fluid">
+            <div class="row">
+                @yield('menu')
+                <div class="col-sm-9 col-md-10 content">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+        <div class="footer"> 武汉云端物联科技有限公司 · 版权所有&nbsp;&nbsp;</div>
     </div>
 
     <!-- Scripts -->

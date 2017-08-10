@@ -7,9 +7,11 @@
 
 // Bootstrap
 @import "bootstrap";
-
-.logo {
-  margin-top: 5px;
+hr {
+  margin: 0;
+}
+.navbar-brand {
+  padding: 5px 10px;
 }
 .navbar {
   background-color: #204F8D;
@@ -17,7 +19,75 @@
   a {
     color: white;
   }
+  .notice {
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+    background-color: #EFF2F3;
+    color: #343536;
+    img {
+      margin-left: 20px;
+      margin-right: 5px;
+    }
+  }
 }
-.container {
-  margin-top: 40px;
+.menus {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  height: 782px;
+  background:linear-gradient(#2F6BB6, #1D4577);
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#2F6BB6',endColorStr='#1D4577',gradientType='0');
+  .list-group-item {
+    height: 58px;
+    background: transparent url("../img/arrowR.png") no-repeat 90% center;
+    border: none;
+    a {
+      color: white;
+      line-height: 39px;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+    hr {
+      margin-top: 5px;
+      margin-left: 50px;
+      border-color: #3A434C;
+    }
+  }
+  .list-group-item:hover, .active {
+    background-color: #3A434C;
+  }
+}
+
+.content {
+  .head-title {
+    width: 100%;
+    line-height: 20px;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D8D8D8;
+  }
+  .col-xs-9 {
+    margin: 30px 0;
+    text-align: center;
+  }
+  .col-xs-9>.col-md-2 {
+    border-right: 1px solid #D8D8D8;
+    h3 {
+      line-height: 50px;
+    }
+  }
+  .col-xs-9>.col-md-2:last-child {
+    border-right: none;
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+  text-align: right;
+  background-color: #3A434C;
 }

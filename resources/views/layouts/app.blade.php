@@ -66,7 +66,10 @@
                     </ul>
                 </div>
             </div>
-            <div class="notice"><img src="{{ asset('img/currentUser.png') }}"> {{ '李小明' }} 欢迎您进入智慧商圈后台管理系统 <img src="{{ asset('img/clock.png') }}"> {{ date(DATE_ATOM) }}</div>
+            @if (Auth::guest())
+            @else
+                <div class="notice"><img src="{{ asset('img/currentUser.png') }}"> {{ Auth::user()->name }} 欢迎您进入智慧商圈后台管理系统 <img src="{{ asset('img/clock.png') }}"> {{ date(DATE_ATOM) }}</div>
+            @endif
         </nav>
         <div class="container-fluid">
             <div class="row">

@@ -15,7 +15,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/merchants', 'MerchantsController@index');
+Route::get('/merchants/new', 'MerchantsController@newMerchant');
+Route::get('/merchants/edit/{id}', 'MerchantsController@edit');
+Route::Post('/merchants/save', 'MerchantsController@add');
 
 Route::get('/admin/product/new', 'ProductController@newProduct');
 Route::get('/admin/products', 'ProductController@index');

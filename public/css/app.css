@@ -6623,6 +6623,9 @@ hr {
       margin-left: 20px;
       margin-right: 5px; }
 
+.container, .panel {
+  margin-top: 20px; }
+
 .menus {
   padding: 0;
   border: none;
@@ -6631,14 +6634,17 @@ hr {
   background: linear-gradient(#2F6BB6, #1D4577);
   filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#2F6BB6',endColorStr='#1D4577',gradientType='0'); }
   .menus .list-group-item {
+    color: white;
+    border-radius: 0;
+    line-height: 39px;
+    font-size: 16px;
     height: 58px;
     background: transparent url("../img/arrowR.png") no-repeat 90% center;
     border: none; }
+    .menus .list-group-item img {
+      margin-right: 10px; }
     .menus .list-group-item a {
-      color: white;
-      line-height: 39px;
-      margin-left: 20px;
-      font-size: 16px; }
+      text-decoration: none; }
     .menus .list-group-item hr {
       margin-top: 5px;
       margin-left: 50px;

@@ -31,6 +31,9 @@ hr {
     }
   }
 }
+.container, .panel {
+  margin-top: 20px;
+}
 .menus {
   padding: 0;
   border: none;
@@ -39,14 +42,18 @@ hr {
   background:linear-gradient(#2F6BB6, #1D4577);
   filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#2F6BB6',endColorStr='#1D4577',gradientType='0');
   .list-group-item {
+    color: white;
+    border-radius: 0;
+    line-height: 39px;
+    font-size: 16px;
     height: 58px;
     background: transparent url("../img/arrowR.png") no-repeat 90% center;
     border: none;
+    img {
+      margin-right: 10px;
+    }
     a {
-      color: white;
-      line-height: 39px;
-      margin-left: 20px;
-      font-size: 16px;
+      text-decoration: none;
     }
     hr {
       margin-top: 5px;

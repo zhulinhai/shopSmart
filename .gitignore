@@ -10,3 +10,4 @@ Homestead.yaml
 npm-debug.log
 .env
 .sass-cache/
+composer.json

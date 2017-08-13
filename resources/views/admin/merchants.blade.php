@@ -22,7 +22,7 @@
                         <tbody>
                         @foreach ($merchants as $merchant)
                             <tr>
-                                <td>{{ $merchant->logo }}</td>
+                                <td><a href="#" class="thumbnail"><img src="{{ asset($merchant->logo) }}" alt=""></a></td>
                                 <td><p>{{ $merchant->name }}</p><p>类型：{{ $merchant->types }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
                                 <td><a href="{{ url('merchants/edit/'.$merchant->id) }}"><button class="btn btn-primary">编辑</button></a> <a href="{{ url('merchants/destroy/'.$merchant->id) }}"><button class="btn btn-danger">下架</button></a></td>
                                 <td><input type="checkbox"></td>

@@ -19,6 +19,12 @@ Route::get('/merchants', 'MerchantsController@index');
 Route::get('/merchants/new', 'MerchantsController@newMerchant');
 Route::get('/merchants/edit/{id}', 'MerchantsController@edit');
 Route::Post('/merchants/save', 'MerchantsController@add');
+Route::get('/merchants/destroy/{id}', 'MerchantsController@destroy');
+
+
+Route::get('/tags', 'TagsController@index');
+Route::get('/tags/new', 'TagsController@newTag');
+Route::Post('/tags/new', 'TagsController@newTag');
 
 Route::get('/admin/product/new', 'ProductController@newProduct');
 Route::get('/admin/products', 'ProductController@index');

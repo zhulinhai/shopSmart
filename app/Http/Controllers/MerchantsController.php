@@ -33,8 +33,8 @@ class MerchantsController extends Controller
 
     function add(Request $request)
     {
-        $imageUrl = $request->file('head_image')->store('avatars');
-        $logoUrl = $request->file('logo')->store('avatars');
+        $imageUrl = $request->file('head_image')->store('uploads');
+        $logoUrl = $request->file('logo')->store('uploads');
         $merchant = new Merchant();
         $merchant->name =$request->input('name');
         $merchant->head_image = $imageUrl;
@@ -57,7 +57,7 @@ class MerchantsController extends Controller
     function destroy($id)
     {
         Merchant::destroy($id);
-        return redirect('/admin/products');
+        return redirect('/merchants');
     }
 
     function save()

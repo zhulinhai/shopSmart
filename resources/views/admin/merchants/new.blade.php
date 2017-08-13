@@ -8,7 +8,8 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 商家管理</a><a href="{{ url('/merchants/add') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加商家</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 商家管理</a><a href="{{ url('/merchants') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-exclamation-sign
+"></i> 取消</a></div>
         </div>
         <div class="panel-body" >
             <form method="POST" action="{{ url('/merchants/save') }}" class="form-horizontal" enctype="multipart/form-data" role="form">
@@ -51,6 +52,35 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="tags">商家类型：</label>
                         <div class="col-md-9">
+                            <div class="input-group input-group-lg col-lg-12">
+                                <label class="control-label" for="tags">衣服</label>
+                                <div class="input-group input-group-lg col-lg-12" style="padding-top: 5px">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="0"> 一级标签
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="1"> 美容
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="1"> 美容
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="input-group input-group-lg col-lg-12">
+                                <label class="control-label" for="tags">衣服</label>
+                                <div class="input-group input-group-lg col-lg-12" style="padding-top: 5px">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="0"> 一级标签
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="1"> 美容
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" id="checkbox3" name="checkbox[]" value="1"> 美容
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +93,5 @@
 
             </form>
         </div>
-    <div class="col-xs-12">
-
     </div>
 @endsection

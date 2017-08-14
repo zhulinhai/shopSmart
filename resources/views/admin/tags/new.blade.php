@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-tags"></i> 标签管理</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-tags"></i> 标签管理</a><a href="{{ url('/tags') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-backward"></i> 返回</a></div>
         </div>
         <div class="panel-body">
             <div class="row">

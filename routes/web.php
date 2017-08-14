@@ -15,18 +15,16 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/merchants', 'MerchantsController@index');
-Route::get('/merchants/new', 'MerchantsController@newMerchant');
-Route::get('/merchants/edit/{id}', 'MerchantsController@edit');
-Route::Post('/merchants/save', 'MerchantsController@add');
-Route::get('/merchants/destroy/{id}', 'MerchantsController@destroy');
-
 
 Route::get('/tags', 'TagsController@index');
 Route::get('/tags/new', 'TagsController@newTag');
 Route::Post('/tags/new', 'TagsController@newTag');
 
-Route::get('/admin/product/new', 'ProductController@newProduct');
-Route::get('/admin/products', 'ProductController@index');
-Route::get('/admin/product/destroy/{id}', 'ProductController@destroy');
-Route::post('/admin/product/save', 'ProductController@add');
+Route::resource('acts', 'ActsController', [ 'only' => ['index', 'show', 'create',  'update', 'edit', 'destroy']]);
+Route::Post('acts/store','ActsController@store');
+
+Route::resource('merchants', 'MerchantsController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+Route::Post('merchants/store','MerchantsController@store');
+
+Route::resource('members', 'MembersController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+Route::resource('articles', 'ArticlesController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);

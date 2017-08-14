@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="name"><i class="glyphicon glyphicon-star"></i> 商家名称：</label>
                         <div class="col-md-9">
-                            <input id="name" name="name" type="text" placeholder="商品名称" class="form-control input-md" required="">
+                            <input id="name" name="name" type="text" placeholder="商品名称" value="{{ $merchant->name }}" class="form-control input-md" required="">
 
                         </div>
                     </div>
@@ -40,13 +40,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="address"><i class="glyphicon glyphicon-star"></i> 商家地址：</label>
                         <div class="col-md-9">
-                            <input id="address" name="address" type="text" placeholder="商家地址" class="form-control input-md" >
+                            <input id="address" name="address" type="text" placeholder="商家地址" value="{{ $merchant->address }}" class="form-control input-md" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="tel">商家电话：</label>
                         <div class="col-md-9">
-                            <input id="tel" name="tel" type="text" placeholder="商家电话" class="form-control input-md" required="">
+                            <input id="tel" name="tel" type="text" placeholder="商家电话" value="{{ $merchant->tel }}" class="form-control input-md" required="">
                         </div>
                     </div>
                     <div class="form-group">

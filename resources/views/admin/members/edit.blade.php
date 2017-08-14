@@ -8,8 +8,7 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 商家管理</a><a href="{{ url('/merchants') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-exclamation-sign
-"></i> 取消</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 商家管理</a><a href="{{ url('/merchants/add') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加商家</a></div>
         </div>
         <div class="panel-body" >
             <form method="POST" action="{{ url('/merchants/save') }}" class="form-horizontal" enctype="multipart/form-data" role="form">
@@ -20,6 +19,7 @@
                         <label class="col-md-3 control-label" for="name"><i class="glyphicon glyphicon-star"></i> 商家名称：</label>
                         <div class="col-md-9">
                             <input id="name" name="name" type="text" placeholder="商品名称" value="{{ $merchant->name }}" class="form-control input-md" required="">
+
                         </div>
                     </div>
                     <div class="form-group">

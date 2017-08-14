@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Merchant;
+use App\Act;
 use Illuminate\Http\Request;
 
-class MerchantsController extends Controller
+class ActsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,8 +24,8 @@ class MerchantsController extends Controller
      */
     public function index()
     {
-        $merchants = Merchant::all();
-        return view('admin.merchants', ['merchants' => $merchants]);
+        $Acts = Act::all();
+        return view('admin.acts', ['acts' => $Acts]);
     }
 
     /**
@@ -36,7 +35,8 @@ class MerchantsController extends Controller
      */
     public function create()
     {
-        return view('admin.merchants.create');
+        //
+        return view('admin.acts.create');
     }
 
     /**
@@ -47,18 +47,20 @@ class MerchantsController extends Controller
      */
     public function store(Request $request)
     {
-        $imageUrl = $request->file('head_image')->store('uploads');
-        $logoUrl = $request->file('logo')->store('uploads');
-        $merchant = new Merchant();
-        $merchant->name =$request->input('name');
-        $merchant->head_image = $imageUrl;
-        $merchant->logo = $logoUrl;
-        $merchant->address =$request->input('address');
-        $merchant->tel =$request->input('tel');
-        $merchant->types = '';
-        $merchant->save();
+        dd($request);
+        $imageUrl = $request->file('head_image')->store('avatars');
+        $logoUrl = $request->file('logo')->store('avatars');
+        $act = new Act();
+        $act->name =$request->input('name');
+        $act->head_image = $imageUrl;
+        $act->logo = $logoUrl;
+        $act->address =$request->input('address');
+        $act->tel =$request->input('tel');
+        $act->types = '';
+        $act->save();
 
-        return redirect('/merchants');
+        $Acts = Act::all();
+        return view('admin.acts', ['acts' => $Acts]);
     }
 
     /**
@@ -70,7 +72,6 @@ class MerchantsController extends Controller
     public function show($id)
     {
         //
-        return view();
     }
 
     /**
@@ -81,8 +82,8 @@ class MerchantsController extends Controller
      */
     public function edit($id)
     {
-        $merchant = Merchant::find($id);
-        return view('admin.merchants.edit',['merchant'=>$merchant]);
+        $act = Act::find($id);
+        return view('admin.acts.edit',['act'=>$act]);
     }
 
     /**
@@ -94,8 +95,17 @@ class MerchantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Merchant::destroy($id);
-        return redirect('/merchants');
+        //
+        $imageUrl = $request->file('head_image')->store('avatars');
+        $logoUrl = $request->file('logo')->store('avatars');
+        $act = Act::find($id);
+        $act->name =$request->input('name');
+        $act->head_image = $imageUrl;
+        $act->logo = $logoUrl;
+        $act->address =$request->input('address');
+        $act->tel =$request->input('tel');
+        $act->types = '';
+        $act->save();
     }
 
     /**
@@ -106,7 +116,8 @@ class MerchantsController extends Controller
      */
     public function destroy($id)
     {
-        Merchant::destroy($id);
-        return redirect('/merchants');
+        Act::destroy($id);
+        return redirect('/acts');
     }
+
 }

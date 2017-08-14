@@ -17,34 +17,34 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="name"><i class="glyphicon glyphicon-star"></i> 商家名称：</label>
-                        <div class="col-md-9">
+                        <div class="input-group col-md-8">
                             <input id="name" name="name" type="text" placeholder="商品名称" class="form-control input-md" required="">
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="head_image"><i class="glyphicon glyphicon-star"></i> 商家主图：</label>
-                        <div class="col-md-9">
-                            <input id="head_image" name="head_image" class="btn btn-primary navbar-left" type="file">
-                            <label class="control-label col-xs-offset-1 navbar-left">说明：图片大小：宽640X高320 数量1</label>
+                        <div class="input-group col-md-8">
+                            <input id="head_image" name="head_image" class="form-control input-md" type="file">
+                            <label class="input-group-addon">说明：图片大小：宽640X高320 数量1</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="logo"><i class="glyphicon glyphicon-star"></i> 商家LOGO图：</label>
-                        <div class="col-md-9">
-                            <input id="logo" name="logo" class="btn btn-primary navbar-left" type="file">
-                            <label class="control-label col-xs-offset-1 navbar-left">说明：图片大小：宽640X高320 数量1</label>
+                        <div class="input-group col-md-8">
+                            <input id="logo" name="logo" class="form-control" type="file">
+                            <label class="input-group-addon">说明：图片大小：宽640X高320 数量1</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="address"><i class="glyphicon glyphicon-star"></i> 商家地址：</label>
-                        <div class="col-md-9">
+                        <div class="input-group col-md-8">
                             <input id="address" name="address" type="text" placeholder="商家地址" class="form-control input-md" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="tel">商家电话：</label>
-                        <div class="col-md-9">
+                        <div class="input-group col-md-8">
                             <input id="tel" name="tel" type="text" placeholder="商家电话" class="form-control input-md" required="">
                         </div>
                     </div>
@@ -55,9 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="submit"></label>
-                        <div class="col-md-9">
-                            <button id="submit" name="submit" class="btn btn-danger">确认</button>
-                        </div>
+                        <button id="submit" name="submit" class="btn btn-danger">确认</button>
                     </div>
                 </fieldset>
 

@@ -8,58 +8,54 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 商家管理</a><a href="{{ url('/merchants/add') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加商家</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 写日迹</a><a href="{{ url('/articles') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-backward"></i> 返回</a></div>
         </div>
         <div class="panel-body" >
-            <form method="POST" action="{{ url('/merchants/save') }}" class="form-horizontal" enctype="multipart/form-data" role="form">
-                {!! csrf_field() !!}
-                <fieldset>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="name"><i class="glyphicon glyphicon-star"></i> 商家名称：</label>
-                        <div class="input-group col-md-8">
-                            <input id="name" name="name" type="text" placeholder="商品名称" class="form-control input-md" required="">
+            <fieldset>
+                @if (count($errors)>0)
+                    <div class="am-alert am-alert-danger" data-am-alert>
+                        <p>{{ $errors->first() }}</p>
+                    </div>
+                @endif
+                {{ Form::open(array('url' => 'articles/store')) }}
+                    {!! csrf_field() !!}
+                    <h4 class="control-label">文章标题</h4>
+                    <input id="title" name="title" class="form-control input-group-lg" type="text" value="{{ Input::old('title') }}">
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="head_image"><i class="glyphicon glyphicon-star"></i> 商家主图：</label>
-                        <div class="input-group col-md-8">
-                            <input id="head_image" name="head_image" class="form-control input-md" type="file">
-                            <label class="input-group-addon">说明：图片大小：宽640X高320 数量1</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="logo"><i class="glyphicon glyphicon-star"></i> 商家LOGO图：</label>
-                        <div class="input-group col-md-8">
-                            <input id="logo" name="logo" class="form-control" type="file">
-                            <label class="input-group-addon">说明：图片大小：宽640X高320 数量1</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="address"><i class="glyphicon glyphicon-star"></i> 商家地址：</label>
-                        <div class="input-group col-md-8">
-                            <input id="address" name="address" type="text" placeholder="商家地址" class="form-control input-md" >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="tel">商家电话：</label>
-                        <div class="input-group col-md-8">
-                            <input id="tel" name="tel" type="text" placeholder="商家电话" class="form-control input-md" required="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="tags">商家类型：</label>
-                        <div class="col-md-9">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="submit"></label>
-                        <button id="submit" name="submit" class="btn btn-danger">确认</button>
-                    </div>
-                </fieldset>
+                    <h4 class="control-label">文章内容</h4>
+                    <textarea id="content" name="content" class="form-control" rows="20">{{ Input::old('content') }}</textarea>
 
-            </form>
+                    <h4 class="control-label">文章标签</h4>
+                    <div class="input-group input-group-lg col-lg-12" style="margin-top: 10px">
+                        <input id="tags" name="tags" class="form-control form-control"  type="text" value="{{ Input::old('tags') }}"/>
+                        <span class="input-group-addon">多个标签之间使用 "," 分割</span>
+                    </div>
+                    <div class="input-group col-lg-12" style="margin-top: 10px">
+                        <button id="preview" type="button" class="btn btn-primary" style="margin-top: 10px"><span class="glyphicon glyphicon-eye-open"></span> 预览</button>
+                        <button id="submit" name="submit" class="btn btn-success" style="margin-top: 10px;margin-left: 20px"><span class="glyphicon glyphicon-send"></span> 发布</button>
+                    </div>
+                {{ Form::close() }}
+            </fieldset>
         </div>
-    </div>
+        <div class="am-popup fade" id="preview-popup">
+            <div class="am-popup-inner">
+                <div class="am-popup-hd">
+                    <h4 class="am-popup-title"></h4>
+                    <span data-am-modal-close class="am-close">&times;</span>
+                </div>
+                <div class="am-popup-bd">
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                $('#preview').on('click', function() {
+                    $('.am-popup-title').text($('#title').val());
+                    $.post('preview', {'content': $('#content').val()}, function(data, status) {
+                        $('.am-popup-bd').html(data);
+                    });
+                    $('#preview-popup').modal();
+                });
+            });
+        </script>
 @endsection

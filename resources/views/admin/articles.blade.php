@@ -22,14 +22,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($members as $member)
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>{{ $member->logo }}</td>
-                                <td><p>名称：{{ $member->name }}</p><p>会员等级：高级   会员节分：2358  类型：{{ $merchant->types }} 注册时间：{{ $merchant->updated_at }} 最后登录时间</p></td>
-                                <td><a href="{{ url('merchants/edit/'.$merchant->id) }}"><button class="btn btn-primary">锁定</button></a></td>
-                            </tr>
-                        @endforeach
+                            @foreach ($articles as $article)
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>{{ $articles->title }}</td>
+                                    <td><a href="{{ url('/articles/edit/'.$article->id) }}"><button class="btn btn-primary">锁定</button></a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

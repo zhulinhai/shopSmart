@@ -28,3 +28,4 @@ Route::Post('merchants/store','MerchantsController@store');
 
 Route::resource('members', 'MembersController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 Route::resource('articles', 'ArticlesController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+Route::Post('articles/store','ArticlesController@store');

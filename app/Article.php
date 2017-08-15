@@ -2,18 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class Article extends \Eloquent
+class Article extends Model
 {
-    use SoftDeletes;
-
-    protected $fillable = ['title', 'content', 'resolved_content', 'user_id'];
-
-    public function tags()
-    {
-        return $this->belongsToMany('ArticleTag');
-    }
+    protected $fillable = ['title', 'content', 'published_at', 'user_id'];
 
     public function user()
     {

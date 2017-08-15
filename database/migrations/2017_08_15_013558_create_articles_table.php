@@ -18,8 +18,8 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('summary')->nullable(); /* 简介 */
             $table->text('content'); /* 内容 */
-            $table->text('resolved_content'); /* 预览内容 */
             $table->integer('user_id');
+            $table->date('published_at'); /*发布日期*/
             $table->softDeletes();
             $table->timestamps();
         });

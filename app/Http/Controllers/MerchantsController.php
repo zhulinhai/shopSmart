@@ -47,17 +47,8 @@ class MerchantsController extends Controller
      */
     public function store(Request $request)
     {
-        $imageUrl = $request->file('head_image')->store('uploads');
-        $logoUrl = $request->file('logo')->store('uploads');
-        $merchant = new Merchant();
-        $merchant->name =$request->input('name');
-        $merchant->head_image = $imageUrl;
-        $merchant->logo = $logoUrl;
-        $merchant->address =$request->input('address');
-        $merchant->tel =$request->input('tel');
-        $merchant->types = '';
-        $merchant->save();
-
+        $merchant = $request->all();
+        Merchant::create($merchant);
         return redirect('/merchants');
     }
 

@@ -15,18 +15,19 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="col-xs-1">选择</th>
-                                <th class="col-xs-2">LOGO</th>
-                                <th class="col-xs-8">内容</th>
-                                <th class="col-xs-1">操作</th>
+                                <th class="col-xs-2">图片</th>
+                                <th class="col-xs-2">标题</th>
+                                <th class="col-xs-6">内容</th>
+                                <th class="col-xs-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>{{ $articles->title }}</td>
-                                    <td><a href="{{ url('/articles/edit/'.$article->id) }}"><button class="btn btn-primary">锁定</button></a></td>
+                                    <td>{{ $article->head_image }}</td>
+                                    <td>{{ $article->title }}</td>
+                                    <td>{{ $article->content }}</td>
+                                    <td><a href="{{ url('/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a><a href="{{ url('/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

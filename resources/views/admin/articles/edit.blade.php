@@ -10,10 +10,10 @@
             <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 写日迹</a><a href="{{ url('/articles') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-backward"></i> 返回</a></div>
         </div>
         <div class="panel-body" >
-            {{ Form::open(['method'=>'patch','url' => 'articles/store']) }}
-            @include('articles.form')
+            {{ Form::model($article,['method'=>'PATCH','url' => 'articles/edit'.$article->id]) }}
+            @include('admin.articles.form')
             {{ Form::close() }}
-            @include('errors.list')
+            @include('admin.errors.list')
         </div>
     </div>
     <div class="am-popup fade" id="preview-popup">

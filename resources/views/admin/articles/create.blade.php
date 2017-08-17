@@ -11,9 +11,9 @@
         </div>
         <div class="panel-body" >
             {{ Form::open(array('url' => 'articles/store')) }}
-            @include('articles.form')
+            @include('admin.articles.form')
             {{ Form::close() }}
-            @include('errors.list')
+            @include('admin.errors.list')
         </div>
     </div>
 @endsection

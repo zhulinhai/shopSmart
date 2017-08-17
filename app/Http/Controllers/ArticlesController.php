@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -53,6 +55,15 @@ class ArticlesController extends Controller
             'tags'    => array('required', 'regex:/^\w+$|^(\w+,)+\w+$/'),
         ];
 
+        $input = $request->all($rules);
+        //下面增加两行，顺便看看Request::get的使用
+        $input['intro'] = mb_substr($request->get('content'),0,64);
+        $input['published_at'] = Carbon::now();
+        $input['head_image'] = '';
+        $inout['user_id'] = integerValue(Auth::id());
+        Article::create($input);
+        return redirect('/');
+
     }
 
     /**
@@ -76,7 +87,7 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        return view('articles.edit', ['article'=>$article]);
+        return view('admin.articles.edit', ['article'=>$article]);
     }
 
     /**
@@ -99,7 +110,8 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Article::destroy($id);
+        return redirect('/admin/Articles');
     }
 
 }

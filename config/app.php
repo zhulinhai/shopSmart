@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Douyasi\Editor\EditorServiceProvider::class,
 
         /*
          * Application Service Providers...

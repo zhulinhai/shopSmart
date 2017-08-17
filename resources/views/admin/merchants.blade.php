@@ -15,10 +15,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <td class="col-xs-2">LOGO</td>
-                                <td class="col-xs-7">内容</td>
-                                <td class="col-xs-2">操作</td>
-                                <td class="col-xs-1">选择</td>
+                                <th class="col-xs-2">LOGO</th>
+                                <th class="col-xs-7">内容</th>
+                                <th class="col-xs-2">操作</th>
+                                <th class="col-xs-1">选择</th>
                             </tr>
                         </thead>
                         <tbody>

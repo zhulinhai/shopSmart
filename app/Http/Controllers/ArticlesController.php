@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -47,22 +46,13 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
-        $rules = [
-            'title'   => 'required|max:100',
-            'content' => 'required',
-            'tags'    => array('required', 'regex:/^\w+$|^(\w+,)+\w+$/'),
-        ];
-
-        $input = $request->all($rules);
-        //下面增加两行，顺便看看Request::get的使用
-        $input['intro'] = mb_substr($request->get('content'),0,64);
-        $input['published_at'] = Carbon::now();
-        $input['head_image'] = '';
-        $inout['user_id'] = integerValue(Auth::id());
+        $input = $request->all();
+        $input['summary'] = mb_substr($request->get('content'),0,64);
+        $input['published_at'] = Carbon::now()->toDateTimeString();
         Article::create($input);
-        return redirect('/');
+        return redirect('/articles');
 
     }
 
@@ -76,6 +66,7 @@ class ArticlesController extends Controller
     {
         $article = Article::findOrFail($id);
         return view('articles.show', ['article'=>$article]);
+
     }
 
     /**
@@ -97,9 +88,16 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateArticleRequest $request, $id)
     {
-        //
+
+        $article = Article::findOrFail($id);
+        $input = $request->all();
+        $input['summary'] = mb_substr($request->get('content'),0,64);
+        $input['published_at'] = Carbon::now()->toDateTimeString();
+        $article->update($input);
+
+        return redirect('/articles');
     }
 
     /**

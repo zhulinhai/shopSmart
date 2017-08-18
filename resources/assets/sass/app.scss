@@ -38,7 +38,7 @@ hr {
   padding: 0;
   border: none;
   border-radius: 0;
-  height: 782px;
+  min-height: 782px;
   background:linear-gradient(#2F6BB6, #1D4577);
   filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#2F6BB6',endColorStr='#1D4577',gradientType='0');
   .list-group-item {

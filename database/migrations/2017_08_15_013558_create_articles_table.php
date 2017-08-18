@@ -19,10 +19,12 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('summary')->nullable(); /* 简介 */
             $table->text('content'); /* 内容 */
-            $table->integer('user_id');
+            $table->string('tags'); /*发布日期*/
+            $table->integer('user_id')->unsigned()->default(1);
             $table->date('published_at'); /*发布日期*/
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

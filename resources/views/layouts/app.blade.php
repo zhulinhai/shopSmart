@@ -68,7 +68,7 @@
             </div>
             @if (Auth::guest())
             @else
-                <div class="notice"><img src="{{ asset('img/currentUser.png') }}"> {{ Auth::user()->name }} 欢迎您进入智慧商圈后台管理系统 <img src="{{ asset('img/clock.png') }}"> {{ date(DATE_ATOM) }}</div>
+                <div class="notice"><img src="{{ asset('img/currentUser.png') }}"> {{ Auth::user()->name }} 欢迎您进入智慧商圈后台管理系统 <img src="{{ asset('img/clock.png') }}"> 登录时间：{{ \Carbon\Carbon::now() }}</div>
             @endif
         </nav>
         <div class="container-fluid">

@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!! Form::text('user-id', null, ['class'=>'form-control hidden']) !!}
+    {!! Form::text('user_id',  Auth::user()->id, ['class'=>'form-control hidden']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('title', '文章标题', ['class'=>'control-label']) !!}
@@ -12,8 +12,11 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('published_at', '发布日期', ['class'=>'control-label']) !!}
-    {!! Form::input('date','published_at', date('Y-m-d'), ['class'=>'form-control']) !!}
+    {!! Form::label('head_image', '文章配图', ['class'=>'control-label']) !!}
+    <div class="input-group">
+        {!! Form::file('head_image', ['class'=>'form-control']) !!}
+        {!! Form::label('note', '说明：图片大小：宽640X高320 数量1', ['class'=>'input-group-addon']) !!}
+    </div>
 </div>
 <div class="form-group">
     {!! Form::label('tags', '标签', ['class'=>'control-label']) !!}
@@ -21,10 +24,10 @@
     {!! Form::label('note', '多个标签之间使用 "," 分割') !!}
 </div>
 
-<div class="input-group col-lg-12" style="margin-top: 10px">
-    <button id="preview" type="button" class="btn btn-primary" style="margin-top: 10px"><span class="glyphicon glyphicon-eye-open"></span> 预览</button>
-    <button id="submit" name="submit" class="btn btn-success" style="margin-top: 10px;margin-left: 20px"><span class="glyphicon glyphicon-send"></span> 发布</button>
+<div class="form-group">
+    {!! Form::submit('发布文章',['class'=>'btn btn-primary form-control']) !!}
 </div>
+
 {!! editor_css() !!}
 {!! editor_js() !!}
 {!! editor_config('mdeditor') !!}

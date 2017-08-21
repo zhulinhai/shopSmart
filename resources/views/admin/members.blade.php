@@ -25,7 +25,7 @@
                         @foreach ($members as $member)
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>{{ $member->head_image }}</td>
+                                <td><img src="{{ $member->head_image }}" ></td>
                                 <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员节分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
                                 <td>
                                     @if ($member->locked)

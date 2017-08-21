@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Request;
 
 class MembersController extends Controller
 {
@@ -41,7 +43,6 @@ class MembersController extends Controller
         //
         return view('admin.members.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -50,11 +51,20 @@ class MembersController extends Controller
      */
     public function store(CreateMemberRequest $request)
     {
+        if($request->hasFile('head_image')){
+            foreach($request->file('head_image') as $file) {
+                $file->move(base_path().'/public/uploads/', $file->getClientOriginalName());
+            }
+        }
+
         $input = $request->all();
+//        $input['head_image'] = $path;
         $input['last_login_time'] = Carbon::now()->toDateTimeString();
         Member::create($input);
         return redirect('/members');
     }
+
+
 
     /**
      * Display the specified resource.

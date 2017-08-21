@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('layouts.menus',['index' => 1])
+    @include('layouts.menus',['index' => 3])
 @endsection
 
 @section('content')
@@ -16,25 +16,4 @@
             @include('admin.errors.list')
         </div>
     </div>
-    <div class="am-popup fade" id="preview-popup">
-        <div class="am-popup-inner">
-            <div class="am-popup-hd">
-                <h4 class="am-popup-title"></h4>
-                <span data-am-modal-close class="am-close">&times;</span>
-            </div>
-            <div class="am-popup-bd">
-            </div>
-        </div>
-    </div>
-    <script>
-        $(function() {
-            $('#preview').on('click', function() {
-                $('.am-popup-title').text($('#title').val());
-                $.post('preview', {'content': $('#content').val()}, function(data, status) {
-                    $('.am-popup-bd').html(data);
-                });
-                $('#preview-popup').modal();
-            });
-        });
-    </script>
 @endsection

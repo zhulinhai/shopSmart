@@ -19,12 +19,13 @@ class CreateMembersTable extends Migration
             $table->string('nick_name');
             $table->string('head_image');
             $table->string('sex');
-            $table->string('level');
-            $table->string('score');
-            $table->string('password');
-            $table->string('deviceType');
-            $table->string('locked'); /*0 - 正常  1 - 锁定*/
-            $table->string('note'); /* 备注信息： 如锁定原因、账号异常  */
+            $table->string('phone');
+            $table->integer('level')->unsigned()->default(0);
+            $table->integer('score')->unsigned()->default(0);
+            $table->string('password')->default(MD5('123456'));
+            $table->integer('deviceType')->unsigned()->default(0);
+            $table->integer('locked')->unsigned()->default(0); /*0 - 正常  1 - 锁定*/
+            $table->string('note')->nullable(); /* 备注信息： 如锁定原因、账号异常  */
             $table->date('birthday');
             $table->date('last_login_time');
             $table->timestamps();

@@ -27,9 +27,12 @@
                                 <tr>
                                     <td>{{ $article->head_image }}</td>
                                     <td>{{ $article->title }}</td>
-                                    <td>{{ $article->content }}</td>
+                                    <td>{{ $article->summary }}</td>
                                     <td>{{ $article->published_at->diffForHumans() }}</td>
-                                    <td><a href="{{ url('/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a> <a href="{{ url('/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a></td>
+                                    <td><a href="{{ url('/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('/articles/'.$article->id) }}"><button class="btn btn-primary">预览</button></a>
+                                        <a href="{{ url('/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -12,6 +12,8 @@ class Member extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'nick_name', 'head_image', 'sex', 'level', 'score', 'password', 'deviceType', 'birthday', 'last_login_time', 'created_at'
+        'id', 'name', 'nick_name', 'head_image', 'sex', 'phone', 'level', 'score', 'locked', 'deviceType', 'birthday', 'last_login_time', 'created_at'
     ];
+
+    protected $hidden = ['password'];
 }

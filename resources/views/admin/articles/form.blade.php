@@ -28,11 +28,11 @@
     {!! Form::submit('发布文章',['class'=>'btn btn-primary form-control']) !!}
 </div>
 
+{!! editor_config('mdeditor') !!}
 {!! editor_css() !!}
 {!! editor_js() !!}
-{!! editor_config('mdeditor') !!}
 <script>
     $(function () {
-        $('#mdeditor').width('100%');
+        $("#mdeditor").width('100%');
     });
 </script>

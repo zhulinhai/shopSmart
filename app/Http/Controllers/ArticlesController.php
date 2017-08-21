@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
+use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -65,7 +65,7 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
-        return view('articles.show', ['article'=>$article]);
+        return view('admin.articles.show', ['article'=>$article]);
 
     }
 
@@ -109,7 +109,7 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         Article::destroy($id);
-        return redirect('/admin/Articles');
+        return redirect('/articles');
     }
 
 }

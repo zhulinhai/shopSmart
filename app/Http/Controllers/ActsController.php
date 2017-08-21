@@ -47,20 +47,9 @@ class ActsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        $imageUrl = $request->file('head_image')->store('avatars');
-        $logoUrl = $request->file('logo')->store('avatars');
-        $act = new Act();
-        $act->name =$request->input('name');
-        $act->head_image = $imageUrl;
-        $act->logo = $logoUrl;
-        $act->address =$request->input('address');
-        $act->tel =$request->input('tel');
-        $act->types = '';
-        $act->save();
-
-        $Acts = Act::all();
-        return view('admin.acts', ['acts' => $Acts]);
+        $input = $request->all();
+        Act::create($input);
+        return redirect('/acts');
     }
 
     /**
@@ -82,7 +71,7 @@ class ActsController extends Controller
      */
     public function edit($id)
     {
-        $act = Act::find($id);
+        $act = Act::findOrFail($id);
         return view('admin.acts.edit',['act'=>$act]);
     }
 
@@ -98,7 +87,7 @@ class ActsController extends Controller
         //
         $imageUrl = $request->file('head_image')->store('avatars');
         $logoUrl = $request->file('logo')->store('avatars');
-        $act = Act::find($id);
+        $act = Act::findOrFail($id);
         $act->name =$request->input('name');
         $act->head_image = $imageUrl;
         $act->logo = $logoUrl;

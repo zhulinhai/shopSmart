@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateMemberRequest;
 
 class MembersController extends Controller
 {
@@ -46,9 +48,12 @@ class MembersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMemberRequest $request)
     {
-        //
+        $input = $request->all();
+        $input['last_login_time'] = Carbon::now()->toDateTimeString();
+        Member::create($input);
+        return redirect('/members');
     }
 
     /**
@@ -70,7 +75,8 @@ class MembersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $member = Member::findOrFail($id);
+        return view('admin.members.edit', ['member'=>$member]);
     }
 
     /**
@@ -80,9 +86,14 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateMemberRequest $request, $id)
     {
-        //
+        $member = Member::findOrFail($id);
+        $input = $request->all();
+        $input['last_login_time'] = Carbon::now()->toDateTimeString();
+        $member->update($input);
+
+        return redirect('/members');
     }
 
     /**
@@ -93,6 +104,16 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Member::destroy($id);
+        return redirect('/members');
+    }
+
+    public function lock($id)
+    {
+        $member = Member::findOrFail($id);
+        $member['locked'] = 0;
+        $member->update();
+
+        return redirect('/members');
     }
 }

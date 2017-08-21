@@ -17,17 +17,24 @@
                         <tr>
                             <th class="col-xs-1">选择</th>
                             <th class="col-xs-2">LOGO</th>
-                            <th class="col-xs-8">内容</th>
-                            <th class="col-xs-1">操作</th>
+                            <th class="col-xs-7">内容</th>
+                            <th class="col-xs-2">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($members as $member)
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>{{ $member->logo }}</td>
-                                <td><p>名称：{{ $member->name }}</p><p>会员等级：高级   会员节分：2358  类型：{{ $merchant->types }} 注册时间：{{ $merchant->updated_at }} 最后登录时间</p></td>
-                                <td><a href="{{ url('merchants/edit/'.$merchant->id) }}"><button class="btn btn-primary">锁定</button></a></td>
+                                <td>{{ $member->head_image }}</td>
+                                <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员节分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
+                                <td>
+                                    @if ($member->locked)
+                                        <a href="{{ url('members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>
+                                    @else
+                                        <a href="{{ url('members/'.$member->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('members/'.$member->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

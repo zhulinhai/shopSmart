@@ -36,5 +36,5 @@
     {!! Form::input('date','published_at', date('Y-m-d'), ['class'=>'form-control']) !!}
 </div>
 <div class="form-group" style="margin-top: 10px">
-    {!! Form::submit('发布') !!}
+    {!! Form::submit('发布',['class'=>'form-control btn-primary']) !!}
 </div>

@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Member;
 use Carbon\Carbon;
 use App\Http\Requests\CreateMemberRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
 
 class MembersController extends Controller
 {
@@ -29,7 +28,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
+        $members = Member::latest('created_at')->get();;
         return view('admin.members', ['members'=>$members]);
     }
 
@@ -51,14 +50,7 @@ class MembersController extends Controller
      */
     public function store(CreateMemberRequest $request)
     {
-        if($request->hasFile('head_image')){
-            foreach($request->file('head_image') as $file) {
-                $file->move(base_path().'/public/uploads/', $file->getClientOriginalName());
-            }
-        }
-
         $input = $request->all();
-//        $input['head_image'] = $path;
         $input['last_login_time'] = Carbon::now()->toDateTimeString();
         Member::create($input);
         return redirect('/members');
@@ -118,12 +110,35 @@ class MembersController extends Controller
         return redirect('/members');
     }
 
+    /**
+     * lock the member.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function lock($id)
     {
         $member = Member::findOrFail($id);
         $member['locked'] = 0;
         $member->update();
-
         return redirect('/members');
+    }
+
+    /**
+     * upload the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upfile(Request $request)
+    {
+        $path = $request->file('head_image')->store('uploads');
+        return $path;
+    }
+
+    public function getfile($filename)
+    {
+        $path=storage_path($filename);    //获取图片位置的方法
+        return response()->file($path);
     }
 }

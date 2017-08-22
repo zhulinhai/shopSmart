@@ -14,19 +14,19 @@
                 <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th class="col-xs-1">选择</th>
-                            <th class="col-xs-2">LOGO</th>
-                            <th class="col-xs-7">内容</th>
-                            <th class="col-xs-2">操作</th>
-                        </tr>
+                            <tr>
+                                <th class="col-xs-1">选择</th>
+                                <th class="col-xs-2">LOGO</th>
+                                <th class="col-xs-7">内容</th>
+                                <th class="col-xs-2">操作</th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach ($members as $member)
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td><img src="{{ $member->head_image }}" ></td>
-                                <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员节分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
+                                <td><img src="{{ asset('/uploads/k4cLz7G2Rw6X3Y8L3JVPEUoubeewsbRELGDoBHY1.jpeg') }}" alt=""></td>
+                                <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员积分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
                                 <td>
                                     @if ($member->locked)
                                         <a href="{{ url('members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>

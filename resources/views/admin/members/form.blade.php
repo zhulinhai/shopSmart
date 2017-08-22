@@ -7,13 +7,6 @@
     {!! Form::text('nick_name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('head_image', '用户图像', ['class'=>'control-label']) !!}
-    <div class="input-group">
-        {!! Form::file('head_image', ['class'=>'form-control']) !!}
-        {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'input-group-addon']) !!}
-    </div>
-</div>
-<div class="form-group">
     {!! Form::label('sex', '性别', ['class'=>'control-label']) !!}
     {!! Form::select('sex', array('0'=>'保密','1'=>'男','2'=>'女'), '0', ['class'=>'form-control']) !!}
 </div>

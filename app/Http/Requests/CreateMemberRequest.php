@@ -26,7 +26,6 @@ class CreateMemberRequest extends FormRequest
         return [
             'name'=>'required|min:1',
             'nick_name'=>'required|min:1',
-            'head_image'=>'required',
             'phone'=>'regex:/^1[34578][0-9]{9}$/'
         ];
     }

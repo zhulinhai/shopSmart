@@ -35,5 +35,5 @@
     {!! Form::select('deviceType', array('0'=>'未知','1'=>'iphone','2'=>'android'), '0', ['class'=>'form-control']) !!}
 </div>
 <div class="form-group" style="margin-top: 10px">
-    {!! Form::submit('创建',['class'=>'form-control btn-primary']) !!}
+    {!! Form::submit('更新',['class'=>'form-control btn-primary']) !!}
 </div>

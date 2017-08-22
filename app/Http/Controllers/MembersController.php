@@ -48,7 +48,7 @@ class MembersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateMemberRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
         $input['last_login_time'] = Carbon::now()->toDateTimeString();
@@ -130,15 +130,18 @@ class MembersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function upfile(Request $request)
+    public function upfile(Request $request, $id)
     {
         $path = $request->file('head_image')->store('uploads');
-        return $path;
+        $member = Member::findOrFail($id);
+        $member['head_image'] = $path;
+        $member->update();
+        return redirect('/members');
     }
 
     public function getfile($filename)
     {
-        $path=storage_path($filename);    //获取图片位置的方法
+        $path=storage_path().$filename;    //获取图片位置的方法
         return response()->file($path);
     }
 }

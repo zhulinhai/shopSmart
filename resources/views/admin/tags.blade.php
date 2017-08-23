@@ -17,8 +17,9 @@
                 <thead>
                     <tr>
                         <th class="col-xs-2">图像</th>
-                        <th class="col-xs-4">标签</th>
-                        <th class="col-xs-4">父标签</th>
+                        <th class="col-xs-4">名称</th>
+                        <th class="col-xs-2">id</th>
+                        <th class="col-xs-2">父id</th>
                         <th class="col-xs-2">操作</th>
                     </tr>
                 </thead>
@@ -27,6 +28,7 @@
                         <tr>
                             <td><img width="100px" src="{{ asset($tag->image)  }}" alt=""> </td>
                             <td>{{ $tag->name }}</td>
+                            <td>{{ $tag->id }}</td>
                             <td>{{ $tag->parent_id }}</td>
                             <td>
                                 <a href="{{ url('tags/'.$tag->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>

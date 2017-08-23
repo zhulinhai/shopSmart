@@ -12,15 +12,8 @@
             </div>
         </div>
         <div class="panel-body" >
-            {{ Form::open(array('url' => 'members/store')) }}
-                <div class="form-group">
-                    {!! Form::label('name', '用户名', ['class'=>'control-label']) !!}
-                    {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('phone', '手机号', ['class'=>'control-label']) !!}
-                    {!! Form::text('phone', null, ['class'=>'form-control']) !!}
-                </div>
+            {{ Form::open(array('url' => 'members/store', 'enctype' => 'multipart/form-data')) }}
+                @include('admin.members.form')
                 <div class="form-group" style="margin-top: 10px">
                     {!! Form::submit('创建',['class'=>'form-control btn-primary']) !!}
                 </div>

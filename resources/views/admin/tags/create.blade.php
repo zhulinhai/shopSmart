@@ -13,7 +13,14 @@
             </div>
         </div>
         <div class="panel-body" >
-            {{ Form::open(array('url' => 'tags/store')) }}
+            {{ Form::open(array('url' => 'tags/store', 'enctype' => 'multipart/form-data')) }}
+                <div class="form-group">
+                    {!! Form::label('image', '标签缩略图', ['class'=>'control-label']) !!}
+                    <div class="input-group">
+                        {!! Form::file('image', ['class'=>'form-control']) !!}
+                        {!! Form::label('note', '说明：图片大小：宽100X高100 数量1', ['class'=>'input-group-addon']) !!}
+                    </div>
+                </div>
                 <div class="form-group">
                     {!! Form::label('name', '标签名称', ['class'=>'control-label']) !!}
                     {!! Form::text('name', null, ['class'=>'form-control']) !!}

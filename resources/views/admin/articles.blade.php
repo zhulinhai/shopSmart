@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
-                                    <td>{{ $article->head_image }}</td>
+                                    <td><img width="100px" src="{{ asset($article->head_image)  }}" alt=""></td>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->summary }}</td>
                                     <td>{{ $article->published_at->diffForHumans() }}</td>

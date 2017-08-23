@@ -52,6 +52,12 @@ class TagsController extends Controller
     public function store(CreateTagRequest $request)
     {
         $tag = $request->all();
+        $image = $request->file('image');
+        if ($image)
+        {
+            $path = $image->store('tags','uploads');
+            $tag['image'] = 'uploads/'.$path;
+        }
         Tag::create($tag);
         return redirect('/tags');
     }

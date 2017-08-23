@@ -1,4 +1,11 @@
 <div class="form-group">
+    {!! Form::label('head_image', '用户图像', ['class'=>'control-label']) !!}
+    <div class="input-group">
+        {!! Form::file('head_image', ['class'=>'form-control']) !!}
+        {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'input-group-addon']) !!}
+    </div>
+</div>
+<div class="form-group">
     {!! Form::label('name', '用户名', ['class'=>'control-label']) !!}
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
@@ -33,7 +40,4 @@
 <div class="form-group">
     {!! Form::label('deviceType', '设备类型', ['class'=>'control-label']) !!}
     {!! Form::select('deviceType', array('0'=>'未知','1'=>'iphone','2'=>'android'), '0', ['class'=>'form-control']) !!}
-</div>
-<div class="form-group" style="margin-top: 10px">
-    {!! Form::submit('更新',['class'=>'form-control btn-primary']) !!}
 </div>

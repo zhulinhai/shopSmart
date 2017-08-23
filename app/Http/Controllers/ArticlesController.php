@@ -49,6 +49,12 @@ class ArticlesController extends Controller
     public function store(CreateArticleRequest $request)
     {
         $input = $request->all();
+        $head_image = $request->file('head_image');
+        if ($head_image)
+        {
+            $path = $head_image->store('articles','uploads');
+            $input['head_image'] = 'uploads/'.$path;
+        }
         $input['summary'] = mb_substr($request->get('content'),0,64);
         $input['published_at'] = Carbon::now()->toDateTimeString();
         Article::create($input);
@@ -93,6 +99,12 @@ class ArticlesController extends Controller
 
         $article = Article::findOrFail($id);
         $input = $request->all();
+        $head_image = $request->file('head_image');
+        if ($head_image)
+        {
+            $path = $head_image->store('articles','uploads');
+            $input['head_image'] = 'uploads/'.$path;
+        }
         $input['summary'] = mb_substr($request->get('content'),0,64);
         $input['published_at'] = Carbon::now()->toDateTimeString();
         $article->update($input);

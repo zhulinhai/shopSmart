@@ -48,9 +48,15 @@ class MembersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMemberRequest $request)
     {
         $input = $request->all();
+        $head_image = $request->file('head_image');
+        if ($head_image)
+        {
+            $path = $head_image->store('avatars','uploads');
+            $input['head_image'] = 'uploads/'.$path;
+        }
         $input['last_login_time'] = Carbon::now()->toDateTimeString();
         Member::create($input);
         return redirect('/members');
@@ -92,6 +98,12 @@ class MembersController extends Controller
     {
         $member = Member::findOrFail($id);
         $input = $request->all();
+        $head_image = $request->file('head_image');
+        if ($head_image)
+        {
+            $path = $head_image->store('avatars','uploads');
+            $input['head_image'] = 'uploads/'.$path;
+        }
         $input['last_login_time'] = Carbon::now()->toDateTimeString();
         $member->update($input);
 
@@ -120,21 +132,6 @@ class MembersController extends Controller
     {
         $member = Member::findOrFail($id);
         $member['locked'] = 0;
-        $member->update();
-        return redirect('/members');
-    }
-
-    /**
-     * upload the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function upfile(Request $request, $id)
-    {
-        $path = $request->file('head_image')->store('avatars','uploads');
-        $member = Member::findOrFail($id);
-        $member['head_image'] = 'uploads/'.$path;
         $member->update();
         return redirect('/members');
     }

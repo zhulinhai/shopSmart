@@ -132,16 +132,10 @@ class MembersController extends Controller
      */
     public function upfile(Request $request, $id)
     {
-        $path = $request->file('head_image')->store('uploads');
+        $path = $request->file('head_image')->store('avatars','uploads');
         $member = Member::findOrFail($id);
-        $member['head_image'] = $path;
+        $member['head_image'] = 'uploads/'.$path;
         $member->update();
         return redirect('/members');
-    }
-
-    public function getfile($filename)
-    {
-        $path=storage_path().$filename;    //获取图片位置的方法
-        return response()->file($path);
     }
 }

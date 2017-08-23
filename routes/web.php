@@ -16,6 +16,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::Post('tags/store','TagsController@store');
+Route::get('tags/{tag}/destroy','TagsController@destroy');
+Route::Post('tags/{tag}/upfile','TagsController@upfile');
 Route::resource('tags', 'TagsController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
 Route::Post('acts/store','ActsController@store');
@@ -36,3 +39,6 @@ Route::resource('members', 'MembersController', [ 'only' => ['index', 'show', 'c
 Route::Post('articles/store','ArticlesController@store');
 Route::get('articles/{article}/destroy','ArticlesController@destroy');
 Route::resource('articles', 'ArticlesController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+
+/* 评论管理 */
+Route::resource('comments', 'CommentsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);

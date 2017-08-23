@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use App\Http\Requests\CreateTagRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class TagsController extends Controller
 {
@@ -35,7 +39,8 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        $pNodes = $this->pNodes();
+        return view('admin.tags.create', ['pNodes'=>$pNodes]);
     }
 
     /**
@@ -44,7 +49,7 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
         $tag = $request->all();
         Tag::create($tag);
@@ -71,8 +76,22 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('admin.tags.edit',['tag'=>$tag]);
+        $tag = Tag::findOrFail($id);
+        $pNodes = $this->pNodes();
+        return view('admin.tags.edit',['tag'=>$tag, 'pNodes'=>$pNodes]);
+    }
+
+    /**
+     * 获取顶部标签节点
+     * */
+    public function pNodes()
+    {
+        $parents = DB::table('tags')->where('parent_id', '=', 0)->get();
+        $arr = ['0'=>'顶级标签'];
+        foreach($parents as $parent) {
+            $arr[$parent->id] = $parent->name;
+        }
+        return $arr;
     }
 
     /**
@@ -86,9 +105,7 @@ class TagsController extends Controller
     {
         $tag = Tag::findOrFail($id);
         $input = $request->all();
-        $input['last_login_time'] = Carbon::now()->toDateTimeString();
         $tag->update($input);
-
         return redirect('/tags');
     }
 
@@ -100,7 +117,24 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
+        $tag = Tag::findOrFail($id);
+        Storage::delete($tag->image);
         Tag::destroy($id);
+        return redirect('/tags');
+    }
+
+    /**
+     * upload the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upfile(Request $request, $id)
+    {
+        $path = $request->file('image')->store('tags','uploads');
+        $tag = Tag::findOrFail($id);
+        $tag['image'] = 'uploads/'.$path;
+        $tag->update();
         return redirect('/tags');
     }
 }

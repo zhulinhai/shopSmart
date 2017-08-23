@@ -11,16 +11,16 @@
         </div>
         <div class="panel-body" >
             {{ Form::open(array('url' => 'members/'.$member->id.'/upfile', 'enctype' => 'multipart/form-data')) }}
-            <div class="form-group">
-                {!! Form::label('head_image', '用户图像', ['class'=>'control-label']) !!}
-                <div class="input-group">
-                    {!! Form::file('head_image', ['class'=>'form-control']) !!}
-                    {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'input-group-addon']) !!}
+                <div class="form-group">
+                    {!! Form::label('head_image', '用户图像', ['class'=>'control-label']) !!}
+                    <div class="input-group">
+                        {!! Form::file('head_image', ['class'=>'form-control']) !!}
+                        {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'input-group-addon']) !!}
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {!! Form::submit('上传',['class'=>'form-control btn-primary']) !!}
-            </div>
+                <div class="form-group">
+                    {!! Form::submit('上传',['class'=>'form-control btn-primary']) !!}
+                </div>
             {{ Form::close() }}
 
             {{ Form::model($member,['method'=>'PATCH','url' => 'members/'.$member->id]) }}

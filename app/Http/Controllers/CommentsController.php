@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Merchant;
+use App\Comment;
 use Illuminate\Http\Request;
 
-class MerchantsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,8 +24,10 @@ class MerchantsController extends Controller
      */
     public function index()
     {
-        $merchants = Merchant::all();
-        return view('admin.merchants', ['merchants' => $merchants]);
+
+        $comments = Comment::all();
+
+        return view('admin.comments', ['comments'=>$comments]);
     }
 
     /**
@@ -36,7 +37,7 @@ class MerchantsController extends Controller
      */
     public function create()
     {
-        return view('admin.merchants.create');
+        //
     }
 
     /**
@@ -47,9 +48,7 @@ class MerchantsController extends Controller
      */
     public function store(Request $request)
     {
-        $merchant = $request->all();
-        Merchant::create($merchant);
-        return redirect('/merchants');
+        //
     }
 
     /**
@@ -61,19 +60,17 @@ class MerchantsController extends Controller
     public function show($id)
     {
         //
-        return view();
     }
 
     /**
-     * Show the form for editing the specified res ource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $merchant = Merchant::find($id);
-        return view('admin.merchants.edit',['merchant'=>$merchant]);
+        //
     }
 
     /**
@@ -85,8 +82,7 @@ class MerchantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Merchant::destroy($id);
-        return redirect('/merchants');
+        //
     }
 
     /**
@@ -97,7 +93,6 @@ class MerchantsController extends Controller
      */
     public function destroy($id)
     {
-        Merchant::destroy($id);
-        return redirect('/merchants');
+        //
     }
 }

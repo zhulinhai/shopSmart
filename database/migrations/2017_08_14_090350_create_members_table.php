@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('name');
             $table->string('nick_name')->nullable();
             $table->string('head_image')->nullable();
-            $table->string('sex')->default(0);
+            $table->unsignedInteger('sex')->default(0);
             $table->string('phone');
             $table->integer('level')->unsigned()->default(0);
             $table->integer('score')->unsigned()->default(0);

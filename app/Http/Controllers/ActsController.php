@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Act;
+use App\Merchant;
+use function GuzzleHttp\Psr7\mimetype_from_extension;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -25,8 +27,8 @@ class ActsController extends Controller
      */
     public function index()
     {
-        $Acts = Act::all();
-        return view('admin.acts', ['acts' => $Acts]);
+        $acts = Act::all();
+        return view('admin.acts', ['acts' => $acts]);
     }
 
     /**
@@ -36,8 +38,12 @@ class ActsController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.acts.create');
+        $merchants = Merchant::all();
+        $arr = array();
+        foreach($merchants as $merchant) {
+            $arr[$merchant->id] = $merchant->name;
+        }
+        return view('admin.acts.create', ['merchants' => $arr]);
     }
 
     /**
@@ -56,13 +62,21 @@ class ActsController extends Controller
             $input['head_image'] = 'uploads/'.$path;
         }
 
-        $images = $request->file('images');
-        if ($images)
-        {
-            $path = $images->store('acts', 'uploads');
-            $input['images'] = 'uploads/'.$path;
+        $arr=array();
+        $tp = array("image/gif","image/pjpeg","image/jpeg","image/png");    //检查上传文件是否在允许上传的类型
+        if($request->hasFile('images')){
+            foreach($request->file('images') as $file) {
+                $path = $file->store('acts','uploads');
+                $realPath = 'uploads/'.$path;
+                if(!in_array(mime_content_type($realPath),$tp)){
+                    echo "<script language='javascript'>alert(\"文件类型错误!\");</script>";
+                    exit;
+                }
+                $arr[] = $realPath;
+            }
         }
-
+        $images = (\GuzzleHttp\json_encode($arr));
+        $input['images'] = $images;
         Act::create($input);
         return redirect('/acts');
     }
@@ -87,7 +101,12 @@ class ActsController extends Controller
     public function edit($id)
     {
         $act = Act::findOrFail($id);
-        return view('admin.acts.edit',['act'=>$act]);
+        $merchants = Merchant::all();
+        $arr = array();
+        foreach($merchants as $merchant) {
+            $arr[$merchant->id] = $merchant->name;
+        }
+        return view('admin.acts.edit',['act'=>$act, 'merchants' => $arr]);
     }
 
     /**

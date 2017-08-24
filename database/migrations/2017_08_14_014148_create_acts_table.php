@@ -25,7 +25,7 @@ class CreateActsTable extends Migration
             $table->integer('counts');
             $table->integer('sale_count');
             $table->integer('status'); /* 活动状态--审核中 0、进行中 1、已结束 2、下架 3 */
-            $table->integer('merchant_id')->unsigned()->default(0);
+            $table->unsignedInteger('merchant_id');
             $table->foreign('merchant_id')->references('id')->on('merchants');
             $table->timestamps();
         });

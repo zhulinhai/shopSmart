@@ -34,9 +34,25 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('image', '活动图片', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::file('images', ['class'=>'form-control']) !!}
+        {!! Form::file('images[]', ['class'=>'form-control', 'multiple'=>'true']) !!}
         {!! Form::label('note', '说明：图片大小：宽640X高320 数量1', ['class'=>'input-group-addon']) !!}
     </div>
+</div>
+<div class="form-group">
+    {!! Form::label('counts', '活动数量', ['class'=>'control-label']) !!}
+    {!! Form::text('counts', 0, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('sale_count', '已销售', ['class'=>'control-label']) !!}
+    {!! Form::text('sale_count', 0, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('status', '活动状态', ['class'=>'control-label']) !!}
+    {!! Form::select('status', array('0'=>'审核中'), '0', ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('merchant_id', '绑定商家', ['class'=>'control-label']) !!}
+    {!! Form::select('merchant_id', $merchants, '0', ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('start_date', '开始时间', ['class'=>'control-label']) !!}

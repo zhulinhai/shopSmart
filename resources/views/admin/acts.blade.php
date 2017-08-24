@@ -15,8 +15,8 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="col-xs-2">LOGO</th>
-                                <th class="col-xs-7">内容</th>
+                                <th class="col-xs-3">主图</th>
+                                <th class="col-xs-6">内容</th>
                                 <th class="col-xs-2">操作</th>
                                 <th class="col-xs-1">选择</th>
                             </tr>
@@ -24,15 +24,14 @@
                         <tbody>
                         @foreach ($acts as $act)
                             <tr>
-                                <td>{{ $act->logo }}</td>
+                                <td><img  src="{{ asset( $act->head_image)  }}" alt=""></td>
                                 <td><p>{{ $act->name }}</p>
                                     <p>内容：{{ $act->content }}</p>
                                     <p>上传时间：{{ $act->updated_at }}</p>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ url('acts/edit/'.$act->id) }}"><button class="btn btn-primary">绑定商家</button></a>
-                                        <a href="{{ url('acts/edit/'.$act->id) }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('acts/'.$act->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                         <a href="{{ url('acts/destroy/'.$act->id) }}"><button class="btn btn-danger">下架</button></a>
                                     </div>
                                 </td>

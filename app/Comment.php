@@ -12,13 +12,13 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'message_id', 'message_user_id', 'user_id', 'type', 'content'
+        'id', 'article_id', 'content'
     ];
 
     /**
      * 获取评论对应的博客文章
      */
-    public function Article()
+    public function article()
     {
         return $this->belongsTo('App\Article');
     }

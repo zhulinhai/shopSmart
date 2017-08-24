@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Act;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ActsController extends Controller
 {
@@ -48,6 +49,20 @@ class ActsController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $head_image = $request->file('head_image');
+        if ($head_image)
+        {
+            $path = $head_image->store('acts','uploads');
+            $input['head_image'] = 'uploads/'.$path;
+        }
+
+        $images = $request->file('images');
+        if ($images)
+        {
+            $path = $images->store('acts', 'uploads');
+            $input['images'] = 'uploads/'.$path;
+        }
+
         Act::create($input);
         return redirect('/acts');
     }

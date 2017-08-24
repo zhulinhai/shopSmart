@@ -22,10 +22,11 @@ class CreateActsTable extends Migration
             $table->string('images');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('merchant_id');
-            $table->string('counts');
+            $table->integer('counts');
             $table->integer('sale_count');
-            $table->smallInteger('status'); /* 活动状态--审核中 0、进行中 1、已结束 2、下架 3 */
+            $table->integer('status'); /* 活动状态--审核中 0、进行中 1、已结束 2、下架 3 */
+            $table->integer('merchant_id')->unsigned()->default(0);
+            $table->foreign('merchant_id')->references('id')->on('merchants');
             $table->timestamps();
         });
     }

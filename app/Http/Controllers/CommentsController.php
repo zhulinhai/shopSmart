@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,6 @@ class CommentsController extends Controller
     {
 
         $comments = Comment::all();
-
         return view('admin.comments', ['comments'=>$comments]);
     }
 
@@ -37,7 +37,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.comments.create');
     }
 
     /**
@@ -46,9 +46,16 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $this->validate(request(),[
+            'content' => 'required|min:5'
+        ]);
+
+        $article = Article::findOrfail($id);
+        $article->addComment(request('content'));
+
+        return back();
     }
 
     /**

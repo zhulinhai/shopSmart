@@ -135,12 +135,12 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function upfile(Request $request, $id)
-    {
-        $path = $request->file('image')->store('tags','uploads');
-        $tag = Tag::findOrFail($id);
-        $tag['image'] = 'uploads/'.$path;
-        $tag->update();
-        return redirect('/tags');
-    }
+//    public function upfile(Request $request, $id)
+//    {
+//        $path = $request->file('image')->store('tags','uploads');
+//        $tag = Tag::findOrFail($id);
+//        $tag['image'] = 'uploads/'.$path;
+//        $tag->update();
+//        return redirect('/tags');
+//    }
 }

@@ -34,7 +34,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('image', '活动图片', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::file('image', ['class'=>'form-control']) !!}
+        {!! Form::file('images', ['class'=>'form-control']) !!}
         {!! Form::label('note', '说明：图片大小：宽640X高320 数量1', ['class'=>'input-group-addon']) !!}
     </div>
 </div>

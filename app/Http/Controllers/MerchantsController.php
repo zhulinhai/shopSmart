@@ -48,6 +48,20 @@ class MerchantsController extends Controller
     public function store(Request $request)
     {
         $merchant = $request->all();
+        $image = $request->file('head_image');
+        if ($image)
+        {
+            $path = $image->store('merchants','uploads');
+            $merchant['head_image'] = 'uploads/'.$path;
+        }
+
+        $logo = $request->file('logo');
+        if ($logo)
+        {
+            $path = $logo->store('merchants','uploads');
+            $merchant['logo'] = 'uploads/'.$path;
+        }
+
         Merchant::create($merchant);
         return redirect('/merchants');
     }

@@ -12,19 +12,17 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th class="col-xs-1">选择</th>
-                            <th class="col-xs-2">LOGO</th>
-                            <th class="col-xs-7">内容</th>
-                            <th class="col-xs-2">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+                    @foreach ($comments as $comment)
+                        <div class="card">
+                            <div class="card-header">
+                                {{$comment->created_at->diffForHumans() }}
+                            </div>
+                            <div class="card-block">
+                                <p class="card-text">{{ $comment->content }}</p>
+                            </div>
+                        </div>
+                        <br>
+                    @endforeach
                 </div>
             </div>
         </div>

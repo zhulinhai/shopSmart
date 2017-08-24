@@ -16,6 +16,18 @@
                 <textarea style="display: none">{{$article->content}}</textarea>
             </div>
             <p>{{ $article->tags }}</p>
+
+            @foreach ($article->comments as $comment)
+                <div class="card">
+                    <div class="card-header">
+                        {{$comment->created_at->diffForHumans() }}
+                    </div>
+                    <div class="card-block">
+                        <p class="card-text">{{ $comment->content }}</p>
+                    </div>
+                </div>
+                <br>
+            @endforeach
         </div>
     </div>
 

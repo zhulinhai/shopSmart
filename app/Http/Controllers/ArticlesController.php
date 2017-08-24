@@ -124,4 +124,12 @@ class ArticlesController extends Controller
         return redirect('/articles');
     }
 
+    /**
+     * 增加评论
+     **/
+    public function addComment($content)
+    {
+        $this->comments()->create(compact('content'));
+    }
+
 }

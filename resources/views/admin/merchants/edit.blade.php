@@ -12,7 +12,7 @@
 "></i> 取消</a></div>
         </div>
         <div class="panel-body" >
-            {{ Form::model($merchant, ['method'=>'PATCH','url' => 'merchants/edit/'.$merchant->id]) }}
+            {{ Form::model($merchant, ['method'=>'PATCH','url' => 'merchants/edit/'.$merchant->id, 'enctype' => 'multipart/form-data']) }}
             @include('admin.merchants.form')
             {{ Form::close() }}
             @include('admin.errors.list')

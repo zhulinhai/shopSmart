@@ -16,18 +16,18 @@
                         <thead>
                             <tr>
                                 <th class="col-xs-2">LOGO</th>
-                                <th class="col-xs-7">内容</th>
+                                <th class="col-xs-3">主图</th>
+                                <th class="col-xs-5">内容</th>
                                 <th class="col-xs-2">操作</th>
-                                <th class="col-xs-1">选择</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($merchants as $merchant)
                                 <tr>
-                                    <td><img src="{{ $merchant->head_image }} }}"></td>
-                                    <td><p>名称：{{ $merchant->name }}</p><p>类型：{{ $merchant->types }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
+                                    <td><img width="100px" src="{{ asset($merchant->logo)  }}" alt=""></td>
+                                    <td><img width="240px" src="{{ asset($merchant->head_image)  }}" alt=""></td>
+                                    <td><p>名称：{{ $merchant->name }}</p><p>电话：{{ $merchant->tel }}</p><p>地址：{{ $merchant->address }}</p><p>类型：{{ $merchant->types }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
                                     <td><a href="{{ url('merchants/'.$merchant->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a> <a href="{{ url('merchants/destroy/'.$merchant->id) }}"><button class="btn btn-danger">下架</button></a></td>
-                                    <td><input type="checkbox"></td>
                                 </tr>
                             @endforeach
                         </tbody>

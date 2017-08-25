@@ -11,11 +11,11 @@
         </div>
         <div class="panel-body">
             <?php $items = array(
-                array('num'=>'5888','name'=>'活动'),
-                array('num'=>'4888','name'=>'商家'),
-                array('num'=>'8','name'=>'日迹'),
-                array('num'=>'52688','name'=>'会员'),
-                array('num'=>'456888','name'=>'总评论')
+                array('num'=>$counts['act'],'name'=>'活动'),
+                array('num'=>$counts['merchant'],'name'=>'商家'),
+                array('num'=>$counts['article'],'name'=>'日迹'),
+                array('num'=>$counts['member'],'name'=>'会员'),
+                array('num'=>$counts['comment'],'name'=>'总评论')
             );
             ?>
             @foreach($items as $item)

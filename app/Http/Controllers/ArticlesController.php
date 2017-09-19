@@ -129,7 +129,6 @@ class ArticlesController extends Controller
      **/
     public function addComment($content)
     {
-        $this->comments()->create(compact('content'));
+        $this->comments()->create(compact('content', $content));
     }
-
 }

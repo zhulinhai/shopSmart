@@ -12,12 +12,12 @@
         <div class="panel-body" >
             {{ Form::open(array('url' => '/comments/store')) }}
                 <div class="form-group">
-                    {!! Form::label('post', '文章', ['class'=>'control-label']) !!}
-                    {!! Form::select('post', null, ['class'=>'form-control']) !!}
+                    {!! Form::label('article_id', '文章', ['class'=>'control-label']) !!}
+                    {!! Form::select('article_id', $articles, 0, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('content', '内容', ['class'=>'control-label']) !!}
-                    {!! Form::text('content', null, ['class'=>'form-control']) !!}
+                    {!! Form::textarea('content', null, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group" style="margin-top: 10px">
                     {!! Form::submit('提交评论', ['class'=>'form-control btn-primary']) !!}

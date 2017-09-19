@@ -25,7 +25,6 @@ class CommentsController extends Controller
      */
     public function index()
     {
-
         $comments = Comment::all();
         return view('admin.comments', ['comments'=>$comments]);
     }
@@ -37,7 +36,12 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        return view('admin.comments.create');
+        $all = Article::all('id');
+        $articles = array();
+        foreach ($all as $item) {
+            $articles[] =$item->id;
+        }
+        return view('admin.comments.create', ['articles'=>$articles]);
     }
 
     /**
@@ -46,15 +50,13 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $this->validate(request(),[
             'content' => 'required|min:5'
         ]);
-
-        $article = Article::findOrfail($id);
-        $article->addComment(request('content'));
-
+        $input = $request->all();
+        Comment::create($input);
         return back();
     }
 

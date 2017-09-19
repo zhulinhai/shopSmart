@@ -39,4 +39,5 @@ Route::get('articles/{article}/destroy','ArticlesController@destroy');
 Route::resource('articles', 'ArticlesController', [ 'only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
 /* 评论管理 */
+Route::Post('comments/store','CommentsController@store');
 Route::resource('comments', 'CommentsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);

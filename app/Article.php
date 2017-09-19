@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable = ['title', 'content', 'summary', 'head_image', 'user_id', 'published_at', 'tags'];
+    protected $fillable = ['id','title', 'content', 'summary', 'head_image', 'user_id', 'published_at', 'tags'];
     protected $dates =['published_at'];
 
     public function setPublishedAtAttribute($date)
@@ -31,5 +31,13 @@ class Article extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    /**
+     * 增加评论
+     **/
+    public function addComment($content)
+    {
+        $this->comments()->create(compact('content', $content));
     }
 }

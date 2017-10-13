@@ -27,13 +27,13 @@ class ProductController extends Controller
         return view('admin.new');
     }
 
-    public function add() {
+    public function add(Request $request) {
 
         $product = new Product();
-        $product->name = Request::input('name');
-        $product->description = Request::input('description');
-        $product->price = Request::input('price');
-        $product->imageurl = Request::input('imageurl');
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->imageurl = $request->input('imageurl');
         $product->save();
         return redirect('/admin/products');
 

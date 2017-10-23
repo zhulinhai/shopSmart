@@ -4,6 +4,7 @@
                 array("name"=>'数据统计', 'icon'=>'img/tongji.png', 'isActive'=>false,'route'=>'home'),
                 array("name"=>'商家管理', 'icon'=>'img/businessManage.png', 'isActive'=>false,'route'=>'merchants'),
                 array("name"=>'活动管理', 'icon'=>'img/actManage.png', 'isActive'=>false,'route'=>'acts'),
+                array("name"=>'订单管理', 'icon'=>'img/actManage.png', 'isActive'=>false,'route'=>'orders'),
                 array("name"=>'日迹管理', 'icon'=>'img/newsManage.png', 'isActive'=>false,'route'=>'articles'),
                 array("name"=>'评论审核', 'icon'=>'img/commitManage.png', 'isActive'=>false,'route'=>'comments'),
                 array("name"=>'会员管理', 'icon'=>'img/userManage.png', 'isActive'=>false,'route'=>'members'),
@@ -13,7 +14,7 @@
             $menus[$index]['isActive'] = true;
         ?>
         @foreach ($menus as $item)
-            <a href="{{ url('/'.$item['route']) }}"><div class="list-group-item {{ $item['isActive']?'active':'' }}"><img src="{{ asset($item['icon']) }}"> {{ $item['name'] }}<hr></div></a>
+            <a href="{{ url('/admin/'.$item['route']) }}"><div class="list-group-item {{ $item['isActive']?'active':'' }}"><img src="{{ asset($item['icon']) }}"> {{ $item['name'] }}<hr></div></a>
         @endforeach
     </ul>
 </div>

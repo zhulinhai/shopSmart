@@ -15,3 +15,4 @@ npm-debug.log
 .env
 .sass-cache/
 composer.json
+/resources/views/vendor

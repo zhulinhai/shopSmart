@@ -24,9 +24,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::Post('tags/{tag}/upfile', 'TagsController@upfile');
     Route::resource('tags', 'TagsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
+    /* 产品管理 */
     Route::Post('acts/store', 'ActsController@store');
     Route::resource('acts', 'ActsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
+    /* 商家管理 */
     Route::Post('merchants/store', 'MerchantsController@store');
     Route::resource('merchants', 'MerchantsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
@@ -44,6 +46,9 @@ Route::group(['prefix' => 'admin'], function () {
     /* 评论管理 */
     Route::Post('comments/store', 'CommentsController@store');
     Route::resource('comments', 'CommentsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+
+    /* 订单管理 */
+    Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
 });
 

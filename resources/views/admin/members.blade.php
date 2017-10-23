@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 会员管理</a><a href="{{ url('/members/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加会员</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 会员管理</a><a href="{{ url('/admin/members/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加会员</a></div>
         </div>
         <div class="panel-body">
             <div class="row">

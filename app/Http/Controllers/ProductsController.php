@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Act;
-use App\Merchant;
-use function GuzzleHttp\Psr7\mimetype_from_extension;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use App\Entity\Product;
 
-class ActsController extends Controller
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+class ProductsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -20,15 +23,11 @@ class ActsController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $acts = Act::all();
-        return view('admin.acts', ['acts' => $acts]);
+        $products = Product::all();
+        return view('admin.products', ['products' => $products]);
     }
 
     /**
@@ -38,12 +37,7 @@ class ActsController extends Controller
      */
     public function create()
     {
-        $merchants = Merchant::all();
-        $arr = array();
-        foreach($merchants as $merchant) {
-            $arr[$merchant->id] = $merchant->name;
-        }
-        return view('admin.acts.create', ['merchants' => $arr]);
+        return view('admin.products.create');
     }
 
     /**
@@ -58,7 +52,7 @@ class ActsController extends Controller
         $head_image = $request->file('head_image');
         if ($head_image)
         {
-            $path = $head_image->store('acts','uploads');
+            $path = $head_image->store('products','uploads');
             $input['head_image'] = 'uploads/'.$path;
         }
 
@@ -66,7 +60,7 @@ class ActsController extends Controller
         $tp = array("image/gif","image/pjpeg","image/jpeg","image/png");    //检查上传文件是否在允许上传的类型
         if($request->hasFile('images')){
             foreach($request->file('images') as $file) {
-                $path = $file->store('acts','uploads');
+                $path = $file->store('products','uploads');
                 $realPath = 'uploads/'.$path;
                 if(!in_array(mime_content_type($realPath),$tp)){
                     echo "<script language='javascript'>alert(\"文件类型错误!\");</script>";
@@ -77,8 +71,8 @@ class ActsController extends Controller
         }
         $images = (\GuzzleHttp\json_encode($arr));
         $input['images'] = $images;
-        Act::create($input);
-        return redirect('/acts');
+        Product::create($input);
+        return redirect('/products');
     }
 
     /**
@@ -100,13 +94,13 @@ class ActsController extends Controller
      */
     public function edit($id)
     {
-        $act = Act::findOrFail($id);
-        $merchants = Merchant::all();
-        $arr = array();
-        foreach($merchants as $merchant) {
-            $arr[$merchant->id] = $merchant->name;
-        }
-        return view('admin.acts.edit',['act'=>$act, 'merchants' => $arr]);
+        $product = Product::findOrFail($id);
+//        $merchants = Merchant::all();
+//        $arr = array();
+//        foreach($merchants as $merchant) {
+//            $arr[$merchant->id] = $merchant->name;
+//        }
+        return view('admin.products.edit',['product'=>$product]);
     }
 
     /**
@@ -121,14 +115,14 @@ class ActsController extends Controller
         //
         $imageUrl = $request->file('head_image')->store('avatars');
         $logoUrl = $request->file('logo')->store('avatars');
-        $act = Act::findOrFail($id);
-        $act->name =$request->input('name');
-        $act->head_image = $imageUrl;
-        $act->logo = $logoUrl;
-        $act->address =$request->input('address');
-        $act->tel =$request->input('tel');
-        $act->types = '';
-        $act->save();
+        $product = Product::findOrFail($id);
+        $product->name =$request->input('name');
+        $product->head_image = $imageUrl;
+        $product->logo = $logoUrl;
+        $product->address =$request->input('address');
+        $product->tel =$request->input('tel');
+        $product->types = '';
+        $product->save();
     }
 
     /**
@@ -139,8 +133,7 @@ class ActsController extends Controller
      */
     public function destroy($id)
     {
-        Act::destroy($id);
-        return redirect('/acts');
+        Product::destroy($id);
+        return redirect('/products');
     }
-
 }

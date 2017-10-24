@@ -25,8 +25,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('tags', 'TagsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
     /* 产品管理 */
-    Route::Post('acts/store', 'ActsController@store');
-    Route::resource('acts', 'ActsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+    Route::Post('products/store', 'ProductsController@store');
+    Route::resource('products', 'ProductsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
     /* 商家管理 */
     Route::Post('merchants/store', 'MerchantsController@store');

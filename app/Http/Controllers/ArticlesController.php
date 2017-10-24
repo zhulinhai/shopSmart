@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Entity\Article;
 use Carbon\Carbon;
 use App\Http\Requests\CreateArticleRequest;
 

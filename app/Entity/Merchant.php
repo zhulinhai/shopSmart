@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Merchant extends Model
 {
+    protected $table = 'merchant';
     /**
      * The attributes that are mass assignable.
      *

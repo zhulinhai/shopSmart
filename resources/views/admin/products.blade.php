@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 活动列表</a><a href="{{ url('/admin/acts/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加活动</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 活动列表</a><a href="{{ url('/admin/products/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加活动</a></div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -22,17 +22,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($acts as $act)
+                        @foreach ($products as $product)
                             <tr>
-                                <td><img  src="{{ asset( $act->head_image)  }}" alt=""></td>
-                                <td><p>{{ $act->name }}</p>
-                                    <p>内容：{{ $act->content }}</p>
-                                    <p>上传时间：{{ $act->updated_at }}</p>
+                                <td><img  src="{{ asset( $product->head_image)  }}" alt=""></td>
+                                <td><p>{{ $product->name }}</p>
+                                    <p>内容：{{ $product->content }}</p>
+                                    <p>上传时间：{{ $product->updated_at }}</p>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ url('acts/'.$act->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('acts/destroy/'.$act->id) }}"><button class="btn btn-danger">下架</button></a>
+                                        <a href="{{ url('products'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('acts/destroy/'.$product->id) }}"><button class="btn btn-danger">下架</button></a>
                                     </div>
                                 </td>
                                 <td><input type="checkbox"></td>

@@ -10,4 +10,7 @@ class Category extends Model
     protected $primaryKey = 'id';
 
     //public $timestamps = false;
+    protected $fillable = [
+        'id', 'name', 'image', 'parent_id'
+    ];
 }

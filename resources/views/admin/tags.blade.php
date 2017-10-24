@@ -9,7 +9,7 @@
         <div class="panel-heading">
             <div class="panel-title">
                 <a><i class="glyphicon glyphicon-tags"></i> 标签管理</a>
-                <a href="{{ url('/tags/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加标签</a>
+                <a href="{{ url('/admin/tags/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加标签</a>
             </div>
         </div>
         <div class="panel-body">

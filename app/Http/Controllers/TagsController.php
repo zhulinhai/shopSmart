@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
+use App\Entity\Category;
 use App\Http\Requests\CreateTagRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +28,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Category::all();
         return view('admin.tags', ['tags' => $tags]);
     }
 
@@ -58,7 +58,7 @@ class TagsController extends Controller
             $path = $image->store('tags','uploads');
             $tag['image'] = 'uploads/'.$path;
         }
-        Tag::create($tag);
+        Category::create($tag);
         return redirect('/tags');
     }
 
@@ -82,7 +82,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Category::findOrFail($id);
         $pNodes = $this->pNodes();
         return view('admin.tags.edit',['tag'=>$tag, 'pNodes'=>$pNodes]);
     }
@@ -92,7 +92,7 @@ class TagsController extends Controller
      * */
     public function pNodes()
     {
-        $parents = DB::table('tags')->where('parent_id', '=', 0)->get();
+        $parents = DB::table('category')->where('parent_id', '=', 0)->get();
         $arr = ['0'=>'顶级标签'];
         foreach($parents as $parent) {
             $arr[$parent->id] = $parent->name;
@@ -109,7 +109,7 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Category::findOrFail($id);
         $input = $request->all();
         $tag->update($input);
         return redirect('/tags');
@@ -123,9 +123,9 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Category::findOrFail($id);
         Storage::delete($tag->image);
-        Tag::destroy($id);
+        Category::destroy($id);
         return redirect('/tags');
     }
 

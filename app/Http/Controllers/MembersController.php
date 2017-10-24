@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Member;
+use App\Entity\Member;
 use Carbon\Carbon;
 use App\Http\Requests\CreateMemberRequest;
 use Illuminate\Http\Request;

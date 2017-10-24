@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
-use App\CartItem;
+use App\Entity\Cart;
+use App\Entity\CartItem;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $table = 'article_comments';
     /**
      * The attributes that are mass assignable.
      *

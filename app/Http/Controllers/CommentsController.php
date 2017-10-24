@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Comment;
+use App\Entity\Article;
+use App\Entity\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Merchant;
+use App\Entity\Merchant;
 use Illuminate\Http\Request;
 
 class MerchantsController extends Controller

@@ -50,10 +50,10 @@
     {!! Form::label('status', '活动状态', ['class'=>'control-label']) !!}
     {!! Form::select('status', array('0'=>'审核中'), '0', ['class'=>'form-control']) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('merchant_id', '绑定商家', ['class'=>'control-label']) !!}
-    {!! Form::select('merchant_id', $merchants, '0', ['class'=>'form-control']) !!}
-</div>
+{{--<div class="form-group">--}}
+    {{--{!! Form::label('merchant_id', '绑定商家', ['class'=>'control-label']) !!}--}}
+    {{--{!! Form::select('merchant_id', $merchants, '0', ['class'=>'form-control']) !!}--}}
+{{--</div>--}}
 <div class="form-group">
     {!! Form::label('start_date', '开始时间', ['class'=>'control-label']) !!}
     {!! Form::date('start_date', \Carbon\Carbon::now(), ['class'=>'form-control']) !!}

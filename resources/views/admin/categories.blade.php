@@ -9,7 +9,7 @@
         <div class="panel-heading">
             <div class="panel-title">
                 <a><i class="glyphicon glyphicon-tags"></i> 标签管理</a>
-                <a href="{{ url('/admin/tags/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加标签</a>
+                <a href="{{ url('/admin/categories/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加标签</a>
             </div>
         </div>
         <div class="panel-body">
@@ -24,15 +24,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tags as $tag)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td><img width="100px" src="{{ asset($tag->image)  }}" alt=""> </td>
-                            <td>{{ $tag->name }}</td>
-                            <td>{{ $tag->id }}</td>
-                            <td>{{ $tag->parent_id }}</td>
+                            <td><img width="100px" src="{{ asset($category->preview)  }}" alt=""> </td>
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->parent_id }}</td>
                             <td>
-                                <a href="{{ url('tags/'.$tag->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                <a href="{{ url('tags/'.$tag->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                <a href="{{ url('/admin/categories/'.$category->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                <a href="{{ url('/admin/categories/'.$category->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
                             </td>
                         </tr>
                         @endforeach

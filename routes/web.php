@@ -19,10 +19,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::Post('tags/store', 'TagsController@store');
-    Route::get('tags/{tag}/destroy', 'TagsController@destroy');
-    Route::Post('tags/{tag}/upfile', 'TagsController@upfile');
-    Route::resource('tags', 'TagsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+    Route::Post('categories/store', 'CategoriesController@store');
+    Route::get('categories/{category}/destroy', 'CategoriesController@destroy');
+    Route::Post('categories/{category}/upfile', 'CategoriesController@upfile');
+    Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
     /* 产品管理 */
     Route::Post('products/store', 'ProductsController@store');

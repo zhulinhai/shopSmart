@@ -6,9 +6,10 @@ use App\Entity\Product;
 use Illuminate\Http\Request;
 use App\Entity\PdtContent;
 use App\Entity\PdtImages;
-
+use App\Entity\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\CreateProductRequest;
 
 class ProductsController extends Controller
 {
@@ -36,7 +37,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', ['categories'=>$categories]);
     }
 
     /**
@@ -45,11 +47,11 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         $name = $request->input('name', '');
         $summary = $request->input('summary', '');
-        $price = $request->input('privilege', '');
+        $price = $request->input('price', '');
         $category_id = $request->input('category_id', '');
         $preview = $request->input('preview', '');
         $content = $request->input('content', '');

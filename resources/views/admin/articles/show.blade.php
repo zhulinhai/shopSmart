@@ -38,7 +38,7 @@
         $(function() {
             editormd.markdownToHTML("show_editor", {
                 width: "100%",
-                htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                htmlDecode      : "style,script,iframe",  // you can filter categories decode
                 emoji           : true,
                 taskList        : true,
                 tex             : true,  // 默认不解析

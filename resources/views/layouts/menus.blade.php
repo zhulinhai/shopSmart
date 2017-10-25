@@ -8,7 +8,7 @@
                 array("name"=>'评论审核', 'icon'=>'img/commitManage.png', 'isActive'=>false,'route'=>'comments'),
                 array("name"=>'会员管理', 'icon'=>'img/userManage.png', 'isActive'=>false,'route'=>'members'),
 //                array("name"=>'商圈管理', 'icon'=>'img/marketManage.png', 'isActive'=>false,'route'=>'markets'),
-                array("name"=>'标签管理', 'icon'=>'img/tagsManage.png', 'isActive'=>false,'route'=>'tags'),
+                array("name"=>'标签管理', 'icon'=>'img/tagsManage.png', 'isActive'=>false,'route'=>'categories'),
                 array("name"=>'订单管理', 'icon'=>'img/actManage.png', 'isActive'=>false,'route'=>'orders'),
         );
             $menus[$index]['isActive'] = true;

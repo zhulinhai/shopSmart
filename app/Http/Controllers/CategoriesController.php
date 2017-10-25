@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Category;
-use App\Http\Requests\CreateTagRequest;
+use App\Http\Requests\CreateCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-class TagsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,8 +28,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tags = Category::all();
-        return view('admin.tags', ['tags' => $tags]);
+        $categories = Category::all();
+        return view('admin.categories', ['categories' => $categories]);
     }
 
     /**
@@ -40,7 +40,7 @@ class TagsController extends Controller
     public function create()
     {
         $pNodes = $this->pNodes();
-        return view('admin.tags.create', ['pNodes'=>$pNodes]);
+        return view('admin.categories.create', ['pNodes'=>$pNodes, 'category'=>'' ]);
     }
 
     /**
@@ -49,17 +49,11 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTagRequest $request)
+    public function store(CreateCategoryRequest $request)
     {
-        $tag = $request->all();
-        $image = $request->file('image');
-        if ($image)
-        {
-            $path = $image->store('tags','uploads');
-            $tag['image'] = 'uploads/'.$path;
-        }
-        Category::create($tag);
-        return redirect('/tags');
+        $category = $request->all();
+        Category::create($category);
+        return redirect('/admin/categories');
     }
 
     /**
@@ -82,9 +76,9 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tag = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $pNodes = $this->pNodes();
-        return view('admin.tags.edit',['tag'=>$tag, 'pNodes'=>$pNodes]);
+        return view('admin.categories.edit',['category'=>$category, 'pNodes'=>$pNodes]);
     }
 
     /**
@@ -112,7 +106,7 @@ class TagsController extends Controller
         $tag = Category::findOrFail($id);
         $input = $request->all();
         $tag->update($input);
-        return redirect('/tags');
+        return redirect('/admin/categories');
     }
 
     /**
@@ -126,21 +120,6 @@ class TagsController extends Controller
         $tag = Category::findOrFail($id);
         Storage::delete($tag->image);
         Category::destroy($id);
-        return redirect('/tags');
+        return redirect('/admin/categories');
     }
-
-    /**
-     * upload the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-//    public function upfile(Request $request, $id)
-//    {
-//        $path = $request->file('image')->store('tags','uploads');
-//        $tag = Tag::findOrFail($id);
-//        $tag['image'] = 'uploads/'.$path;
-//        $tag->update();
-//        return redirect('/tags');
-//    }
 }

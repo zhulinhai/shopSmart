@@ -15,9 +15,7 @@
 <div class="form-group">
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('mdeditor', '活动简介', ['class'=>'control-label']) !!}
-    <div id="mdeditor">
-        {!! Form::textarea('summary', null, ['class'=>'form-control','style'=>'display:none; ']) !!}
-    </div>
+    {!! Form::textarea('summary', '', ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     <i class="glyphicon glyphicon-star"></i>
@@ -63,7 +61,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '类型', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::select('category', array($categories), '0', ['class'=>'form-control']) !!}
+        {!! Form::select('category', $categories, '0', ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">

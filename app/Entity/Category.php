@@ -11,6 +11,6 @@ class Category extends Model
 
     //public $timestamps = false;
     protected $fillable = [
-        'id', 'name', 'image', 'parent_id'
+        'id', 'name', 'preview', 'parent_id'
     ];
 }

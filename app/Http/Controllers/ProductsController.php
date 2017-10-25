@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Product;
-
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Entity\PdtContent;
+use App\Entity\PdtImages;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -48,31 +47,41 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $head_image = $request->file('head_image');
-        if ($head_image)
-        {
-            $path = $head_image->store('products','uploads');
-            $input['head_image'] = 'uploads/'.$path;
+        $name = $request->input('name', '');
+        $summary = $request->input('summary', '');
+        $price = $request->input('privilege', '');
+        $category_id = $request->input('category_id', '');
+        $preview = $request->input('preview', '');
+        $content = $request->input('content', '');
+
+        $fileAct1 = $request->input('fileAct1', '');
+        $fileAct2 = $request->input('fileAct2', '');
+        $fileAct3 = $request->input('fileAct3', '');
+        $fileAct3 = $request->input('fileAct4', '');
+        $fileAct5 = $request->input('fileAct5', '');
+
+        $product = new Product;
+        $product->summary = $summary;
+        $product->price = $price;
+        $product->category_id = $category_id;
+        $product->preview = $preview;
+        $product->name = $name;
+        $product->save();
+
+        $pdt_content = new PdtContent;
+        $pdt_content->product_id = $product->id;
+        $pdt_content->content = $content;
+        $pdt_content->save();
+
+        if($fileAct1 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct1;
+            $pdt_images->image_no = 1;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
         }
 
-        $arr=array();
-        $tp = array("image/gif","image/pjpeg","image/jpeg","image/png");    //检查上传文件是否在允许上传的类型
-        if($request->hasFile('images')){
-            foreach($request->file('images') as $file) {
-                $path = $file->store('products','uploads');
-                $realPath = 'uploads/'.$path;
-                if(!in_array(mime_content_type($realPath),$tp)){
-                    echo "<script language='javascript'>alert(\"文件类型错误!\");</script>";
-                    exit;
-                }
-                $arr[] = $realPath;
-            }
-        }
-        $images = (\GuzzleHttp\json_encode($arr));
-        $input['images'] = $images;
-        Product::create($input);
-        return redirect('/products');
+        return redirect('/admin/products');
     }
 
     /**

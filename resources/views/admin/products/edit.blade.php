@@ -10,7 +10,7 @@
             <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 活动管理</a><a href="{{ url('products') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-backward"></i> 返回</a></div>
         </div>
         <div class="panel-body" >
-            {{ Form::model( $act,['method'=>'PATCH','url' => 'acts/'.$act->id, 'enctype' => 'multipart/form-data']) }}
+            {{ Form::model( $product,['method'=>'PATCH','url' => '/admin/products/'.$product->id]) }}
             @include('admin.products.form')
             {{ Form::close() }}
             @include('admin.errors.list')

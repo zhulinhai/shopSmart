@@ -1,9 +1,9 @@
-<?php namespace App\Http\Controllers\Service;
+<?php namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Tool\UUID;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 
 class UploadController extends Controller {
 
@@ -23,18 +23,18 @@ class UploadController extends Controller {
 			return $m3_result->toJson();
 		}
 
-    $file_size = $_FILES["file"]["size"];
-		if ( $file_size > 1024*1024) {
-			$m3_result->status = 2;
-			$m3_result->message = "请注意图片上传大小不能超过1M";
-			return $m3_result->toJson();
-		}
+        $file_size = $_FILES["file"]["size"];
+            if ( $file_size > 1024*1024) {
+                $m3_result->status = 2;
+                $m3_result->message = "请注意图片上传大小不能超过1M";
+                return $m3_result->toJson();
+            }
 
-		$public_dir = sprintf('/upload/%s/%s/', $type, date('Ymd') );
-		$upload_dir = public_path() . $public_dir;
-		if( !file_exists($upload_dir) ) {
-      mkdir($upload_dir, 0777, true);
-    }
+            $public_dir = sprintf('/upload/%s/%s/', $type, date('Ymd') );
+            $upload_dir = public_path() . $public_dir;
+            if( !file_exists($upload_dir) ) {
+            mkdir($upload_dir, 0777, true);
+        }
 		// 获取文件扩展名
 		$arr_ext = explode('.', $_FILES["file"]['name']);
 		$file_ext = count($arr_ext) > 1 && strlen( end($arr_ext) ) ? end($arr_ext) : "unknow";

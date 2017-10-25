@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace App\Entity;
 
 class BKWXPayConfig extends M3Result {
 

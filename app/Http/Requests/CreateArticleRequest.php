@@ -25,10 +25,7 @@ class CreateArticleRequest extends FormRequest
     {
         return [
             'title'=>'required|min:3',
-            'content'=>'required',
-            'tags'=>'required',
-            'head_image'=>'required',
-            'user_id'=>'required'
+            'content'=>'required'
         ];
     }
 }

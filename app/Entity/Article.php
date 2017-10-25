@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable = ['id','title', 'content', 'summary', 'head_image', 'user_id', 'published_at', 'tags'];
+
+    protected $table = 'article';
+    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'tags'];
     protected $dates =['published_at'];
 
     public function setPublishedAtAttribute($date)

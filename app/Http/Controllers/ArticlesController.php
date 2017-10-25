@@ -58,7 +58,7 @@ class ArticlesController extends Controller
         $input['summary'] = mb_substr($request->get('content'),0,64);
         $input['published_at'] = Carbon::now()->toDateTimeString();
         Article::create($input);
-        return redirect('/articles');
+        return redirect('/admin/articles');
 
     }
 

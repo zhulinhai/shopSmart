@@ -103,9 +103,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $input = $request->all();
-        $tag->update($input);
+        $category->update($input);
         return redirect('/admin/categories');
     }
 

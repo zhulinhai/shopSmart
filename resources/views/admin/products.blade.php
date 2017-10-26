@@ -15,27 +15,29 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="col-xs-3">主图</th>
-                                <th class="col-xs-6">内容</th>
-                                <th class="col-xs-2">操作</th>
-                                <th class="col-xs-1">选择</th>
+                                <th class="col-xs-2">主图</th>
+                                <th class="col-xs-8">内容</th>
+                                <th class="col-xs-1">状态</th>
+                                <th class="col-xs-1">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($products as $product)
                             <tr>
-                                <td><img  src="{{ asset( $product->head_image)  }}" alt=""></td>
-                                <td><p>{{ $product->name }}</p>
-                                    <p>内容：{{ $product->content }}</p>
+                                <td><img style="width: auto; height: 100px" src="{{ asset( $product->preview)  }}" alt=""></td>
+                                <td><p>标题：{{ $product->name }}</p>
+                                    <p>内容：{{ $product->summary }}</p>
                                     <p>上传时间：{{ $product->updated_at }}</p>
                                 </td>
                                 <td>
+                                    {{ $product->status }}
+                                </td>
+                                <td>
                                     <div class="btn-group">
-                                        <a href="{{ url('products'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('acts/destroy/'.$product->id) }}"><button class="btn btn-danger">下架</button></a>
+                                        <a href="{{ url('admin/products/'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('admin/products/destroy/'.$product->id) }}"><button class="btn btn-danger">下架</button></a>
                                     </div>
                                 </td>
-                                <td><input type="checkbox"></td>
                             </tr>
                         @endforeach
                         </tbody>

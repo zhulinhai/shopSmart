@@ -8,20 +8,20 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('privce', '活动价格', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::text('privilege', null, ['class'=>'form-control']) !!}
+        {!! Form::number('price', null, ['class'=>'form-control']) !!}
         <span class="input-group-addon" id="sizing-addon2">说明：请填写折扣或价格</span>
     </div>
 </div>
 <div class="form-group">
     <i class="glyphicon glyphicon-star"></i>
-    {!! Form::label('mdeditor', '活动简介', ['class'=>'control-label']) !!}
-    {!! Form::textarea('summary', '', ['class'=>'form-control']) !!}
+    {!! Form::label('summary', '活动简介', ['class'=>'control-label']) !!}
+    {!! Form::textarea('summary', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     <i class="glyphicon glyphicon-star"></i>
-    {!! Form::label('mdeditor', '活动内容', ['class'=>'control-label']) !!}
+    {!! Form::label('content', '活动内容', ['class'=>'control-label']) !!}
     <div id="mdeditor">
-        {!! Form::textarea('content', null, ['class'=>'form-control','style'=>'display:none; ']) !!}
+        {!! Form::textarea('content', $pdt_content, ['class'=>'form-control', 'style'=>'display:none']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -29,9 +29,9 @@
     {!! Form::label('head_image', '预览图', ['class'=>'control-label']) !!}
     {!! Form::label('note', '说明：图片大小：宽640X高320 数量1', ['class'=>'control-label']) !!}
     <div class="input-group">
-        <img id="previewImg" src="/img/addHolder.png" style="width: auto; height: 100px;" onclick="$('#preview').click()" />
+        <img id="previewImg" src="{{ ($product && $product->preview) ? asset($product->preview):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#preview').click()" />
         {!! Form::file('file', ['id'=>'preview', 'class'=>'form-control', 'style'=>'display:none']) !!}
-        {!! Form::text('preview', '', ['style'=>'display:none']) !!}
+        {!! Form::text('preview', ($product && $product->preview) ? $product->preview: '', ['style'=>'display:none']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -61,20 +61,20 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '类型', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::select('category', $categories, '0', ['class'=>'form-control']) !!}
+        {!! Form::select('category_id', $categories, '0', ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('counts', '产品数量', ['class'=>'control-label']) !!}
-    {!! Form::text('counts', 0, ['class'=>'form-control']) !!}
+    {!! Form::label('count', '产品数量', ['class'=>'control-label']) !!}
+    {!! Form::number('count', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('sale_count', '已销售', ['class'=>'control-label']) !!}
-    {!! Form::text('sale_count', 0, ['class'=>'form-control']) !!}
+    {!! Form::number('sale_count', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('status', '活动状态', ['class'=>'control-label']) !!}
-    {!! Form::select('status', array('0'=>'提交', '1'=>'审核中', '2'=>'上线', '3'=>'已下架'), '0', ['class'=>'form-control']) !!}
+    {!! Form::select('status', array('0'=>'提交', '1'=>'审核中', '2'=>'上线', '3'=>'已下架'), null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('start_date', '开始时间', ['class'=>'control-label']) !!}
@@ -86,7 +86,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('published_at', '发布日期', ['class'=>'control-label']) !!}
-    {!! Form::input('date','published_at', date('Y-m-d'), ['class'=>'form-control']) !!}
+    {!! Form::date('published_at', ($product && $product->published_at)? $product->published_at:\Carbon\Carbon::now() , ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit('发布活动',['class'=>'btn btn-primary form-control']) !!}

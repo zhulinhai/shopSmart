@@ -19,7 +19,8 @@
                         <th class="col-xs-2">图像</th>
                         <th class="col-xs-4">名称</th>
                         <th class="col-xs-2">id</th>
-                        <th class="col-xs-2">父id</th>
+                        <th class="col-xs-1">父id</th>
+                        <th class="col-xs-1">类型</th>
                         <th class="col-xs-2">操作</th>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->parent_id }}</td>
+                            <td>{{ $category->type  }}</td>
                             <td>
                                 <a href="{{ url('/admin/categories/'.$category->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                 <a href="{{ url('/admin/categories/'.$category->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>

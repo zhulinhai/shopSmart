@@ -11,7 +11,7 @@
         </div>
         <div class="panel-body" >
             {{ Form::model($category,['method'=>'PATCH','url' => '/admin/categories/'.$category->id ]) }}
-                @include('admin.categories.form')
+            @include('admin.categories.form')
             {{ Form::close() }}
             @include('admin.errors.list')
         </div>

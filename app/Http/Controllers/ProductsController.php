@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Product;
-use Illuminate\Http\Request;
 use App\Entity\PdtContent;
 use App\Entity\PdtImages;
-use App\Entity\Category;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateProductRequest;
 
 class ProductsController extends Controller
@@ -37,8 +34,17 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.products.create', ['categories'=>$categories]);
+        return view('admin.products.create', ['categories'=>$this->getCategories(), 'product'=>null, 'pdt_content'=>null, 'pdt_images'=>null]);
+    }
+
+    public function getCategories()
+    {
+        $arr = array();
+        $categories = DB::table('category')->where('type', '=', 0)->get();
+        foreach($categories as $category) {
+            $arr[$category->id] = $category->name;
+        }
+        return $arr;
     }
 
     /**
@@ -55,11 +61,15 @@ class ProductsController extends Controller
         $category_id = $request->input('category_id', '');
         $preview = $request->input('preview', '');
         $content = $request->input('content', '');
+        $count = $request->input('count', '');
+        $sale_count = $request->input('sale_count', '');
+        $status = $request->input('status', '');
+        $published_at = $request->input('published_at', '');
 
         $fileAct1 = $request->input('fileAct1', '');
         $fileAct2 = $request->input('fileAct2', '');
         $fileAct3 = $request->input('fileAct3', '');
-        $fileAct3 = $request->input('fileAct4', '');
+        $fileAct4 = $request->input('fileAct4', '');
         $fileAct5 = $request->input('fileAct5', '');
 
         $product = new Product;
@@ -68,6 +78,10 @@ class ProductsController extends Controller
         $product->category_id = $category_id;
         $product->preview = $preview;
         $product->name = $name;
+        $product->count = $count;
+        $product->sale_count = $sale_count;
+        $product->status = $status;
+        $product->published_at = $published_at;
         $product->save();
 
         $pdt_content = new PdtContent;
@@ -79,6 +93,34 @@ class ProductsController extends Controller
             $pdt_images = new PdtImages;
             $pdt_images->image_path = $fileAct1;
             $pdt_images->image_no = 1;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
+        }
+        if($fileAct2 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct2;
+            $pdt_images->image_no = 2;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
+        }
+        if($fileAct3 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct3;
+            $pdt_images->image_no = 3;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
+        }
+        if($fileAct4 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct4;
+            $pdt_images->image_no = 4;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
+        }
+        if($fileAct5 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct5;
+            $pdt_images->image_no = 5;
             $pdt_images->product_id = $product->id;
             $pdt_images->save();
         }
@@ -106,12 +148,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-//        $merchants = Merchant::all();
-//        $arr = array();
-//        foreach($merchants as $merchant) {
-//            $arr[$merchant->id] = $merchant->name;
-//        }
-        return view('admin.products.edit',['product'=>$product]);
+        $pdt_content = DB::table('pdt_content')->where('product_id', '=', $id)->first()->content;
+        $pdt_images = DB::table('pdt_images')->where('product_id', '=', $id )->get();
+        return view('admin.products.edit',['product'=>$product, 'pdt_content'=>$pdt_content, 'pdt_images'=>$pdt_images, 'categories'=>$this->getCategories()]);
     }
 
     /**
@@ -121,19 +160,69 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProductRequest $request, $id)
     {
-        //
-        $imageUrl = $request->file('head_image')->store('avatars');
-        $logoUrl = $request->file('logo')->store('avatars');
+        $name = $request->input('name', '');
+        $summary = $request->input('summary', '');
+        $price = $request->input('price', '');
+        $category_id = $request->input('category_id', '');
+        $preview = $request->input('preview', '');
+        $content = $request->input('content', '');
+        $count = $request->input('count', '');
+        $sale_count = $request->input('sale_count', '');
+        $status = $request->input('status', '');
+        $published_at = $request->input('published_at', '');
+
+        $fileAct1 = $request->input('fileAct1', '');
+        $fileAct2 = $request->input('fileAct2', '');
+        $fileAct3 = $request->input('fileAct3', '');
+        $fileAct4 = $request->input('fileAct4', '');
+        $fileAct5 = $request->input('fileAct5', '');
+
         $product = Product::findOrFail($id);
-        $product->name =$request->input('name');
-        $product->head_image = $imageUrl;
-        $product->logo = $logoUrl;
-        $product->address =$request->input('address');
-        $product->tel =$request->input('tel');
-        $product->types = '';
-        $product->save();
+        $product->summary = $summary;
+        $product->price = $price;
+        $product->category_id = $category_id;
+        $product->preview = $preview;
+        $product->name = $name;
+        $product->count = $count;
+        $product->sale_count = $sale_count;
+        $product->status = $status;
+        $product->published_at = $published_at;
+        $product->update();
+
+        $pdt_content = PdtContent::where('product_id', $id)->first();
+        $pdt_content->content = $content;
+        $pdt_content->update();
+
+        $productId = DB::table('pdt_images')->where('product_id', '=', $id );
+        if($fileAct1 != '') {
+            $pdt_images =  PdtImages::where('image_no', '=', 1 )->union($productId)->first();
+            $pdt_images->image_path = $fileAct1;
+            $pdt_images->save();
+        }
+        if($fileAct2 != '') {
+            $pdt_images =  PdtImages::where('image_no', '=', 2 )->union($productId)->first();
+            $pdt_images->image_path = $fileAct3;
+            $pdt_images->save();
+        }
+        if($fileAct3 != '') {
+            $pdt_images =  PdtImages::where('image_no', '=', 3 )->union($productId)->first();
+            $pdt_images->image_path = $fileAct3;
+            $pdt_images->save();
+        }
+        if($fileAct4 != '') {
+            $pdt_images =  PdtImages::where('image_no', '=', 4 )->union($productId)->first();
+            $pdt_images->image_path = $fileAct4;
+            $pdt_images->save();
+        }
+        if($fileAct5 != '') {
+            $pdt_images =  PdtImages::where('image_no', '=', 5 )->union($productId)->get();
+            $pdt_images->image_path = $fileAct5;
+            $pdt_images->save();
+        }
+
+        return redirect('/admin/products');
     }
 
     /**
@@ -145,6 +234,6 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
-        return redirect('/products');
+        return redirect('/admin/products');
     }
 }

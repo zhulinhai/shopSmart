@@ -15,6 +15,10 @@
     {!! Form::label('parent_id', "父级标签", ['class'=>'control-label']) !!}
     {!! Form::select('parent_id', $pNodes, '0', ['class'=>'form-control']) !!}
 </div>
+<div class="form-group">
+    {!! Form::label('parent_id', "类型", ['class'=>'control-label']) !!}
+    {!! Form::select('type', ['0'=>'活动标签', '1'=>'文章标签', '2'=>'商家标签'], '0', ['class'=>'form-control']) !!}
+</div>
 <div class="form-group" style="margin-top: 10px">
     {!! Form::submit('提交',['class'=>'form-control btn-primary']) !!}
 </div>

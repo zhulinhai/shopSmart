@@ -65,6 +65,7 @@ class ProductsController extends Controller
         $sale_count = $request->input('sale_count', '');
         $status = $request->input('status', '');
         $published_at = $request->input('published_at', '');
+        $end_date = $request->input('end_date', '');
 
         $fileAct1 = $request->input('fileAct1', '');
         $fileAct2 = $request->input('fileAct2', '');
@@ -82,6 +83,7 @@ class ProductsController extends Controller
         $product->sale_count = $sale_count;
         $product->status = $status;
         $product->published_at = $published_at;
+        $product->end_date = $end_date;
         $product->save();
 
         $pdt_content = new PdtContent;
@@ -89,38 +91,38 @@ class ProductsController extends Controller
         $pdt_content->content = $content;
         $pdt_content->save();
 
-        if($fileAct1 != '') {
+        if($fileAct1 && $fileAct1 != '') {
             $pdt_images = new PdtImages;
             $pdt_images->image_path = $fileAct1;
+            $pdt_images->image_no = 0;
+            $pdt_images->product_id = $product->id;
+            $pdt_images->save();
+        }
+        if($fileAct2 && $fileAct2 != '') {
+            $pdt_images = new PdtImages;
+            $pdt_images->image_path = $fileAct2;
             $pdt_images->image_no = 1;
             $pdt_images->product_id = $product->id;
             $pdt_images->save();
         }
-        if($fileAct2 != '') {
+        if($fileAct3 && $fileAct3 != '') {
             $pdt_images = new PdtImages;
-            $pdt_images->image_path = $fileAct2;
+            $pdt_images->image_path = $fileAct3;
             $pdt_images->image_no = 2;
             $pdt_images->product_id = $product->id;
             $pdt_images->save();
         }
-        if($fileAct3 != '') {
+        if($fileAct4 && $fileAct4 != '') {
             $pdt_images = new PdtImages;
-            $pdt_images->image_path = $fileAct3;
+            $pdt_images->image_path = $fileAct4;
             $pdt_images->image_no = 3;
             $pdt_images->product_id = $product->id;
             $pdt_images->save();
         }
-        if($fileAct4 != '') {
-            $pdt_images = new PdtImages;
-            $pdt_images->image_path = $fileAct4;
-            $pdt_images->image_no = 4;
-            $pdt_images->product_id = $product->id;
-            $pdt_images->save();
-        }
-        if($fileAct5 != '') {
+        if($fileAct5 && $fileAct5 != '') {
             $pdt_images = new PdtImages;
             $pdt_images->image_path = $fileAct5;
-            $pdt_images->image_no = 5;
+            $pdt_images->image_no = 4;
             $pdt_images->product_id = $product->id;
             $pdt_images->save();
         }
@@ -149,7 +151,11 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $pdt_content = DB::table('pdt_content')->where('product_id', '=', $id)->first()->content;
-        $pdt_images = DB::table('pdt_images')->where('product_id', '=', $id )->get();
+        $images = DB::table('pdt_images')->where('product_id', '=', $id )->get();
+        $pdt_images = array(0=>null,1=>null,2=>null, 3=>null, 4=>null);
+        foreach ($images as $key=>$image) {
+            $pdt_images[$image->image_no] = $image->image_path;
+        }
         return view('admin.products.edit',['product'=>$product, 'pdt_content'=>$pdt_content, 'pdt_images'=>$pdt_images, 'categories'=>$this->getCategories()]);
     }
 
@@ -172,6 +178,7 @@ class ProductsController extends Controller
         $sale_count = $request->input('sale_count', '');
         $status = $request->input('status', '');
         $published_at = $request->input('published_at', '');
+        $end_date = $request->input('end_date', '');
 
         $fileAct1 = $request->input('fileAct1', '');
         $fileAct2 = $request->input('fileAct2', '');
@@ -188,6 +195,7 @@ class ProductsController extends Controller
         $product->count = $count;
         $product->sale_count = $sale_count;
         $product->status = $status;
+        $product->end_date = $end_date;
         $product->published_at = $published_at;
         $product->update();
 
@@ -195,31 +203,77 @@ class ProductsController extends Controller
         $pdt_content->content = $content;
         $pdt_content->update();
 
+        $pdt_images = PdtImages::where('product_id', $id)->get();
+        dd($pdt_images);
+
         $productId = DB::table('pdt_images')->where('product_id', '=', $id );
         if($fileAct1 != '') {
-            $pdt_images =  PdtImages::where('image_no', '=', 1 )->union($productId)->first();
-            $pdt_images->image_path = $fileAct1;
-            $pdt_images->save();
+            $pdt_images =  PdtImages::where('image_no', '=', 0 )->union($productId)->first();
+            dd($pdt_images);
+            if (!$pdt_images) {
+                $pdt_images = new PdtImages;
+                $pdt_images->image_no = 0;
+                $pdt_images->product_id = $id;
+                $pdt_images->image_path = $fileAct1;
+                $pdt_images->save();
+            } else {
+                $pdt_images->image_path = $fileAct1;
+                $pdt_images->update();
+            }
+
         }
         if($fileAct2 != '') {
-            $pdt_images =  PdtImages::where('image_no', '=', 2 )->union($productId)->first();
-            $pdt_images->image_path = $fileAct3;
-            $pdt_images->save();
+            $pdt_images =  PdtImages::where('image_no', '=', 1 )->union($productId)->first();
+            if (!$pdt_images) {
+                $pdt_images = new PdtImages;
+                $pdt_images->image_no = 1;
+                $pdt_images->product_id = $id;
+                $pdt_images->image_path = $fileAct2;
+                $pdt_images->save();
+            } else {
+                $pdt_images->image_path = $fileAct2;
+                $pdt_images->update();
+            }
         }
         if($fileAct3 != '') {
-            $pdt_images =  PdtImages::where('image_no', '=', 3 )->union($productId)->first();
-            $pdt_images->image_path = $fileAct3;
-            $pdt_images->save();
+            $pdt_images =  PdtImages::where('image_no', '=', 2 )->union($productId)->first();
+            if (!$pdt_images) {
+                $pdt_images = new PdtImages;
+                $pdt_images->image_no = 2;
+                $pdt_images->product_id = $id;
+                $pdt_images->image_path = $fileAct3;
+                $pdt_images->save();
+            } else {
+                $pdt_images->image_path = $fileAct3;
+                $pdt_images->update();
+            }
         }
         if($fileAct4 != '') {
-            $pdt_images =  PdtImages::where('image_no', '=', 4 )->union($productId)->first();
-            $pdt_images->image_path = $fileAct4;
-            $pdt_images->save();
+            $pdt_images =  PdtImages::where('image_no', '=', 3 )->union($productId)->first();
+            if (!$pdt_images) {
+                $pdt_images = new PdtImages;
+                $pdt_images->image_no = 3;
+                $pdt_images->product_id = $id;
+                $pdt_images->image_path = $fileAct4;
+                $pdt_images->save();
+            } else {
+                $pdt_images->image_path = $fileAct4;
+                $pdt_images->update();
+            }
+
         }
         if($fileAct5 != '') {
-            $pdt_images =  PdtImages::where('image_no', '=', 5 )->union($productId)->get();
-            $pdt_images->image_path = $fileAct5;
-            $pdt_images->save();
+            $pdt_images =  PdtImages::where('image_no', '=', 4 )->union($productId)->get();
+            if (!$pdt_images) {
+                $pdt_images = new PdtImages;
+                $pdt_images->image_no = 4;
+                $pdt_images->product_id = $id;
+                $pdt_images->image_path = $fileAct5;
+                $pdt_images->save();
+            } else {
+                $pdt_images->image_path = $fileAct5;
+                $pdt_images->update();
+            }
         }
 
         return redirect('/admin/products');

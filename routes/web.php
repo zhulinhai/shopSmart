@@ -12,11 +12,11 @@
 */
 
 /***********************************后台相关***********************************/
+Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 
-    Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::Post('categories/store', 'CategoriesController@store');
@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     /* 产品管理 */
     Route::Post('products/store', 'ProductsController@store');
+    Route::get('products/{product}/destroy', 'ProductsController@destroy');
     Route::resource('products', 'ProductsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
     /* 商家管理 */

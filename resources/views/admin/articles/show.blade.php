@@ -11,23 +11,23 @@
         </div>
         <div class="panel-body" >
             <h2>{{ $article->title }}</h2>
-            <p class="am-article-meta">Author: <a style="cursor: pointer;">{{ $article->user->name }}</a> Datetime: {{ $article->updated_at }}</p>
+            <p class="am-article-meta">作者: <a style="cursor: pointer;">{{ $article->user_id }}</a> 日期: {{ $article->updated_at }}</p>
             <div id="show_editor">
-                <textarea style="display: none">{{$article->content}}</textarea>
+                <textarea style="display: none">{!! $articleContent !!}</textarea>
             </div>
-            <p>{{ $article->tags }}</p>
+            {{--<p>{{ $categories}}</p>--}}
 
-            @foreach ($article->comments as $comment)
-                <div class="card">
-                    <div class="card-header">
-                        {{$comment->created_at->diffForHumans() }}
-                    </div>
-                    <div class="card-block">
-                        <p class="card-text">{{ $comment->content }}</p>
-                    </div>
-                </div>
-                <br>
-            @endforeach
+            {{--@foreach ($article->comments as $comment)--}}
+                {{--<div class="card">--}}
+                    {{--<div class="card-header">--}}
+                        {{--{{$comment->created_at->diffForHumans() }}--}}
+                    {{--</div>--}}
+                    {{--<div class="card-block">--}}
+                        {{--<p class="card-text">{{ $comment->content }}</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<br>--}}
+            {{--@endforeach--}}
         </div>
     </div>
 

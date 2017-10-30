@@ -25,13 +25,13 @@
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
-                                    <td><img width="100px" src="{{ asset($article->head_image)  }}" alt=""></td>
+                                    <td><img width="100px" src="{{ asset($article->preview)  }}" alt=""></td>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->summary }}</td>
                                     <td>{{ $article->published_at->diffForHumans() }}</td>
-                                    <td><a href="{{ url('/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('/articles/'.$article->id) }}"><button class="btn btn-primary">预览</button></a>
-                                        <a href="{{ url('/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                    <td><a href="{{ url('/admin/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('/admin/articles/'.$article->id) }}"><button class="btn btn-primary">预览</button></a>
+                                        <a href="{{ url('/admin/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
                                     </td>
                                 </tr>
                             @endforeach

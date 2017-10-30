@@ -40,7 +40,7 @@ class MembersController extends Controller
     public function create()
     {
         //
-        return view('admin.members.create');
+        return view('admin.members.create', ['member'=>null]);
     }
     /**
      * Store a newly created resource in storage.

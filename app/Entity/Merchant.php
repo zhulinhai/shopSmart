@@ -13,7 +13,7 @@ class Merchant extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'head_image', 'logo', 'address', 'tel', 'types', 'updated_at'
+        'id', 'name', 'logoFile', 'headFile', 'address', 'tel', 'types', 'updated_at'
     ];
 
     public function file()

@@ -9,7 +9,7 @@ class Article extends Model
 {
 
     protected $table = 'article';
-    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'tags'];
+    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'category_id'];
     protected $dates =['published_at'];
 
     public function setPublishedAtAttribute($date)
@@ -22,10 +22,10 @@ class Article extends Model
         $query->where('published_at', '<=', Carbon::now());
     }
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+//    public function user()
+//    {
+//        return $this->belongsTo('App\Admin');
+//    }
 
     /**
      * 获取博客文章的评论

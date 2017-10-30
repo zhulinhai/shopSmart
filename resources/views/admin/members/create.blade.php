@@ -8,11 +8,11 @@
         <div class="panel-heading">
             <div class="panel-title">
                 <a><i class="glyphicon glyphicon-home"></i> 会员创建</a>
-                <a href="{{ url('/members') }}" class="pull-right" style="color: #CA2623; margin-left: 10px"><i class="glyphicon glyphicon-backward"></i> 返回</a>
+                <a href="{{ url('/admin/members') }}" class="pull-right" style="color: #CA2623; margin-left: 10px"><i class="glyphicon glyphicon-backward"></i> 返回</a>
             </div>
         </div>
         <div class="panel-body" >
-            {{ Form::open(array('url' => 'members/store', 'enctype' => 'multipart/form-data')) }}
+            {{ Form::open(array('url' => '/admin/members/store')) }}
                 @include('admin.members.form')
                 <div class="form-group" style="margin-top: 10px">
                     {!! Form::submit('创建',['class'=>'form-control btn-primary']) !!}

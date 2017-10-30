@@ -36,7 +36,7 @@ class MerchantsController extends Controller
      */
     public function create()
     {
-        return view('admin.merchants.create');
+        return view('admin.merchants.create', ['merchant'=>null]);
     }
 
     /**
@@ -47,23 +47,8 @@ class MerchantsController extends Controller
      */
     public function store(Request $request)
     {
-        $merchant = $request->all();
-        $image = $request->file('head_image');
-        if ($image)
-        {
-            $path = $image->store('merchants','uploads');
-            $merchant['head_image'] = 'uploads/'.$path;
-        }
-
-        $logo = $request->file('logo');
-        if ($logo)
-        {
-            $path = $logo->store('merchants','uploads');
-            $merchant['logo'] = 'uploads/'.$path;
-        }
-
-        Merchant::create($merchant);
-        return redirect('/merchants');
+        Merchant::create($request->all());
+        return redirect('/admin/merchants');
     }
 
     /**
@@ -86,7 +71,7 @@ class MerchantsController extends Controller
      */
     public function edit($id)
     {
-        $merchant = Merchant::find($id);
+        $merchant = Merchant::findOrFail($id)->first();
         return view('admin.merchants.edit',['merchant'=>$merchant]);
     }
 
@@ -99,8 +84,10 @@ class MerchantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Merchant::destroy($id);
-        return redirect('/merchants');
+        $merchant = Merchant::findOrFail($id)->first();
+        $merchant->update($request->all());
+
+        return redirect('/admin/merchants');
     }
 
     /**
@@ -112,6 +99,6 @@ class MerchantsController extends Controller
     public function destroy($id)
     {
         Merchant::destroy($id);
-        return redirect('/merchants');
+        return redirect('/admin/merchants');
     }
 }

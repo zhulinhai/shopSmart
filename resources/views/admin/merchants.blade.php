@@ -24,10 +24,15 @@
                         <tbody>
                             @foreach ($merchants as $merchant)
                                 <tr>
-                                    <td><img width="100px" src="{{ asset($merchant->logo)  }}" alt=""></td>
-                                    <td><img width="240px" src="{{ asset($merchant->head_image)  }}" alt=""></td>
+                                    <td><img width="100px" src="{{ asset($merchant->logoFile)  }}" alt=""></td>
+                                    <td><img width="240px" src="{{ asset($merchant->headFile)  }}" alt=""></td>
                                     <td><p>名称：{{ $merchant->name }}</p><p>电话：{{ $merchant->tel }}</p><p>地址：{{ $merchant->address }}</p><p>类型：{{ $merchant->types }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
-                                    <td><a href="{{ url('merchants/'.$merchant->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a> <a href="{{ url('merchants/destroy/'.$merchant->id) }}"><button class="btn btn-danger">下架</button></a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ url('/admin/merchants/'.$merchant->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                            <a href="{{ url('/admin/merchants/'.$merchant->id.'/destroy') }}"><button class="btn btn-danger">下架</button></a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

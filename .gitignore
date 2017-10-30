@@ -16,7 +16,7 @@ npm-debug.log
 .sass-cache/
 composer.json
 /resources/views/vendor
-/public/upload/
+/public/upload/images
 /public/upload/*.*
 /public/vendor/
 /public/vendor/*.*

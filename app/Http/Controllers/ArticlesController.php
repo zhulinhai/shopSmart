@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Article;
+use App\Entity\ArticleContent;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller
@@ -37,7 +39,21 @@ class ArticlesController extends Controller
     public function create()
     {
         //
-        return view('admin.articles.create');
+        $categories = $this->getCategories();
+        return view('admin.articles.create', ['categories'=>$categories, 'articleContent'=>null, 'article'=>null]);
+    }
+
+    /*
+     * 获取分类信息
+     * */
+    public function getCategories()
+    {
+        $arr = array();
+        $categories = DB::table('category')->where('type', '=', 1)->get();
+        foreach($categories as $category) {
+            $arr[$category->id] = $category->name;
+        }
+        return $arr;
     }
 
     /**
@@ -49,15 +65,26 @@ class ArticlesController extends Controller
     public function store(CreateArticleRequest $request)
     {
         $input = $request->all();
-        $head_image = $request->file('head_image');
-        if ($head_image)
+        $content = $request->input('content');
+        $summary = $request->input('summary', '');
+        if ($summary == '')
         {
-            $path = $head_image->store('articles','uploads');
-            $input['head_image'] = 'uploads/'.$path;
+            $input['summary'] = mb_substr($content,0,64);
         }
-        $input['summary'] = mb_substr($request->get('content'),0,64);
-        $input['published_at'] = Carbon::now()->toDateTimeString();
-        Article::create($input);
+
+        $article = new Article;
+        $article->title = $request->input('title', '');
+        $article->preview = $request->input('preview', '');
+        $article->user_id = $request->input('user_id', 0);
+        $article->category_id = $request->input('category_id', '');
+        $article->summary = $summary;
+        $article->save();
+
+        $article_content = new ArticleContent;
+        $article_content->article_id = $article->id;
+        $article_content->content = $content;
+        $article_content->save();
+
         return redirect('/admin/articles');
 
     }
@@ -71,7 +98,10 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
-        return view('admin.articles.show', ['article'=>$article]);
+        $articleContent = ArticleContent::findOrFail($id)->content;
+        $categories = $this->getCategories();
+
+        return view('admin.articles.show', ['article'=>$article, 'articleContent'=>$articleContent, 'categories'=>$categories]);
 
     }
 
@@ -84,7 +114,9 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        return view('admin.articles.edit', ['article'=>$article]);
+        $articleContent = ArticleContent::findOrFail($id)->content;
+        $categories = $this->getCategories();
+        return view('admin.articles.edit', ['article'=>$article, 'articleContent'=>$articleContent, 'categories'=>$categories]);
     }
 
     /**
@@ -96,20 +128,27 @@ class ArticlesController extends Controller
      */
     public function update(CreateArticleRequest $request, $id)
     {
+        $input = $request->all();
+        $content = $request->input('content');
+        $summary = $request->input('summary', '');
+        if ($summary == '')
+        {
+            $input['summary'] = mb_substr($content,0,64);
+        }
 
         $article = Article::findOrFail($id);
-        $input = $request->all();
-        $head_image = $request->file('head_image');
-        if ($head_image)
-        {
-            $path = $head_image->store('articles','uploads');
-            $input['head_image'] = 'uploads/'.$path;
-        }
-        $input['summary'] = mb_substr($request->get('content'),0,64);
-        $input['published_at'] = Carbon::now()->toDateTimeString();
-        $article->update($input);
+        $article->title = $request->input('title', '');
+        $article->preview = $request->input('preview', '');
+        $article->user_id = $request->input('user_id', 0);
+        $article->category_id = $request->input('category_id', '');
+        $article->summary = $summary;
+        $article->update();
 
-        return redirect('/articles');
+        $article_content = ArticleContent::where('article_id', $id)->first();
+        $article_content->content = $content;
+        $article_content->update();
+
+        return redirect('/admin/articles');
     }
 
     /**
@@ -121,7 +160,9 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         Article::destroy($id);
-        return redirect('/articles');
+        $article_content = ArticleContent::where('article_id', $id)->first();
+        ArticleContent::destroy($article_content->id);
+        return redirect('/admin/articles');
     }
 
     /**

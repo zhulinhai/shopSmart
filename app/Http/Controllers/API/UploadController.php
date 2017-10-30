@@ -30,7 +30,7 @@ class UploadController extends Controller {
                 return $m3_result->toJson();
             }
 
-            $public_dir = sprintf('/upload/%s/%s/', $type, date('Ymd') );
+            $public_dir = sprintf('/uploads/%s/%s/', $type, date('Ymd') );
             $upload_dir = public_path() . $public_dir;
             if( !file_exists($upload_dir) ) {
             mkdir($upload_dir, 0777, true);

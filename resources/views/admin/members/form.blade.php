@@ -1,9 +1,13 @@
 <div class="form-group">
-    {!! Form::label('head_image', '用户图像', ['class'=>'control-label']) !!}
+    <i class="glyphicon glyphicon-star"></i>
+    {!! Form::label('logo', '用户图像', ['class'=>'control-label']) !!}
+    {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::file('head_image', ['class'=>'form-control']) !!}
-        {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'input-group-addon']) !!}
+        <img id="previewImg" src="{{ ($member && $member->logoFile) ? asset($member->logoFile):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#preview').click()" />
+        {!! Form::file('file', ['id'=>'preview', 'class'=>'form-control', 'style'=>'display:none']) !!}
+        {!! Form::text('preview', ($member && $member->logoFile) ? $member->logoFile: '', ['style'=>'display:none']) !!}
     </div>
+
 </div>
 <div class="form-group">
     {!! Form::label('name', '用户名', ['class'=>'control-label']) !!}

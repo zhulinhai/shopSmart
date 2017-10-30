@@ -93,7 +93,13 @@
 {!! editor_js() !!}
 <script>
     $(function () {
-        $("#mdeditor").width('100%');
+        var editor = editormd('mdeditor', {
+            width: '100%',
+            imageUpload: true,
+            imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
+            imageUploadURL: '{{ url('/api/upload/images') }}'
+        });
+
 
         var arrList = [
             ['preview', 'previewImg'],
@@ -104,11 +110,14 @@
             ['fileAct5', 'actImg5']
         ];
         arrList.forEach(function (item) {
-            $('#' + item[0]).change(function () {
-                uploadImageToServer(item[0],'images', item[1], function (result) {
-                    $('#' + item[1]).attr('src', result.uri);
-                    $('input[name="' + item[0] + '"]').val(result.uri);
-                });
+            $("body").on('change', "#"+ item[0],function () {
+                var file = $("#"+ item[0]).val();
+                if (file.length > 0) {
+                    uploadImageToServer(item[0],'images', item[1], function (result) {
+                        $('#' + item[1]).attr('src', result.uri);
+                        $('input[name="' + item[0] + '"]').val(result.uri);
+                    });
+                }
             });
         });
 

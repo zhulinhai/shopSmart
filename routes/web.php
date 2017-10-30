@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     /* 商家管理 */
     Route::Post('merchants/store', 'MerchantsController@store');
+    Route::get('merchants/{merchant}/destroy', 'MerchantsController@destroy');
     Route::resource('merchants', 'MerchantsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
     /* 会员管理 */

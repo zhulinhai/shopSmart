@@ -13,11 +13,8 @@ class Merchant extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'logoFile', 'headFile', 'address', 'tel', 'types', 'updated_at'
+        'id', 'name', 'logoFile', 'headFile', 'address', 'tel', 'category_id', 'published_at'
     ];
+    protected $dates = [ 'published_at'];
 
-    public function file()
-    {
-        return $this->belongsTo('App\File');
-    }
 }

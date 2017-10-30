@@ -25,9 +25,11 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('tags', '标签', ['class'=>'control-label']) !!}
-    {!! Form::text('tags', null, ['class'=>'form-control']) !!}
-    {!! Form::label('note', '多个标签之间使用 "," 分割') !!}
+    <i class="glyphicon glyphicon-star"></i>
+    {!! Form::label('category', '文章类型', ['class'=>'control-label']) !!}
+    <div class="input-group">
+        {!! Form::select('category_id', $categories, '0', ['class'=>'form-control']) !!}
+    </div>
 </div>
 
 <div class="form-group">

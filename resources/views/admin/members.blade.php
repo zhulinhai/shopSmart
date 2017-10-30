@@ -25,14 +25,14 @@
                         @foreach ($members as $member)
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td><img width="100px" src="{{ asset($member->head_image)  }}" alt=""> </td>
+                                <td><img width="100px" src="{{ asset($member->preview)  }}" alt=""> </td>
                                 <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员积分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
                                 <td>
-                                    @if ($member->locked)
-                                        <a href="{{ url('members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>
+                                    @if ($member->active)
+                                        <a href="{{ url('/admin/members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>
                                     @else
-                                        <a href="{{ url('members/'.$member->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('members/'.$member->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                        <a href="{{ url('/admin/members/'.$member->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('/admin/members/'.$member->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
                                     @endif
                                 </td>
                             </tr>

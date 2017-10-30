@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MerchantsController extends Controller
 {
@@ -26,7 +27,8 @@ class MerchantsController extends Controller
     public function index()
     {
         $merchants = Merchant::all();
-        return view('admin.merchants', ['merchants' => $merchants]);
+        $categories = $this->getCategories();
+        return view('admin.merchants', ['merchants' => $merchants, 'categories'=>$categories]);
     }
 
     /**
@@ -36,7 +38,8 @@ class MerchantsController extends Controller
      */
     public function create()
     {
-        return view('admin.merchants.create', ['merchant'=>null]);
+        $categories = $this->getCategories();
+        return view('admin.merchants.create', ['merchant'=>null, 'categories'=>$categories]);
     }
 
     /**
@@ -49,6 +52,19 @@ class MerchantsController extends Controller
     {
         Merchant::create($request->all());
         return redirect('/admin/merchants');
+    }
+
+    /*
+     * 获取分类信息
+     * */
+    public function getCategories()
+    {
+        $arr = array();
+        $categories = DB::table('category')->where('type', '=', 2)->get();
+        foreach($categories as $category) {
+            $arr[$category->id] = $category->name;
+        }
+        return $arr;
     }
 
     /**
@@ -72,7 +88,8 @@ class MerchantsController extends Controller
     public function edit($id)
     {
         $merchant = Merchant::findOrFail($id)->first();
-        return view('admin.merchants.edit',['merchant'=>$merchant]);
+        $categories = $this->getCategories();
+        return view('admin.merchants.edit',['merchant'=>$merchant, 'categories'=>$categories]);
     }
 
     /**

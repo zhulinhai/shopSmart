@@ -11,7 +11,8 @@ class Member extends Model
 
     //public $timestamps = false;
     protected $fillable = [
-        'id', 'name', 'nick_name', 'head_image', 'sex', 'phone', 'level', 'score', 'locked', 'deviceType', 'birthday', 'last_login_time', 'created_at'
+        'id', 'name', 'nickname', 'preview', 'sex', 'phone', 'active', 'device_type', 'birth_day', 'last_login_time'
     ];
     protected $hidden = ['password'];
+    protected $dates = ['birthDay', 'last_login_time'];
 }

@@ -50,16 +50,8 @@ class MembersController extends Controller
      */
     public function store(CreateMemberRequest $request)
     {
-        $input = $request->all();
-        $head_image = $request->file('head_image');
-        if ($head_image)
-        {
-            $path = $head_image->store('avatars','uploads');
-            $input['head_image'] = 'uploads/'.$path;
-        }
-        $input['last_login_time'] = Carbon::now()->toDateTimeString();
-        Member::create($input);
-        return redirect('/members');
+        Member::create($request->all());
+        return redirect('/admin/members');
     }
 
 
@@ -97,17 +89,8 @@ class MembersController extends Controller
     public function update(CreateMemberRequest $request, $id)
     {
         $member = Member::findOrFail($id);
-        $input = $request->all();
-        $head_image = $request->file('head_image');
-        if ($head_image)
-        {
-            $path = $head_image->store('avatars','uploads');
-            $input['head_image'] = 'uploads/'.$path;
-        }
-        $input['last_login_time'] = Carbon::now()->toDateTimeString();
-        $member->update($input);
-
-        return redirect('/members');
+        $member->update($request->all());
+        return redirect('/admin/members');
     }
 
     /**

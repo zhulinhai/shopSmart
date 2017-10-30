@@ -3,9 +3,9 @@
     {!! Form::label('logo', '用户图像', ['class'=>'control-label']) !!}
     {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'control-label']) !!}
     <div class="input-group">
-        <img id="previewImg" src="{{ ($member && $member->logoFile) ? asset($member->logoFile):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#preview').click()" />
+        <img id="previewImg" src="{{ ($member && $member->preview) ? asset($member->preview):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#preview').click()" />
         {!! Form::file('file', ['id'=>'preview', 'class'=>'form-control', 'style'=>'display:none']) !!}
-        {!! Form::text('preview', ($member && $member->logoFile) ? $member->logoFile: '', ['style'=>'display:none']) !!}
+        {!! Form::text('preview', ($member && $member->preview) ? $member->preview: '', ['style'=>'display:none']) !!}
     </div>
 
 </div>
@@ -14,8 +14,8 @@
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('nick_name', '昵称', ['class'=>'control-label']) !!}
-    {!! Form::text('nick_name', null, ['class'=>'form-control']) !!}
+    {!! Form::label('nickname', '昵称', ['class'=>'control-label']) !!}
+    {!! Form::text('nickname', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('sex', '性别', ['class'=>'control-label']) !!}
@@ -26,22 +26,28 @@
     {!! Form::text('phone', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('birthday', '出生日期', ['class'=>'control-label']) !!}
-    {!! Form::date('birthday', \Carbon\Carbon::now(), ['class'=>'form-control']) !!}
+    {!! Form::label('birth_day', '出生日期', ['class'=>'control-label']) !!}
+    {!! Form::date('birth_day', \Carbon\Carbon::now(), ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('level', '等级', ['class'=>'control-label']) !!}
-    {!! Form::text('level', null, ['class'=>'form-control']) !!}
+    {!! Form::label('active', '是否激活', ['class'=>'control-label']) !!}
+    {!! Form::select('active', array('0'=>'正常','1'=>'锁定'), '0', ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('score', '积分', ['class'=>'control-label']) !!}
-    {!! Form::text('score', null, ['class'=>'form-control']) !!}
+    {!! Form::label('device_type', '设备类型', ['class'=>'control-label']) !!}
+    {!! Form::select('device_type', array('0'=>'未知','1'=>'iphone','2'=>'android'), '0', ['class'=>'form-control']) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('locked', '是否锁定', ['class'=>'control-label']) !!}
-    {!! Form::select('locked', array('0'=>'正常','1'=>'锁定'), '0', ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('deviceType', '设备类型', ['class'=>'control-label']) !!}
-    {!! Form::select('deviceType', array('0'=>'未知','1'=>'iphone','2'=>'android'), '0', ['class'=>'form-control']) !!}
-</div>
+<script>
+    $(function () {
+        $("body").on('change', '#preview', function () {
+            var file = $("#preview").val();
+            if (file.length > 0) {
+                uploadImageToServer('preview', 'images', 'previewImg', function (result) {
+                    $('#previewImg').attr('src', result.uri);
+                    $('input[name="preview"]').val(result.uri);
+                });
+            }
+
+        });
+    });
+</script>

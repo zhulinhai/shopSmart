@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('validate_code/create', 'API\ValidateController@create');
 Route::post('validate_phone/send', 'API\ValidateController@sendSMS');
 Route::post('upload/{type}', 'API\UploadController@uploadFile');

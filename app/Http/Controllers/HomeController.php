@@ -42,6 +42,6 @@ class HomeController extends Controller
             'comment'=>$comment_count,
             'order'=>$order_count,
         );
-        return view('home', ['counts'=>0]);
+        return view('admin.home', ['counts'=>0]);
     }
 }

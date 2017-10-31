@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Http\Requests\CreateCommentRequest;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -36,12 +37,12 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        $all = Article::all('id');
-        $articles = array();
-        foreach ($all as $item) {
-            $articles[] =$item->id;
+        $articles = Article::all();
+        $arr = array();
+        foreach ($articles as  $article) {
+            $arr[$article->id] = $article->title;
         }
-        return view('admin.comments.create', ['articles'=>$articles]);
+        return view('admin.comments.create', ['articles'=>$arr]);
     }
 
     /**
@@ -50,14 +51,11 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCommentRequest $request)
     {
-        $this->validate(request(),[
-            'content' => 'required|min:5'
-        ]);
         $input = $request->all();
         Comment::create($input);
-        return back();
+        return redirect('/admin/comments');
     }
 
     /**

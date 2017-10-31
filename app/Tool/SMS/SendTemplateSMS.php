@@ -2,7 +2,7 @@
 
 namespace App\Tool\SMS;
 
-use App\Models\M3Result;
+use App\Entity\M3Result;
 
 class SendTemplateSMS
 {

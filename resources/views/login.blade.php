@@ -3,7 +3,7 @@
 @section('title', '登录')
 
 @section('content')
-    @include('component.loading')
+    @include('components.loading')
 
     <div class="page__hd">
         <div class="weui_cells_title"></div>
@@ -28,7 +28,7 @@
                     <input class="weui-input" type="text" placeholder="请输入验证码" name="validate_code" />
                 </div>
                 <div class="weui-cell__ft">
-                    <img class="bk_validate_code" src="/service/validate_code/create" />
+                    <img class="bk_validate_code" src="/api/validate_code/create" />
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
 @section('my-js')
     <script type="text/javascript">
         $('.bk_validate_code').click(function(){
-            $(this).attr('src', '/service/validate_code/create?random=' + Math.random());
+            $(this).attr('src', '/api/validate_code/create?random=' + Math.random());
         });
 
         function onLoginClick() {
@@ -85,7 +85,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/service/login',
+                url: '/api/login',
                 dataType: 'json',
                 cache: false,
                 data: {username: username, password: password, validate_code: validate_code, _token: "{{csrf_token()}}"},

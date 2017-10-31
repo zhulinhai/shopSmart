@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 use App\Entity\Member;
 use App\Entity\TempPhone;
 use App\Entity\TempEmail;
-use App\Models\M3Email;
+use App\Entity\M3Email;
 use App\Tool\UUID;
-use Mail;
 
 class MemberController extends Controller
 {
@@ -127,6 +126,7 @@ class MemberController extends Controller
   }
 
   public function login(Request $request) {
+      dd($request->all());
     $username = $request->get('username', '');
     $password = $request->get('password', '');
     $validate_code = $request->get('validate_code', '');
@@ -138,13 +138,15 @@ class MemberController extends Controller
     // ....
 
     // 判断
-//     $validate_code_session = $request->session()->get('validate_code');
-//     if($validate_code != $validate_code_session) {
-//       $m3_result->status = 1;
-//       $m3_result->message = '验证码不正确';
-//       $m3_result->session = $validate_code_session;
-//       return $m3_result->toJson();
-//     }
+//    if (session()->has('validate_code')) {
+//      $validate_code_session = session()->get('validate_code');
+//      if($validate_code != $validate_code_session) {
+//          $m3_result->status = 1;
+//          $m3_result->message = '验证码不正确';
+//          $m3_result->session = $validate_code_session;
+//          return $m3_result->toJson();
+//      }
+//    }
 
     $member = null;
     if(strpos($username, '@') == true) {

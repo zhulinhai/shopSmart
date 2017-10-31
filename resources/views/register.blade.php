@@ -3,7 +3,7 @@
 @section('title', '注册')
 
 @section('content')
-    @include('component.loading')
+    @include('components.loading')
 
     <div class="page__bd">
         <div class="weui-cells__title">注册方式</div>
@@ -91,7 +91,7 @@
                     <input class="weui-input" type="text" placeholder="请输入验证码" name="validate_code" />
                 </div>
                 <div class="weui-cell__ft">
-                    <img class="bk_validate_code" src="/service/validate_code/create" />
+                    <img class="bk_validate_code" src="/api/validate_code/create" />
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
         });
 
         $('.bk_validate_code').click(function(){
-            $(this).attr('src', '/service/validate_code/create?random=' + Math.random());
+            $(this).attr('src', '/api/validate_code/create?random=' + Math.random());
         });
 
         var enable = true;
@@ -163,7 +163,7 @@
             }, 1000);
 
             $.ajax({
-                url: '/service/validate_phone/send',
+                url: '/api/validate_phone/send',
                 type: 'post',
                 dataType: 'json',
                 cache: false,
@@ -217,7 +217,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '/service/register',
+                url: '/api/register',
                 dataType: 'json',
                 cache: false,
                 data: {phone: phone, email: email, password: password, confirm: confirm,

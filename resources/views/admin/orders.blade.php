@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 订单管理</a><a href="{{ url('/admin/orders/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 创建订单</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 订单管理</a></div>
         </div>
         <div class="panel-body">
             <div class="row">

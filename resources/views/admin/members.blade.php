@@ -15,18 +15,16 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="col-xs-1">选择</th>
                                 <th class="col-xs-2">LOGO</th>
-                                <th class="col-xs-7">内容</th>
+                                <th class="col-xs-8">内容</th>
                                 <th class="col-xs-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($members as $member)
                             <tr>
-                                <td><input type="checkbox"></td>
                                 <td><img width="100px" src="{{ asset($member->preview)  }}" alt=""> </td>
-                                <td><p>名称：{{ $member->name }}</p><p>会员等级：{{ $member->level }}   会员积分：{{ $member->score }}  注册时间：{{ $member->updated_at }} 最后登录时间: {{ $member->last_login_time }}</p></td>
+                                <td><p>名称：{{ $member->name }}</p><p>注册时间：{{ $member->updated_at }}</p><p>最后登录时间: {{ $member->last_login_time }}</p></td>
                                 <td>
                                     @if ($member->active)
                                         <a href="{{ url('/admin/members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>

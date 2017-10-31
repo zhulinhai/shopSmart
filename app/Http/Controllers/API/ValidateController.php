@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\API;
 
 use App\Tool\Validate\ValidateCode;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Tool\SMS\SendTemplateSMS;
 use App\Entity\TempPhone;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 use App\Entity\TempEmail;
 use App\Entity\Member;
 
@@ -17,7 +17,9 @@ class ValidateController extends Controller
   public function create(Request $request)
   {
     $validateCode = new ValidateCode;
-    $request->session()->put('validate_code', $validateCode->getCode());
+    if (session()->has('validate_code')) {
+        session()->put('validate_code', $validateCode->getCode());
+    }
     return $validateCode->doimg();
   }
 

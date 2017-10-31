@@ -54,16 +54,13 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
-Route::group(['prefix' => 'webapp'], function (){
-    Route::get('/login', 'View\MemberController@toLogin');
-    Route::get('/register', 'View\MemberController@toRegister');
-
-    Route::get('/category', 'View\BookController@toCategory');
-    Route::get('/product/category_id/{category_id}', 'View\BookController@toProduct');
-    Route::get('/product/{product_id}', 'View\BookController@toPdtContent');
-
-    Route::get('/cart', 'View\CartController@toCart');
-});
+/* web app */
+Route::get('/login', 'View\MemberController@toLogin');
+Route::get('/register', 'View\MemberController@toRegister');
+Route::get('/category', 'View\BookController@toCategory');
+Route::get('/product/category_id/{category_id}', 'View\BookController@toProduct');
+Route::get('/product/{product_id}', 'View\BookController@toPdtContent');
+Route::get('/cart', 'View\CartController@toCart');
 
 Route::match(['get', 'post'], '/order_commit', 'View\OrderController@toOrderCommit')->middleware(['check.cart', 'check.weixin']);
 Route::get('/order_list', 'View\OrderController@toOrderList')->middleware(['check.login']);

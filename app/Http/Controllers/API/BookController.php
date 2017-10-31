@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Entity\Category;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 
 class BookController extends Controller
 {

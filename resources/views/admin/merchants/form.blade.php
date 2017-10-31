@@ -33,7 +33,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '商家类型', ['class'=>'control-label']) !!}
     <div class="input-group">
-        {!! Form::select('category_id', $categories, $merchant->category_id, ['class'=>'form-control']) !!}
+        {!! Form::select('category_id', $categories, ($merchant)?$merchant->category_id:0, ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">

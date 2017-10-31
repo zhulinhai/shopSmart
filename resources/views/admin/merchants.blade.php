@@ -26,7 +26,7 @@
                                 <tr>
                                     <td><img width="100px" src="{{ asset($merchant->logoFile)  }}" alt=""></td>
                                     <td><img width="240px" src="{{ asset($merchant->headFile)  }}" alt=""></td>
-                                    <td><p>名称：{{ $merchant->name }}</p><p>电话：{{ $merchant->tel }}</p><p>地址：{{ $merchant->address }}</p><p>类型：{{ $categories[$merchant->category_id] }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
+                                    <td><p>名称：{{ $merchant->name }}</p><p>电话：{{ $merchant->tel }}</p><p>地址：{{ $merchant->address }}</p><p>类型：{{ $merchant->category_id?$categories[$merchant->category_id]:'未知' }}</p><p>上传时间：{{ $merchant->updated_at }}</p></td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ url('/admin/merchants/'.$merchant->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>

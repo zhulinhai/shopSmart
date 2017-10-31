@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Tool\WXpay\WXTool;
 use App\Entity\Order;
+use App\Entity\M3Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Models\M3Result;
 
 class PayController extends Controller
 {

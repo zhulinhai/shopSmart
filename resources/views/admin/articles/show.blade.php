@@ -30,21 +30,4 @@
             {{--@endforeach--}}
         </div>
     </div>
-
-    {!! editor_config('mdeditor') !!}
-    {!! editor_css() !!}
-    {!! editor_js() !!}
-    <script type="text/javascript">
-        $(function() {
-            editormd.markdownToHTML("show_editor", {
-                width: "100%",
-                htmlDecode      : "style,script,iframe",  // you can filter categories decode
-                emoji           : true,
-                taskList        : true,
-                tex             : true,  // 默认不解析
-                flowChart       : true,  // 默认不解析
-                sequenceDiagram : true  // 默认不解析
-            });
-        });
-    </script>
 @endsection

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 use App\Entity\CartItem;
 
 class CartController extends Controller

@@ -12,9 +12,6 @@
         <div class="panel-body" >
             {{ Form::model($member, ['method'=>'PATCH', 'url' => '/admin/members/'.$member->id]) }}
                 @include('admin.members.form')
-                <div class="form-group" style="margin-top: 10px">
-                    {!! Form::submit('更新',['class'=>'form-control btn-primary']) !!}
-                </div>
             {{ Form::close() }}
             @include('admin.errors.list')
         </div>

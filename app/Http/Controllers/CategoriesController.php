@@ -51,8 +51,7 @@ class CategoriesController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        $category = $request->all();
-        Category::create($category);
+        Category::create($request->all());
         return redirect('/admin/categories');
     }
 

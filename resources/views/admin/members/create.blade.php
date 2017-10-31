@@ -14,9 +14,6 @@
         <div class="panel-body" >
             {{ Form::open(array('url' => '/admin/members/store')) }}
                 @include('admin.members.form')
-                <div class="form-group" style="margin-top: 10px">
-                    {!! Form::submit('创建',['class'=>'form-control btn-primary']) !!}
-                </div>
             {{ Form::close() }}
             @include('admin.errors.list')
         </div>

@@ -10,9 +10,9 @@
 </head>
 <body>
 <div class="bk_title_bar">
-    <img class="bk_back" src="/images/back.png" alt="" onclick="history.go(-1);">
+    <img class="bk_back" src="/img/back.png" alt="" onclick="history.go(-1);">
     <p class="bk_title_content"></p>
-    <img class="bk_menu" src="/images/more.png" alt="" id="showIOSActionSheet">
+    <img class="bk_menu" src="/img/more.png" alt="" id="showIOSActionSheet">
 </div>
 
 <div class="page">

@@ -37,6 +37,9 @@
     {!! Form::label('device_type', '设备类型', ['class'=>'control-label']) !!}
     {!! Form::select('device_type', array('0'=>'未知','1'=>'iphone','2'=>'android'), '0', ['class'=>'form-control']) !!}
 </div>
+<div class="form-group" style="margin-top: 10px">
+    {!! Form::submit('提交',['class'=>'form-control btn-primary']) !!}
+</div>
 <script>
     $(function () {
         $("body").on('change', '#preview', function () {

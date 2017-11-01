@@ -20,7 +20,7 @@ Route::post('upload/{type}', 'API\UploadController@uploadFile');
 Route::post('register', 'API\MemberController@register');
 Route::post('login', 'API\MemberController@login');
 
-Route::get('category/parent_id/{parent_id}', 'API\BookController@getCategoryByParentId');
+Route::get('category/parent_id/{parent_id}', 'API\CategoryController@getCategoryByParentId');
 Route::get('cart/add/{product_id}', 'API\CartController@addCart');
 Route::get('cart/delete', 'API\CartController@deleteCart');
 

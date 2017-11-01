@@ -126,7 +126,6 @@ class MemberController extends Controller
   }
 
   public function login(Request $request) {
-      dd($request->all());
     $username = $request->get('username', '');
     $password = $request->get('password', '');
     $validate_code = $request->get('validate_code', '');
@@ -138,15 +137,15 @@ class MemberController extends Controller
     // ....
 
     // 判断
-//    if (session()->has('validate_code')) {
-//      $validate_code_session = session()->get('validate_code');
-//      if($validate_code != $validate_code_session) {
-//          $m3_result->status = 1;
-//          $m3_result->message = '验证码不正确';
-//          $m3_result->session = $validate_code_session;
-//          return $m3_result->toJson();
-//      }
-//    }
+    if ($request->session()->has('validate_code')) {
+      $validate_code_session = $request->session()->get('validate_code');
+      if($validate_code != $validate_code_session) {
+          $m3_result->status = 1;
+          $m3_result->message = '验证码不正确';
+          $m3_result->session = $validate_code_session;
+          return $m3_result->toJson();
+      }
+    }
 
     $member = null;
     if(strpos($username, '@') == true) {

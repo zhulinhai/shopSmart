@@ -102,7 +102,7 @@ class MembersController extends Controller
     public function destroy($id)
     {
         Member::destroy($id);
-        return redirect('/members');
+        return redirect('/admin/members');
     }
 
     /**
@@ -116,6 +116,6 @@ class MembersController extends Controller
         $member = Member::findOrFail($id);
         $member['locked'] = 0;
         $member->update();
-        return redirect('/members');
+        return redirect('/admin/members');
     }
 }

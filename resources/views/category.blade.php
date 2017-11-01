@@ -31,10 +31,11 @@
             var parent_id = $('.weui-select option:selected').val();
             $.ajax({
                 type: 'get',
-                url: '/service/category/parent_id/' + parent_id,
+                url: '/api/category/parent_id/' + parent_id,
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
+                    console.log(data);
                     if(data == null) {
                         showTopTips('服务端错误');
                         return;

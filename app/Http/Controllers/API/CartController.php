@@ -16,26 +16,26 @@ class CartController extends Controller
     $m3_result->message = '添加成功';
 
     // 如果当前已经登录
-    $member = $request->session()->get('member', '');
+    $member = session()->get('member', '');
     if($member != '') {
       $cart_items = CartItem::where('member_id', $member->id)->get();
 
       $exist = false;
       foreach ($cart_items as $cart_item) {
-        if($cart_item->product_id == $product_id) {
-          $cart_item->count ++;
-          $cart_item->save();
-          $exist = true;
-          break;
-        }
+          if($cart_item->product_id == $product_id) {
+              $cart_item->count ++;
+              $cart_item->save();
+              $exist = true;
+              break;
+          }
       }
 
       if($exist == false) {
-        $cart_item = new CartItem;
-        $cart_item->product_id = $product_id;
-        $cart_item->count = 1;
-        $cart_item->member_id = $member->id;
-        $cart_item->save();
+          $cart_item = new CartItem;
+          $cart_item->product_id = $product_id;
+          $cart_item->count = 1;
+          $cart_item->member_id = $member->id;
+          $cart_item->save();
       }
 
       return $m3_result->toJson();

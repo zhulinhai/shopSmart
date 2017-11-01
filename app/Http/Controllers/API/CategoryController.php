@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Entity\Category;
 use App\Entity\M3Result;
 
-class BookController extends Controller
+class CategoryController extends Controller
 {
   public function getCategoryByParentId($parent_id)
   {

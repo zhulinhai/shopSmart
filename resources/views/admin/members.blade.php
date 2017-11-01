@@ -30,7 +30,7 @@
                                         <a href="{{ url('/admin/members/'.$member->id.'/lock') }}"><button class="btn btn-primary">解除锁定</button></a>
                                     @else
                                         <a href="{{ url('/admin/members/'.$member->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('/admin/members/'.$member->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                        {{--<a href="{{ url('/admin/members/'.$member->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>--}}
                                     @endif
                                 </td>
                             </tr>

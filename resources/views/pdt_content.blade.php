@@ -78,7 +78,7 @@
             var product_id = "{{$product->id}}";
             $.ajax({
                 type: "GET",
-                url: '/service/cart/add/' + product_id,
+                url: '/api/cart/add/' + product_id,
                 dataType: 'json',
                 cache: false,
                 success: function(data) {

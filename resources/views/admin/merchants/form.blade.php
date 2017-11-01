@@ -2,7 +2,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('logo', '商家Logo', ['class'=>'control-label']) !!}
     {!! Form::label('note', '说明：图片大小：宽200X高200 数量1', ['class'=>'control-label']) !!}
-    <div class="input-group">
+    <div class="form-group">
         <img id="logoImg" src="{{ ($merchant && $merchant->logoFile) ? asset($merchant->logoFile):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#logoFile').click()" />
         {!! Form::file('file', ['id'=>'logoFile', 'class'=>'form-control', 'style'=>'display:none']) !!}
         {!! Form::text('logoFile', ($merchant && $merchant->logoFile) ? $merchant->logoFile: '', ['style'=>'display:none']) !!}
@@ -11,7 +11,7 @@
 <div class="form-group">
     {!! Form::label('head_image', '商家主图', ['class'=>'control-label']) !!}
     {!! Form::label('note', '说明：图片大小：宽640X高320 数量1', ['class'=>'control-label']) !!}
-    <div class="input-group">
+    <div class="form-group">
         <img id="headImg" src="{{ ($merchant && $merchant->headFile) ? asset($merchant->headFile):'/img/addHolder.png' }}" style="width: auto; height: 100px;" onclick="$('#headFile').click()" />
         {!! Form::file('file', ['id'=>'headFile', 'class'=>'form-control', 'style'=>'display:none']) !!}
         {!! Form::text('headFile', ($merchant && $merchant->headFile) ? $merchant->headFile: '', ['style'=>'display:none']) !!}
@@ -32,7 +32,7 @@
 <div class="form-group">
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '商家类型', ['class'=>'control-label']) !!}
-    <div class="input-group">
+    <div class="form-group">
         {!! Form::select('category_id', $categories, ($merchant)?$merchant->category_id:0, ['class'=>'form-control']) !!}
     </div>
 </div>

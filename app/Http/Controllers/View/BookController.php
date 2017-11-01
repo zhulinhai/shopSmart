@@ -16,7 +16,7 @@ class BookController extends Controller
   public function toCategory($value='')
   {
     Log::info("进入书籍类别");
-    $categorys = Category::whereNull('parent_id')->get();
+    $categorys = Category::where('parent_id', 0)->get();
     return view('category')->with('categorys', $categorys);
   }
 

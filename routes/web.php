@@ -34,11 +34,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('merchants/{merchant}/destroy', 'MerchantsController@destroy');
     Route::resource('merchants', 'MerchantsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
-    /* 会员管理 */
+    /* 会员管理 禁止删除 'destroy' */
     Route::Post('members/store', 'MembersController@store');
     Route::get('members/{member}/destroy', 'MembersController@destroy');
     Route::get('members/{member}/lock', 'MembersController@lock');
-    Route::resource('members', 'MembersController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+    Route::resource('members', 'MembersController', ['only' => ['index', 'show', 'create', 'update', 'edit']]);
 
     /* 文章创建、删除、列表展示等 */
     Route::Post('articles/store', 'ArticlesController@store');

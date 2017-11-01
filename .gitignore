@@ -19,4 +19,4 @@ composer.json
 /public/upload/images
 /public/upload/*.*
 /public/vendor/
-/public/vendor/*.*
+log.txt

@@ -37,6 +37,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
             'throttle:60,1',
             'bindings',
         ],
@@ -56,5 +58,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'check.admin.login' => \App\Http\Middleware\CheckAdminLogin::class,
+        'check.login' => \App\Http\Middleware\CheckLogin::class,
+        'check.cart' => \App\Http\Middleware\CheckCart::class,
+        'check.weixin' => \App\Http\Middleware\CheckWeixin::class,
     ];
 }

@@ -11,6 +11,15 @@ class Article extends Model
     protected $table = 'article';
     protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'category_id'];
     protected $dates =['published_at'];
+    public static $rules = [
+        'title'=>'required|min:3',
+        'content'=>'required'
+    ];
+
+    public static $messages = [
+        'title.required'=>'标题不能为空且至少3个字',
+        'content.required'=>'内容不允许为空'
+    ];
 
     public function setPublishedAtAttribute($date)
     {

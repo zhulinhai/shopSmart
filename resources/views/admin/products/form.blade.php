@@ -92,8 +92,9 @@
 {!! editor_css() !!}
 {!! editor_js() !!}
 <script>
+    var mdeditor;
     $(function () {
-        var editor = editormd('mdeditor', {
+        mdeditor = editormd('mdeditor', {
             width: '100%',
             imageUpload: true,
             imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],

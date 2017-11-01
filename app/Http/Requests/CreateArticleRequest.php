@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Entity\Article;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateArticleRequest extends FormRequest
@@ -23,9 +24,11 @@ class CreateArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title'=>'required|min:3',
-            'content'=>'required'
-        ];
+        return Article::$rules;
+    }
+
+    public function messages()
+    {
+        return Article::$messages;
     }
 }

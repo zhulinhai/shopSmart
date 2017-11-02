@@ -65,7 +65,8 @@ class ArticlesController extends Controller
     public function store(CreateArticleRequest $request)
     {
         $input = $request->all();
-        $content = $request->input('content');
+        $content = $request->input('content', '');
+        $html = $request->input('mdeditor-html-code', '');
         $summary = $request->input('summary', '');
         if ($summary == '')
         {
@@ -83,6 +84,7 @@ class ArticlesController extends Controller
         $article_content = new ArticleContent;
         $article_content->article_id = $article->id;
         $article_content->content = $content;
+        $article_content->html = $html;
         $article_content->save();
 
         return redirect('/admin/articles');
@@ -130,6 +132,7 @@ class ArticlesController extends Controller
     {
         $input = $request->all();
         $content = $request->input('content');
+        $html = $request->input('mdeditor-html-code', '');
         $summary = $request->input('summary', '');
         if ($summary == '')
         {
@@ -146,6 +149,7 @@ class ArticlesController extends Controller
 
         $article_content = ArticleContent::where('article_id', $id)->first();
         $article_content->content = $content;
+        $article_content->html = $html;
         $article_content->update();
 
         return redirect('/admin/articles');

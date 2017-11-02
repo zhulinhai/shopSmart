@@ -61,7 +61,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '类型', ['class'=>'control-label']) !!}
     <div class="form-group">
-        {!! Form::select('category_id', $categories, '0', ['class'=>'form-control']) !!}
+        {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">

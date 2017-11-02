@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <form action="/service/alipay" id="alipay" method="post">
+    <form action="/api/alipay" id="alipay" method="post">
       {{ csrf_field() }}
       <input type="hidden" name="total_price" value="{{$total_price}}" />
       <input type="hidden" name="name" value="{{$name}}" />
@@ -63,7 +63,7 @@
   wx.config({
       debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
       appId: "{{$bk_wx_js_config->appId}}", // 必填，公众号的唯一标识
-      timestamp: {{$bk_wx_js_config->timestamp}}, // 必填，生成签名的时间戳
+      timestamp: "{{$bk_wx_js_config->timestamp}}", // 必填，生成签名的时间戳
       nonceStr: "{{$bk_wx_js_config->nonceStr}}", // 必填，生成签名的随机串
       signature: "{{$bk_wx_js_config->signature}}",// 必填，签名，见附录1
       jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
@@ -78,7 +78,8 @@
 
   function _onPay() {
 
-    var payway = $('.weui_select option:selected').val();
+    var payway = $('.weui-select option:selected').val();
+    console.log('payway:' + payway);
     if(payway == '1') {
       $('#alipay').submit();
       return;
@@ -86,7 +87,7 @@
 
     $.ajax({
       type: "POST",
-      url: '/service/wxpay',
+      url: '/api/wxpay',
       dataType: 'json',
       cache: false,
       data: {name: "{{$name}}", order_no: "{{$order_no}}", total_price: "{{$total_price}}", _token: "{{csrf_token()}}"},

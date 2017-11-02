@@ -36,13 +36,13 @@
     </div>
     <div class="weui-cells">
         <div class="weui-cell">
-            <p>
-                @if($pdt_content != null)
-                    {!! $pdt_content->content !!}
-                @else
+            @if($pdt_content != null)
+                <div class="article" style="width: 100%">
+                    {!! $pdt_content->html !!}
+                </div>
+            @else
 
-                @endif
-            </p>
+            @endif
         </div>
     </div>
 

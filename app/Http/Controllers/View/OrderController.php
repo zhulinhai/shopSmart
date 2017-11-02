@@ -8,7 +8,7 @@ use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Entity\Order;
 use App\Entity\OrderItem;
-use App\Models\BKWXJsConfig;
+use App\Entity\BKWXJsConfig;
 use App\Tool\WXpay\WXTool;
 use Log;
 

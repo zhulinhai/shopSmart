@@ -95,7 +95,7 @@
 
             $.ajax({
                 type: "GET",
-                url: '/service/cart/delete',
+                url: '/api/cart/delete',
                 dataType: 'json',
                 cache: false,
                 data: {product_ids: product_ids_arr+''},

@@ -84,16 +84,18 @@ class ProductsController extends Controller
     /*
      * 存储或更新文章内容
      * */
-    public function storeOrUpdateContent($content, $id)
+    public function storeOrUpdateContent($content, $html, $id)
     {
         $pdt_content = PdtContent::where('product_id', $id)->first();
         if ($pdt_content) {
             $pdt_content->content = $content;
+            $pdt_content->html = $html;
             $pdt_content->update();
         } else {
             $pdt_content = new PdtContent;
             $pdt_content->product_id = $id;
             $pdt_content->content = $content;
+            $pdt_content->html = $html;
             $pdt_content->save();
 
         }
@@ -120,6 +122,7 @@ class ProductsController extends Controller
         $status = $request->input('status', '');
         $published_at = $request->input('published_at', '');
         $end_date = $request->input('end_date', '');
+        $html = $request->input('', '');
 
         $product = new Product;
         $product->summary = $summary;
@@ -134,7 +137,7 @@ class ProductsController extends Controller
         $product->end_date = $end_date;
         $product->save();
 
-        $this->storeOrUpdateContent($content, $product->id);
+        $this->storeOrUpdateContent($content, $html, $product->id);
         $this->storeOrUpdateImages($request, $product->id);
 
         return redirect('/admin/products');
@@ -189,6 +192,7 @@ class ProductsController extends Controller
         $status = $request->input('status', '');
         $published_at = $request->input('published_at', '');
         $end_date = $request->input('end_date', '');
+        $html = $request->input('mdeditor-html-code', '');
 
         $product = Product::findOrFail($id);
         if ($product) {
@@ -205,7 +209,7 @@ class ProductsController extends Controller
             $product->update();
         }
 
-        $this->storeOrUpdateContent($content, $id);
+        $this->storeOrUpdateContent($content, $html, $id);
         $this->storeOrUpdateImages($request, $id);
 
         return redirect('/admin/products');

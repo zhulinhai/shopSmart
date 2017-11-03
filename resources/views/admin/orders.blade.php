@@ -17,12 +17,11 @@
                         <tr>
                             <th class="col-xs-1">ID</th>
                             <th class="col-xs-1">订单号</th>
-                            <th class="col-xs-2">订单名称</th>
+                            <th class="col-xs-6">订单名称</th>
                             <th class="col-xs-1">支付金额</th>
                             <th class="col-xs-1">支付方式</th>
                             <th class="col-xs-1">订单状态</th>
-                            <th class="col-xs-1">用户ID</th>
-                            <th class="col-xs-2">操作</th>
+                            <th class="col-xs-1">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +31,6 @@
                                 <td>{{$order->order_no}}</td>
                                 <td>{{$order->name}}</td>
                                 <td>{{$order->total_price}}</td>
-                                <td>{{$product->category->name}}</td>
                                 <td>
                                     @if($order->payway == 1)
                                         支付宝
@@ -56,7 +54,7 @@
                                     @endif</td>
                                 </td>
                                 <td>
-                                    <a href="{{ url('/admin/orders/'.$product->id.'/edit') }}"><button class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> 编辑</button></a>
+                                    <a href="{{ url('/admin/orders/'.$order->id.'/edit') }}"><button class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> 编辑</button></a>
                                 </td>
                             </tr>
                         @endforeach

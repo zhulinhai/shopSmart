@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 活动列表</a><a href="{{ url('/admin/products/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加活动</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 产品列表</a><a href="{{ url('/admin/products/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加产品</a></div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -36,6 +36,7 @@
                                     <div class="btn-group">
                                         <a href="{{ url('admin/products/'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                         <a href="{{ url('admin/products/'.$product->id.'/destroy') }}"><button class="btn btn-danger">下架</button></a>
+                                        <a href="{{ url('admin/comments/'.$product->id.'/addComment') }}"><button class="btn btn-danger">添加评论</button></a>
                                     </div>
                                 </td>
                             </tr>

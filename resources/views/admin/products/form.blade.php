@@ -85,7 +85,7 @@
     {!! Form::date('published_at', ($product && $product->published_at)? $product->published_at:\Carbon\Carbon::now() , ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::submit('发布活动',['class'=>'btn btn-primary form-control']) !!}
+    {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
 </div>
 
 {!! editor_config('mdeditor') !!}

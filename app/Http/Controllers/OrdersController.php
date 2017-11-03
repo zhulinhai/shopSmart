@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Entity\Order;
-use App\Models\M3Result;
+use App\Entity\M3Result;
 
 class OrdersController extends Controller
 {
@@ -47,6 +47,19 @@ class OrdersController extends Controller
         $m3_result->message = '添加成功';
 
         return $m3_result->toJson();
+    }
+
+    public function edit($id)
+    {
+        $order = Order::findOrFail($id)->first();
+        return view('admin.orders.edit',['order'=>$order]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update($request->all());
+        return redirect('/admin/orders');
     }
 
 }

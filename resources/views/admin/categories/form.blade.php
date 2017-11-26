@@ -13,7 +13,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('parent_id', "父级标签", ['class'=>'control-label']) !!}
-    {!! Form::select('parent_id', $pNodes, '0', ['class'=>'form-control']) !!}
+    {!! Form::select('parent_id', $pNodes, ($category)?$category->category_id:0, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group" style="display: none">
     {!! Form::label('parent_id', "类型", ['class'=>'control-label']) !!}

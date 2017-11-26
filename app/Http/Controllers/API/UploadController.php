@@ -50,7 +50,7 @@ class UploadController extends Controller {
 			// 从临时目标移到上传目录
 			if( move_uploaded_file($_FILES["file"]["tmp_name"], $upload_file_path) )
 			{
-				$public_uri = config('app.url'). ':'.config('app.port') . $public_dir . $upload_filename . '.' . $file_ext;
+				$public_uri =  $public_dir . $upload_filename . '.' . $file_ext;
 
 				$m3_result->status = 0;
 				$m3_result->message = "上传成功";

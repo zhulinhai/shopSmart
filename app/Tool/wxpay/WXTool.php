@@ -3,7 +3,7 @@
 namespace App\Tool\wxpay;
 
 use Illuminate\Support\Facades\Cache;
-use App\Models\BKWXPayConfig;
+use App\Entity\BKWXPayConfig;
 use Illuminate\Support\Facades\Log;
 
 class WXTool {

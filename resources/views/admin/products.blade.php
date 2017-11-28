@@ -36,7 +36,6 @@
                                     <div class="btn-group">
                                         <a href="{{ url('admin/products/'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                         <a href="{{ url('admin/products/'.$product->id.'/destroy') }}"><button class="btn btn-danger">下架</button></a>
-                                        <a href="{{ url('admin/comments/'.$product->id.'/addComment') }}"><button class="btn btn-danger">添加评论</button></a>
                                     </div>
                                 </td>
                             </tr>

@@ -16,8 +16,6 @@ class UploadController extends Controller {
 		$height = $request->input("height", '');
 		$m3_result = new M3Result();
 
-		dd($request->all());
-
 		if( $_FILES["file"]["error"] > 0 )
 		{
 			$m3_result->status = 2;
@@ -52,9 +50,10 @@ class UploadController extends Controller {
 			// 从临时目标移到上传目录
 			if( move_uploaded_file($_FILES["file"]["tmp_name"], $upload_file_path) )
 			{
-				$public_uri =  $public_dir . $upload_filename . '.' . $file_ext;
-				if ($type == 'editorImg') {
-                    $public_uri = config('app.url'). ':'.config('app.port') . $public_uri;
+			    $relative_uri = $public_dir . $upload_filename . '.' . $file_ext;
+                $public_uri = config('app.url'). ':'.config('app.port') . $relative_uri;
+                if ($type == 'images') {
+                    $public_uri = $relative_uri;
                 }
 
 				$m3_result->status = 0;

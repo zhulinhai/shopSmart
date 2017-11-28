@@ -130,10 +130,10 @@
                 $("body").on('change', '#uploadImageFile',function () {
                     var file = $('#uploadImageFile').val();
                     if (file.length > 0) {
-                        uploadImageToServer('uploadImageFile','eImages', null, function (result) {
+                        uploadImageToServer('uploadImageFile','images', null, function (result) {
                             loading(false);
-                            alert(result);
                             if (parseInt(result.status) === 0) {
+                                alert("result", result.uri);
                                 dialog.find("[data-url]").val(result.uri);
                             } else {
                                 alert(result.message);

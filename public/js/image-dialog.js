@@ -133,7 +133,7 @@
                         uploadImageToServer('uploadImageFile','editorImg', null, function (result) {
                             loading(false);
                             if (parseInt(result.status) === 0) {
-                                dialog.find("[data-url]").val(baseUrl + result.uri);
+                                dialog.find("[data-url]").val(result.uri);
                             } else {
                                 alert(result.message);
                             }

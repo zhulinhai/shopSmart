@@ -126,6 +126,7 @@
                     return ;
                 }
 
+                var baseUrl = 'http://shopsmart.geek720.com/';
                 // 修改提交服务器
                 $("body").on('change', '#uploadImageFile',function () {
                     var file = $('#uploadImageFile').val();
@@ -133,7 +134,7 @@
                         uploadImageToServer('uploadImageFile','images', null, function (result) {
                             loading(false);
                             if (parseInt(result.status) === 0) {
-                                dialog.find("[data-url]").val(result.uri);
+                                dialog.find("[data-url]").val(baseUrl + result.uri);
                             } else {
                                 alert(result.message);
                             }

@@ -33,7 +33,7 @@
                     {!! Form::select('status', array('1'=>'未支付', '2'=>'已支付', '3'=>'等待发货', '4'=>'已发货', '5'=>'已签收'), $order->status, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::submit('发布活动',['class'=>'btn btn-primary form-control']) !!}
+                    {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
                 </div>
 
             {{ Form::close() }}

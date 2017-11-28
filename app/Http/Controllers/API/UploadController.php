@@ -16,6 +16,8 @@ class UploadController extends Controller {
 		$height = $request->input("height", '');
 		$m3_result = new M3Result();
 
+		dd($request->all());
+
 		if( $_FILES["file"]["error"] > 0 )
 		{
 			$m3_result->status = 2;

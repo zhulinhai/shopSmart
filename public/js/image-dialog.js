@@ -133,7 +133,7 @@
                         uploadImageToServer('uploadImageFile','images', null, function (result) {
                             loading(false);
                             if (parseInt(result.status) === 0) {
-                                dialog.find("[data-url]").val("{{ APP_URL() }}" + '/' + result.uri);
+                                dialog.find("[data-url]").val('http://shopsmart.geek720.com' + result.uri);
                             } else {
                                 alert(result.message);
                             }

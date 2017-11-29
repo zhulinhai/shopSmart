@@ -238,7 +238,7 @@ function uploadImageToServer(fileElmId, type, id, callBack)
     $.ajaxFileUpload({
         url: '/api/upload/' + type,
         fileElementId: fileElmId,
-        dataType: 'json',
+        dataType: 'text',
         success: function (data)
         {
             var result = JSON.parse(data);

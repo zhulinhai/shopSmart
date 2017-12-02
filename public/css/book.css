@@ -87,3 +87,7 @@ body,html{height:100%;-webkit-tap-highlight-color:transparent}
 .bk_back, .bk_menu {position: absolute;width: 30px;height: 30px;top: 10px;}
 .bk_back {left: 10px;}
 .bk_menu {right: 10px;}
+
+.article img {
+    width: 100%;
+}

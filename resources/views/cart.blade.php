@@ -17,7 +17,7 @@
                             <img class="bk_preview" src="{{$cart_item->product->preview}}" class="m3_preview" onclick="_toProduct({{$cart_item->product->id}});"/>
                             <div style="position: absolute; left: 100px; right: 0; top: 0">
                                 <p>{{$cart_item->product->name}}</p>
-                                <p class="bk_time" style="margin-top: 15px;">数量: <span class="bk_summary">x{{$cart_item->count}}</span></p>
+                                <p class="bk_time">数量: <span class="bk_summary">x{{$cart_item->count}}</span></p>
                                 <p class="bk_time">总计: <span class="bk_price">￥{{$cart_item->product->price * $cart_item->count}}</span></p>
                             </div>
                         </div>

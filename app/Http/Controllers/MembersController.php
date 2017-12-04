@@ -28,7 +28,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Member::latest('created_at')->get();;
+//        $members = Member::latest('created_at')->get();
+        $members = Member::paginate(10);
         return view('admin.members', ['members'=>$members]);
     }
 

@@ -37,6 +37,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="nav-box">
+                        {{ $articles->links() }}
+                    </div>
                 </div>
             </div>
         </div>

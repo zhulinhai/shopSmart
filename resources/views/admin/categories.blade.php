@@ -40,6 +40,9 @@
                         @endforeach
                 </tbody>
             </table>
+            <div class="nav-box">
+                {{ $categories->links() }}
+            </div>
         </div>
     </div>
 @endsection

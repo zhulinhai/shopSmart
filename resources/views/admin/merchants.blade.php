@@ -37,6 +37,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="nav-box">
+                        {{ $merchants->links() }}
+                    </div>
                 </div>
             </div>
         </div>

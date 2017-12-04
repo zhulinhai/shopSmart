@@ -79,7 +79,6 @@
   function _onPay() {
 
     var payway = $('.weui-select option:selected').val();
-    console.log('payway:' + payway);
     if(payway == '1') {
       $('#alipay').submit();
       return;

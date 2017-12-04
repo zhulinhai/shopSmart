@@ -60,6 +60,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="nav-box">
+                        {{ $orders->links() }}
+                    </div>
                 </div>
             </div>
         </div>

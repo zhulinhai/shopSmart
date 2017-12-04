@@ -42,6 +42,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="nav-box">
+                        {{ $products->links() }}
+                    </div>
                 </div>
             </div>
         </div>

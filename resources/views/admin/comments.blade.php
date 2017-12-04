@@ -34,6 +34,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="nav-box">
+                        {{ $comments->links() }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ class MerchantsController extends Controller
      */
     public function index()
     {
-        $merchants = Merchant::all();
+        $merchants = Merchant::paginate(10);
         $categories = $this->getCategories();
         return view('admin.merchants', ['merchants' => $merchants, 'categories'=>$categories]);
     }

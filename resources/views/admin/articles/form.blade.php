@@ -31,7 +31,10 @@
         {!! Form::text('category_id', 0, ['class'=>'form-control']) !!}
     </div>
 </div>
-
+<div class="form-group">
+    {!! Form::label('published_at', '发布日期', ['class'=>'control-label']) !!}
+    {!! Form::date('published_at', ($article && $article->published_at)? $article->published_at:\Carbon\Carbon::now() , ['class'=>'form-control']) !!}
+</div>
 <div class="form-group">
     {!! Form::submit('发布文章',['class'=>'btn btn-primary form-control']) !!}
 </div>

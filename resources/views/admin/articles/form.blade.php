@@ -24,13 +24,13 @@
         {!! Form::textarea('content', $articleContent, ['class'=>'form-control','style'=>'display:none']) !!}
     </div>
 </div>
-<div class="form-group">
-    <i class="glyphicon glyphicon-star"></i>
-    {!! Form::label('category', '文章类型', ['class'=>'control-label']) !!}
-    <div class="form-group">
-        {!! Form::select('category_id', $categories, '0', ['class'=>'form-control']) !!}
-    </div>
-</div>
+{{--<div class="form-group">--}}
+    {{--<i class="glyphicon glyphicon-star"></i>--}}
+    {{--{!! Form::label('category', '文章类型', ['class'=>'control-label']) !!}--}}
+    {{--<div class="form-group">--}}
+        {{--{!! Form::text('category', null, ['class'=>'form-control']) !!}--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 <div class="form-group">
     {!! Form::submit('发布文章',['class'=>'btn btn-primary form-control']) !!}

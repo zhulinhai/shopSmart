@@ -13,9 +13,8 @@
             <h2>{{ $article->title }}</h2>
             <p class="am-article-meta">作者: <a style="cursor: pointer;">{{ $article->user_id }}</a> 日期: {{ $article->updated_at }}</p>
             <div id="show_editor">
-                <textarea style="display: none">{!! $articleContent !!}</textarea>
+                <textarea readonly>{!! $articleContent !!}</textarea>
             </div>
-            {{--<p>{{ $categories}}</p>--}}
 
             {{--@foreach ($article->comments as $comment)--}}
                 {{--<div class="card">--}}

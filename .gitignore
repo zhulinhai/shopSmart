@@ -21,3 +21,4 @@ composer.json
 /public/vendor/
 /public/vendor/*.*
 log.txt
+/package.json

@@ -73,7 +73,13 @@ class ArticlesController extends Controller
         }
 
         $article = new Article;
-        $article->save($input);
+        $article->title = $request->input('title', '');
+        $article->preview = $request->input('preview', '');
+        $article->user_id = $request->input('user_id', 0);
+        $article->category = $request->input('category', '');
+        $article->summary = $summary;
+        $article->published_at = $request->input('published_at', '');
+        $article->save();
 
         $article_content = new ArticleContent;
         $article_content->article_id = $article->id;
@@ -134,7 +140,13 @@ class ArticlesController extends Controller
         }
 
         $article = Article::findOrFail($id);
-        $article->update($input);
+        $article->title = $request->input('title', '');
+        $article->preview = $request->input('preview', '');
+        $article->user_id = $request->input('user_id', 0);
+        $article->category = $request->input('category', '');
+        $article->summary = $summary;
+        $article->published_at = $request->input('published_at', '');
+        $article->update();
 
         $article_content = ArticleContent::where('article_id', $id)->first();
         $article_content->content = $content;

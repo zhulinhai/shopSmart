@@ -134,12 +134,7 @@ class ArticlesController extends Controller
         }
 
         $article = Article::findOrFail($id);
-        $article->title = $request->input('title', '');
-        $article->preview = $request->input('preview', '');
-        $article->user_id = $request->input('user_id', 0);
-        $article->category = $request->input('category', '');
-        $article->summary = $summary;
-        $article->update();
+        $article->update($input);
 
         $article_content = ArticleContent::where('article_id', $id)->first();
         $article_content->content = $content;

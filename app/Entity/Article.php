@@ -9,7 +9,7 @@ class Article extends Model
 {
 
     protected $table = 'article';
-    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'category_id'];
+    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'category'];
     protected $dates =['published_at'];
     public static $rules = [
         'title'=>'required|min:3',

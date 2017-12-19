@@ -28,7 +28,7 @@
                                     <td><img width="100px" src="{{ asset($article->preview)  }}" alt=""></td>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->summary }}</td>
-                                    <td>{{ $article->published_at->diffForHumans() }}</td>
+                                    <td>{{ $article->published_at }}</td>
                                     <td><a href="{{ url('/admin/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                         <a href="{{ url('/admin/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
                                     </td>

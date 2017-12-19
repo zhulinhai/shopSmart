@@ -28,7 +28,7 @@
     <i class="glyphicon glyphicon-star"></i>
     {!! Form::label('category', '文章类型', ['class'=>'control-label']) !!}
     <div class="form-group">
-        {!! Form::text('category_id', 0, ['class'=>'form-control']) !!}
+        {!! Form::text('category', ($article?$article->category:''), ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">

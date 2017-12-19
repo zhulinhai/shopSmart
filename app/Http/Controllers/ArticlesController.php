@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Entity\Article;
 use App\Entity\ArticleContent;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateArticleRequest;
 
@@ -77,7 +76,7 @@ class ArticlesController extends Controller
         $article->title = $request->input('title', '');
         $article->preview = $request->input('preview', '');
         $article->user_id = $request->input('user_id', 0);
-        $article->category_id = $request->input('category_id', '');
+        $article->category = $request->input('category', '');
         $article->summary = $summary;
         $article->save();
 
@@ -143,7 +142,7 @@ class ArticlesController extends Controller
         $article->title = $request->input('title', '');
         $article->preview = $request->input('preview', '');
         $article->user_id = $request->input('user_id', 0);
-        $article->category_id = $request->input('category_id', '');
+        $article->category = $request->input('category', '');
         $article->summary = $summary;
         $article->update();
 

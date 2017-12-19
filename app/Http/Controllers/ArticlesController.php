@@ -73,12 +73,7 @@ class ArticlesController extends Controller
         }
 
         $article = new Article;
-        $article->title = $request->input('title', '');
-        $article->preview = $request->input('preview', '');
-        $article->user_id = $request->input('user_id', 0);
-        $article->category = $request->input('category', '');
-        $article->summary = $summary;
-        $article->save();
+        $article->save($input);
 
         $article_content = new ArticleContent;
         $article_content->article_id = $article->id;

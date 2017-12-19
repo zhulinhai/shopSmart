@@ -9,7 +9,7 @@ class Article extends Model
 {
 
     protected $table = 'article';
-    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'published_at', 'category'];
+    protected $fillable = ['id','title', 'summary', 'head_image', 'user_id', 'category', 'published_at'];
     protected $dates =['published_at'];
     public static $rules = [
         'title'=>'required|min:3',
@@ -21,15 +21,15 @@ class Article extends Model
         'content.required'=>'内容不允许为空'
     ];
 
-    public function setPublishedAtAttribute($date)
-    {
-        $this->attributes['published_at']= Carbon::parse($date);
-    }
-
-    public function scopePublished($query)
-    {
-        $query->where('published_at', '<=', Carbon::now());
-    }
+//    public function setPublishedAtAttribute($date)
+//    {
+//        $this->attributes['published_at']= Carbon::parse($date);
+//    }
+//
+//    public function scopePublished($query)
+//    {
+//        $query->where('published_at', '<=', Carbon::now());
+//    }
 
 //    public function user()
 //    {

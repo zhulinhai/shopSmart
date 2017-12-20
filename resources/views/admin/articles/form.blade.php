@@ -36,7 +36,7 @@
     {!! Form::date('published_at', ($article && $article->published_at)? $article->published_at:\Carbon\Carbon::now() , ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::submit('发布文章',['class'=>'btn btn-primary form-control']) !!}
+    {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
 </div>
 
 {!! editor_config('mdeditor') !!}

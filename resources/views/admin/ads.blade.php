@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('layouts.menus',['index' => 4])
+    @include('layouts.menus',['index' => 1])
 @endsection
 
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 文章管理</a><a href="{{ url('/admin/articles/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 写文章</a></div>
+            <div class="panel-title"><a><i class="glyphicon glyphicon-home"></i> 广告管理</a><a href="{{ url('/admin/ads/create') }}" class="pull-right" style="color: #CA2623"><i class="glyphicon glyphicon-plus"></i> 添加广告</a></div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -23,21 +23,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($articles as $article)
+                            @foreach ($ads as $ad)
                                 <tr>
-                                    <td><img width="100px" src="{{ asset($article->preview)  }}" alt=""></td>
-                                    <td>{{ $article->title }}</td>
-                                    <td>{{ $article->summary }}</td>
-                                    <td>{{ $article->published_at }}</td>
-                                    <td><a href="{{ url('/admin/articles/'.$article->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
-                                        <a href="{{ url('/admin/articles/'.$article->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
+                                    <td><img width="100px" src="{{ asset($ad->preview)  }}" alt=""></td>
+                                    <td>{{ $ad->title }}</td>
+                                    <td>{{ $ad->url }}</td>
+                                    <td>{{ $ad->published_date }}</td>
+                                    <td><a href="{{ url('/admin/ads/'.$ad->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
+                                        <a href="{{ url('/admin/ads/'.$ad->id.'/destroy') }}"><button class="btn btn-danger">删除</button></a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="nav-box">
-                        {{ $articles->links() }}
+                        {{ $ads->links() }}
                     </div>
                 </div>
             </div>

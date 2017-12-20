@@ -4,16 +4,17 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Ad extends Model
 {
-    protected $table = 'comments';
+    protected $table = 'ads';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 'title', 'content', 'type', 'member_id'
+        'id', 'title', 'preview', 'url', 'type', 'published_date', 'end_date'
     ];
 
+    protected $dates = ['published_date', 'end_date'];
 }

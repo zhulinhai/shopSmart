@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('layouts.menus',['index' => 2])
+    @include('layouts.menus',['index' => 3])
 @endsection
 
 @section('content')
@@ -16,9 +16,9 @@
                         <thead>
                             <tr>
                                 <th class="col-xs-2">主图</th>
-                                <th class="col-xs-8">内容</th>
+                                <th class="col-xs-7">内容</th>
                                 <th class="col-xs-1">状态</th>
-                                <th class="col-xs-1">操作</th>
+                                <th class="col-xs-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,10 +33,12 @@
                                     {{ $product->status }}
                                 </td>
                                 <td>
-                                    <div class="btn-group">
+                                    <div class="btn-group" style="margin-bottom: 20px">
                                         <a href="{{ url('admin/products/'.$product->id.'/edit') }}"><button class="btn btn-primary">编辑</button></a>
                                         <a href="{{ url('admin/products/'.$product->id.'/destroy') }}"><button class="btn btn-danger">下架</button></a>
+                                        <a href="#"><button class="btn btn-primary" data-toggle="collapse" data-target="#demo{{ $product->id }}">链接</button></a>
                                     </div>
+                                    <input style="width: 100%" id="demo{{ $product->id }}" class="collapse" value="{{  config('app.url') }}/product/{{ $product->id }}" readonly="readonly" >
                                 </td>
                             </tr>
                         @endforeach

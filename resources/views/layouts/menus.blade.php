@@ -2,6 +2,7 @@
     <ul class="list-group">
         <?php $menus = array(
                 array("name"=>'数据统计', 'icon'=>'img/tongji.png', 'isActive'=>false,'route'=>'home'),
+                array("name"=>'广告管理', 'icon'=>'img/businessManage.png', 'isActive'=>false,'route'=>'ads'),
                 array("name"=>'商家管理', 'icon'=>'img/businessManage.png', 'isActive'=>false,'route'=>'merchants'),
                 array("name"=>'产品管理', 'icon'=>'img/actManage.png', 'isActive'=>false,'route'=>'products'),
                 array("name"=>'文章管理', 'icon'=>'img/newsManage.png', 'isActive'=>false,'route'=>'articles'),

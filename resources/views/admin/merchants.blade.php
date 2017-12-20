@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('layouts.menus',['index' => 1])
+    @include('layouts.menus',['index' => 2])
 @endsection
 
 @section('content')

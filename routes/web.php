@@ -29,6 +29,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('products/{product}/destroy', 'ProductsController@destroy');
     Route::resource('products', 'ProductsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
 
+    Route::Post('ads/store', 'AdsController@store');
+    Route::get('ads/{ad}/destroy', 'AdsController@destroy');
+    Route::resource('ads', 'AdsController', ['only' => ['index', 'show', 'create', 'update', 'edit', 'destroy']]);
+
     /* 商家管理 */
     Route::Post('merchants/store', 'MerchantsController@store');
     Route::get('merchants/{merchant}/destroy', 'MerchantsController@destroy');

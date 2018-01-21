@@ -12,8 +12,6 @@
 */
 
 /***********************************后台相关***********************************/
-Route::get('/', 'HomeController@index');
-
 Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 
@@ -59,6 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 /* web app */
+Route::get('/', 'View\MemberController@toLogin');
 Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
 Route::get('/category', 'View\BookController@toCategory');

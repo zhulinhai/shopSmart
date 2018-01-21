@@ -18,7 +18,7 @@
 <div class="form-group">
     {!! Form::label('type', '广告类型', ['class'=>'control-label']) !!}
     <div class="form-group">
-        {!! Form::select('type', array('0'=>'产品', '1'=>'H5','2'=>'video', '3'=>'其他'), ($ad && $ad->type)? $ad->type: 0, ['class'=>'form-control']) !!}
+        {!! Form::select('type', array('0'=>'产品广告', '1'=>'文章广告', '2'=>'其他'), ($ad && $ad->type)? $ad->type: 0, ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">

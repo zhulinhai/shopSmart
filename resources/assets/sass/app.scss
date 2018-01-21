@@ -12,6 +12,9 @@ hr {
 }
 .navbar-brand {
   padding: 5px 10px;
+  img {
+    max-width: 100%;
+  }
 }
 .navbar {
   background-color: #204F8D;

@@ -32,3 +32,5 @@ Route::get('pay/ali_result', 'API\PayController@aliResult');
 Route::get('pay/ali_merchant', 'API\PayController@aliMerchant');
 
 Route::post('pay/wx_notify', 'API\PayController@wxNotify');
+
+Route::get('getADList/{type}','API\AdController@getADList');

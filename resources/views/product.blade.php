@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', '书籍列表')
+@section('title', '商品列表')
 
 @section('content')
     <div class="weui-cells">

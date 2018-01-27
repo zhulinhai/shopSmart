@@ -9,13 +9,21 @@ use App\Entity\Product;
 use App\Entity\PdtContent;
 use App\Entity\PdtImages;
 use App\Entity\CartItem;
+use App\Entity\Ad;
 use Log;
 
 class BookController extends Controller
 {
+  public function toHome()
+  {
+      $products = Product::paginate(6);
+      $banners = Ad::where('type', 0)->get();
+      return view('home', ['products'=>$products, 'banners'=>$banners]);
+  }
+
   public function toCategory($value='')
   {
-    Log::info("进入书籍类别");
+    Log::info("进入商品类别");
     $categorys = Category::where('parent_id', 0)->get();
     return view('category')->with('categorys', $categorys);
   }

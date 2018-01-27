@@ -1,8 +1,8 @@
 @extends('master')
-@section('title', '书籍类别')
+@section('title', '商品类别')
 
 @section('content')
-    <div class="weui-cells__title">选择书籍类别</div>
+    <div class="weui-cells__title">选择商品类别</div>
     <div class="weui-cells">
         <div class="weui-cell weui-cell_select">
             <div class="weui-cell__bd weui-cell_primary">

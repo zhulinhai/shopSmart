@@ -28,7 +28,7 @@
     <div class="weui-actionsheet" id="iosActionsheet">
         <div class="weui-actionsheet__menu">
             <div class="weui-actionsheet__cell" onclick="onMenuItemClick(1)">主页</div>
-            <div class="weui-actionsheet__cell" onclick="onMenuItemClick(2)">书籍类别</div>
+            <div class="weui-actionsheet__cell" onclick="onMenuItemClick(2)">商品类别</div>
             <div class="weui-actionsheet__cell" onclick="onMenuItemClick(3)">购物车</div>
             <div class="weui-actionsheet__cell" onclick="onMenuItemClick(4)">我的订单</div>
         </div>
@@ -65,7 +65,7 @@
         var weuiActionsheet = $('#iosActionsheet');
         hideActionSheet(weuiActionsheet, mask);
         if(index == 1) {
-            showTopTips('敬请期待!');
+            location.href = '/';
         } else if(index == 2) {
             location.href = '/category';
         } else if(index == 3){

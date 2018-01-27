@@ -88,7 +88,7 @@ class OrderController extends Controller
   public function toOrderList(Request $request)
   {
     $member = $request->session()->get('member', '');
-    $orders = Order::where('member_id', $member->id)->get();
+    $orders = Order::where('member_id', $member->id)->orderByDesc('created_at')->get();
     foreach ($orders as $order) {
       $order_items = OrderItem::where('order_id', $order->id)->get();
       $order->order_items = $order_items;

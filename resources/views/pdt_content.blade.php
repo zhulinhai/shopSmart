@@ -81,6 +81,7 @@
                 url: '/api/cart/add/' + product_id,
                 dataType: 'json',
                 cache: false,
+                data: {_token: "{{csrf_token()}}"},
                 success: function(data) {
                     if(data == null) {
                         $('.bk_toptips').show();

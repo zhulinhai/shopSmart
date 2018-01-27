@@ -9,7 +9,7 @@
             <div class="swipe-wrap">
                 @foreach($banners as $banner)
                     <div>
-                        <a href="javascript:;"><img class="img-responsive" src="{{$banner->image_path}}" /></a>
+                        <a href="javascript:;"><img class="img-responsive" src="{{$banner->preview}}" /></a>
                     </div>
                 @endforeach
             </div>

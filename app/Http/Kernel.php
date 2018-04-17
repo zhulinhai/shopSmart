@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\Cors::class
     ];
 
     /**
@@ -41,6 +42,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             'throttle:60,1',
             'bindings',
+            \App\Http\Middleware\Cors::class
         ],
     ];
 
@@ -62,5 +64,6 @@ class Kernel extends HttpKernel
         'check.login' => \App\Http\Middleware\CheckLogin::class,
         'check.cart' => \App\Http\Middleware\CheckCart::class,
         'check.weixin' => \App\Http\Middleware\CheckWeixin::class,
+        'cors' => \App\Http\Middleware\Cors::class
     ];
 }

@@ -51,7 +51,7 @@ class OrdersController extends Controller
 
     public function edit($id)
     {
-        $order = Order::findOrFail($id)->first();
+        $order = Order::findOrFail($id);
         return view('admin.orders.edit',['order'=>$order]);
     }
 

@@ -21,6 +21,7 @@ Route::post('register', 'API\MemberController@register');
 Route::post('login', 'API\MemberController@login');
 
 Route::get('category/parent_id/{parent_id}', 'API\CategoryController@getCategoryByParentId');
+Route::get('category/getCategoryAll','API\CategoryController@getCategoryAll');
 Route::get('cart/add/{product_id}', 'API\CartController@addCart');
 Route::get('cart/delete', 'API\CartController@deleteCart');
 
@@ -34,3 +35,5 @@ Route::get('pay/ali_merchant', 'API\PayController@aliMerchant');
 Route::post('pay/wx_notify', 'API\PayController@wxNotify');
 
 Route::get('getADList/{type}','API\AdController@getADList');
+Route::get('getProductList','API\ProductController@getProductList');
+Route::get('getPdtContent/{product_id}','API\ProductController@getPdtContent');

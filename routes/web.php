@@ -15,6 +15,7 @@
 Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::Post('categories/store', 'CategoriesController@store');
@@ -57,12 +58,12 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 /* web app */
-Route::get('/', 'View\BookController@toHome');
+Route::get('/', 'View\ProductController@toHome');
 Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
-Route::get('/category', 'View\BookController@toCategory');
-Route::get('/product/category_id/{category_id}', 'View\BookController@toProduct');
-Route::get('/product/{product_id}', 'View\BookController@toPdtContent');
+Route::get('/category', 'View\ProductController@toCategory');
+Route::get('/product/category_id/{category_id}', 'View\ProductController@toProduct');
+Route::get('/product/{product_id}', 'View\ProductController@toPdtContent');
 Route::get('/cart', 'View\CartController@toCart');
 
 Route::match(['get', 'post'], '/order_commit', 'View\OrderController@toOrderCommit')->middleware(['check.cart', 'check.weixin']);

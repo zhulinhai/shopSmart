@@ -83,22 +83,21 @@
                 cache: false,
                 data: {_token: "{{csrf_token()}}"},
                 success: function(data) {
-                    if(data == null) {
+                    if(data === null) {
                         $('.bk_toptips').show();
                         $('.bk_toptips span').html('服务端错误');
                         setTimeout(function() {$('.bk_toptips').hide();}, 2000);
                         return;
                     }
-                    if(data.status != 0) {
+                    if(data.status !== 0) {
                         $('.bk_toptips').show();
                         $('.bk_toptips span').html(data.message);
                         setTimeout(function() {$('.bk_toptips').hide();}, 2000);
                         return;
                     }
 
-                    var num = $('#cart_num').html();
-                    if(num == '') num = 0;
-                    $('#cart_num').html(Number(num) + 1);
+                    var $num = $('#cart_num');
+                    $num.html(Number($num.html()===''?0:$num) + 1);
 
                 },
                 error: function(xhr, status, error) {

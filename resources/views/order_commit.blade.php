@@ -79,7 +79,7 @@
   function _onPay() {
 
     var payway = $('.weui-select option:selected').val();
-    if(payway == '1') {
+    if(payway === '1') {
       $('#alipay').submit();
       return;
     }
@@ -91,7 +91,7 @@
       cache: false,
       data: {name: "{{$name}}", order_no: "{{$order_no}}", total_price: "{{$total_price}}", _token: "{{csrf_token()}}"},
       success: function(data) {
-        if(data == null) {
+        if(data === null) {
           $('.bk_toptips').show();
           $('.bk_toptips span').html('服务端错误');
           setTimeout(function() {$('.bk_toptips').hide();}, 2000);

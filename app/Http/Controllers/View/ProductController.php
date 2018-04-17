@@ -12,7 +12,7 @@ use App\Entity\CartItem;
 use App\Entity\Ad;
 use Log;
 
-class BookController extends Controller
+class ProductController extends Controller
 {
   public function toHome()
   {
